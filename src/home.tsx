@@ -1,8 +1,8 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import Navbox from "../custom-componets/nav_div";
-import InputWithLabel from "../custom-componets/inputwithlabel";
-import Submit from "../custom-componets/submit";
-import Radiogroup from "../custom-componets/radiogroup";
+import { Avatar, AvatarImage } from "../@/components/ui/avatar";
+import Navbox from "./assets/custom-componets/nav_div";
+import InputWithLabel from "./assets/custom-componets/inputwithlabel";
+import Submit from "./assets/custom-componets/submit";
+import Radiogroup from "./assets/custom-componets/radiogroup";
 
 function Home() {
   return (
