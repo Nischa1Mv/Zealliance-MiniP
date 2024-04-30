@@ -2,9 +2,8 @@
 //     isreadonly="string";
 // }
 
-const isreadonly = false;
-
-const Excersiseinput = (isreadonly) => {
+const Excersiseinput = () => {
+  var Isreadonly = false;
   return (
     <div className="flex bg-gray-200 border border-black w-fit py-2 px-4 gap-4">
       <div>
@@ -21,7 +20,7 @@ const Excersiseinput = (isreadonly) => {
             className="w-full px-3"
             type="number"
             placeholder="reps"
-            readOnly={isreadonly}
+            readOnly={Isreadonly}
           />
           <div className="">Reps</div>
         </div>
