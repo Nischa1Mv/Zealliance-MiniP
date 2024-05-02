@@ -3,13 +3,15 @@ import Bmi from "./bmi";
 
 function Home() {
   const currentDate = new Date();
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const longDate = currentDate.toLocaleDateString(undefined, options);
+
+  // Get the day, month, and year
+  const day = String(currentDate.getDate()).padStart(2, "0"); // Ensure two digits with leading zero if necessary
+  const month = currentDate.toLocaleString("default", { month: "long" });
+  const year = currentDate.getFullYear();
+
+  // Construct the long date string
+  const longDateString = `${day} ${month} ${year}`;
+
   return (
     <>
       <div id="body" className=" h-screen flex flex-col gap-5 mx-12 my-5 ">
@@ -18,7 +20,7 @@ function Home() {
           className="flex gap-6 bg-[#f4a261]  h-[80px] border border-b-4 px-10 border-[#0E131F] relative rounded-xl"
         >
           <div className="text-xl font-semibold  order-1 my-6 ">
-            {longDate}{" "}
+            {longDateString}{" "}
           </div>
           <div className="grow order-1"></div>
           <div className="text-5xl font-bold order-2  my-3">Zeallience</div>
