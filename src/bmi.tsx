@@ -62,7 +62,7 @@ const Bmi = () => {
               </div>
               <div className="">
                 <input
-                  className="border-4 border-black rounded-full py-2 w-full h-full"
+                  className="border-4 border-black rounded-full py-3 w-full h-full "
                   type="submit"
                   placeholder="Submit"
                 />

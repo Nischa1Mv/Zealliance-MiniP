@@ -20,7 +20,7 @@ const InputWithLabel: React.FC<Props> = ({
       </label>
       <div className="  relative w-full border border-black ">
         <input
-          className="  h-full  px-4 rounded-lg w-full placeholder:text-xl placeholder:font-semibold hover:outline-black hover:outline-2 focus:outline-black focus:outline-4  bg-background border-2  border-slate-600    [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="  py-1  px-4 rounded-lg w-full placeholder:text-xl placeholder:font-semibold hover:outline-black hover:outline-2 focus:outline-black focus:outline-4  bg-background border-2  border-slate-600    [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           type={type}
           placeholder={placeholder}
         />

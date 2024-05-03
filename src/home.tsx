@@ -1,15 +1,14 @@
 import { Avatar, AvatarImage } from "../@/components/ui/avatar";
-import Bmi from "./bmi";
+// import Bmi from "./bmi";
+import Diary from "./diary";
 
 function Home() {
   const currentDate = new Date();
 
-  // Get the day, month, and year
-  const day = String(currentDate.getDate()).padStart(2, "0"); // Ensure two digits with leading zero if necessary
+  const day = String(currentDate.getDate()).padStart(2, "0");
   const month = currentDate.toLocaleString("default", { month: "long" });
   const year = currentDate.getFullYear();
 
-  // Construct the long date string
   const longDateString = `${day} ${month} ${year}`;
 
   return (
@@ -46,8 +45,10 @@ function Home() {
             </Avatar>
           </div>
         </div>
-
-        <Bmi />
+        <div className="w-full h-full ">
+          <Diary />
+        </div>
+        {/* <Bmi /> */}
       </div>
     </>
   );

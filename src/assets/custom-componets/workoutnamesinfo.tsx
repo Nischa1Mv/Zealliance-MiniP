@@ -2,7 +2,7 @@ import Excersicename from "./excersicename";
 
 const Workoutnamesinfo = () => {
   return (
-    <div className=" px-4 py-3 border border-4 flex flex-col ">
+    <div className=" px-4 py-3 s border-4 flex flex-col ">
       <div className="  font-semibold text-xl ">Push</div>
       <Excersicename />
       <Excersicename />
