@@ -12,8 +12,28 @@ const Diary = () => {
     <>
       <div className="w-full h-full bg-[#f4a261] rounded-xl flex flex-col gap-8 py-6  px-12 ">
         <div className="flex gap-4 w-full px-5">
-          <div className=" flex justify-center items-center rounded-xl bg-white py-5 grow text-2xl font-extrabold ">
+          <div className=" flex justify-center items-center rounded-xl bg-white py-5 grow text-2xl font-extrabold relative">
+            <div className="absolute left-5  ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+              >
+                <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+              </svg>
+            </div>{" "}
             {longDateString}
+            <div className="absolute right-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="50"
+                height="50"
+                viewBox="0 0 24 24"
+              >
+                <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+              </svg>
+            </div>
           </div>
           <div className="flex  justify-center items-center  rounded-xl bg-white mr-4">
             <svg
@@ -53,7 +73,7 @@ const Diary = () => {
               </svg>
             </div>
           </div>
-          <div className="px-5 py-3 bg-white rounded-xl  ">
+          <div className="px-5 py-3 bg-white rounded-xl border-2 border-black  ">
             <Excercisedata />
             <Excercisedata />
             <Excercisedata />

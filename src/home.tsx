@@ -45,7 +45,7 @@ function Home() {
             </Avatar>
           </div>
         </div>
-        <div className="w-full h-full ">
+        <div className="w-full h-full border-x-4 border  border-black rounded-xl  ">
           <Diary />
         </div>
         {/* <Bmi /> */}

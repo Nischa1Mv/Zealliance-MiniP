@@ -14,7 +14,7 @@
 
 function Excercisedata() {
   return (
-    <div className=" relative flex border-4 border-[#f4a261] w-full mt-6 py-5 px-4 rounded-xl text-xl font-bold  ">
+    <div className=" relative flex border-2 border-[#000000] w-full my-6 py-5 px-4 rounded-xl text-xl font-bold  ">
       <div>Name : ww / rr , ww / rr , ww / rr , PR: ww / rr</div>
       <div className=" absolute right-5">
         {" "}
