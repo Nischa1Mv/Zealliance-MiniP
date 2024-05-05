@@ -1,6 +1,7 @@
 import { Avatar, AvatarImage } from "../@/components/ui/avatar";
 // import Bmi from "./bmi";
-import Diary from "./diary";
+// import Diary from "./diary";
+import Foodlog from "./foodlog";
 
 function Home() {
   const currentDate = new Date();
@@ -45,8 +46,9 @@ function Home() {
             </Avatar>
           </div>
         </div>
-        <div className="w-full h-full border-x-4 border  border-black rounded-xl  ">
-          <Diary />
+        <div className="w-ful h-fit border-x-4 border  border-black rounded-xl  ">
+          {/* <Diary /> */}
+          <Foodlog />
         </div>
         {/* <Bmi /> */}
       </div>
