@@ -20,7 +20,7 @@ const Foodbrowse = () => {
           </svg>
         </div>
       </div>
-      <div className="border-4 border-black h-[740px] px-4 py-6 flex flex-col gap-4 rounded-xl">
+      <div className="border-4 border-black h-[740px] px-14 py-10 flex flex-col gap-4 rounded-xl">
         <Fooddata /> <Fooddata /> <Fooddata /> <Fooddata /> <Fooddata />
       </div>
     </div>

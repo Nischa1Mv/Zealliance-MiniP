@@ -1,7 +1,7 @@
-import { Avatar, AvatarImage } from "../@/components/ui/avatar";
 // import Bmi from "./bmi";
 // import Diary from "./diary";
-import Foodlog from "./foodlog";
+// import Foodlog from "./foodlog";
+import Footer from "./footer";
 
 function Home() {
   const currentDate = new Date();
@@ -17,7 +17,7 @@ function Home() {
       <div id="body" className=" h-screen flex flex-col gap-5 mx-12 my-5 ">
         <div
           id="nav"
-          className="flex gap-6 bg-[#f4a261]  h-[80px] border border-b-4 px-10 border-[#0E131F] relative rounded-xl"
+          className="flex gap-6 bg-[#f4a261]  h-[80px] border border-b-4 px-10 pr-6 border-[#0E131F] relative rounded-xl"
         >
           <div className="text-xl font-semibold  order-1 my-6 ">
             {longDateString}{" "}
@@ -36,22 +36,22 @@ function Home() {
             FoodLog{" "}
           </div>
 
-          <div className="order-6 absolutue right-0">
-            <Avatar>
-              <AvatarImage
-                className="h-[60px] mt-2 outline-white outline rounded-[50%]"
-                src="https://www.github.com/Nischa1Mv.png"
-              ></AvatarImage>
-              {/* <AvatarFallback>Profile</AvatarFallback> */}
-            </Avatar>
+          <div className="order-6  mt-4 ">
+            <img
+              className="   rounded-full"
+              src="https://i.pinimg.com/564x/c3/9a/c5/c39ac5ebf279969584e8e12b7622c556.jpg"
+              alt="Profile"
+              width="50"
+            />
           </div>
         </div>
         <div className="w-ful h-fit border-x-4 border  border-black rounded-xl  ">
           {/* <Diary /> */}
-          <Foodlog />
+          {/* <Foodlog /> */}
         </div>
         {/* <Bmi /> */}
       </div>
+      <Footer />
     </>
   );
 }
