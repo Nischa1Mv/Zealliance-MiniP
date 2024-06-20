@@ -1,23 +1,23 @@
 const Footer = () => {
   return (
-    // <div className="border-t-2 border-black flex px-10 pt-6 pb-2">
-    <div className=" grid grid-cols-4 gap-4 border-t-2 border-black px-10 pt-6 pb-2">
+    // <div className="border-t-2 border-black flex px-10 pt-6 pb-2">   
+    <div className=" grid grid-cols-4 gap-4  px-10 pt-6 pb-5 mx-10 rounded-xl bg-transparent">
       <div className="flex flex-col col-span-1 px-2 ">
-        <div>
-          <img
+        <div className="">
+          <img 
             src="https://i.pinimg.com/564x/e3/92/1a/e3921a9e19d508c55dd3c217b9d68db2.jpg"
             alt=""
-            width="200"
-            className="rounded-full"
+            width="100"
+            className="rounded-full border-4 border-white"
           />
         </div>{" "}
-        <div className=" mt-10 font-extrabold text-6xl">Zeallience</div>
+        <div className=" mt-2 font-extrabold text-6xl">Zeallience</div>
         <div className="font-semibold text-xl mt-3 ">Tagline</div>{" "}
       </div>
       <div className="flex px-6 mt-8 ml-10 col-span-2  ">
         <div className="flex gap-16  text-8xl">
           <a href="#">
-            <svg
+            <svg className=""
               xmlns="http://www.w3.org/2000/svg"
               width="60"
               height="105"
@@ -37,6 +37,7 @@ const Footer = () => {
               width="60"
               height="105"
               viewBox="0 0 24 24"
+
             >
               <path
                 fill-rule="evenodd"
@@ -75,7 +76,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className=" col-span-1 px-20 py-20  ">
+      <div className=" col-span-1 px-20 py-5  ">
         <div className="text-5xl font-semibold mb-1">Address</div>
         <p className=" ml-1 text-xl font-medium mt-2">
           {" "}
