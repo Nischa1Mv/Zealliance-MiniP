@@ -25,7 +25,7 @@ const Bmi = () => {
               <div className="grid grid-cols-2 grid-rows-1 text-center">
                 <div
                   className={`border-2 border-black rounded-lg py-2 cursor-pointer  transition duration-200  ${
-                    isMale ? "bg-blue-400 text-white" : ""
+                    isMale ? "bg-blue-400 text-white" : "bg-transparent"
                   }`}
                   onClick={handleMaleClick}
                 >
