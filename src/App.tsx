@@ -16,7 +16,7 @@ function App() {
         <div className="h-screen">
           <div
             id="nav"
-            className="flex items-center gap-6 bg-transparent h-[12vh] border border-b-2 border-x-0 border-t-0 px-10 pr-6 border-gray relative "
+            className="flex items-center gap-6 bg- h-[12vh] border border-b-2 border-x-0 border-t-0 px-10 pr-6 border-gray relative "
           >
             <div className="text-xl  font-semibold  order-1 my-6 ">
               {longDateString}{" "}

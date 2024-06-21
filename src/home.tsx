@@ -12,11 +12,9 @@ function Home() {
           <Route path="/" element={<Bmi />} />
           <Route path="workoutinfo" element={<Workoutinfo />} />
           <Route path="workoutlog" element={<Workoutlog />} />
-          {
-            /* <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />*/
-            <Route path="/foodlog" element={<Foodlog />} />
-          }
+          <Route path="/foodlog" element={<Foodlog />} />
+          {/* <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />*/}
         </Routes>
       </BrowserRouter>
     </>
