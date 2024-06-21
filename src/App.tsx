@@ -12,11 +12,14 @@ function App() {
 
   return (
     <>
-      <div id="body" className=" flex flex-col gap-5   bg-[#212121] text-white">
-        <div className="h-screen">
+      <div
+        id="body"
+        className=" flex flex-col gap-5    bg-[#212121] text-white"
+      >
+        <div className="h-screen  ">
           <div
             id="nav"
-            className="flex items-center gap-6 bg- h-[12vh] border-b-2 border-x-0 border-t-0 px-10 pr-6 border-[#464646] relative "
+            className="  bg-[#212121] w-full flex items-center gap-6  h-[12vh] border-b-2 border-x-0 border-t-0 px-10 pr-6 border-[#464646] sticky top-0 "
           >
             <div className="text-xl  font-semibold  order-1 my-6 ">
               {longDateString}{" "}
@@ -37,7 +40,7 @@ function App() {
               <a href="">FoodLog</a>{" "}
             </div>
 
-            <div className="order-6 mx-auto flex justify-center items-center rounded-full border-4 border-[#464646] circle-container">
+            <div className="order-6  mx-auto flex justify-center items-center rounded-full border-4 border-[#464646]">
               <img
                 src="https://i.pinimg.com/564x/e3/92/1a/e3921a9e19d508c55dd3c217b9d68db2.jpg"
                 alt=""
@@ -46,7 +49,7 @@ function App() {
               />
             </div>
           </div>
-          <div className=" mx-10 h-full">
+          <div className=" mx-10  h-full">
             <Home />
           </div>
         </div>
