@@ -4,7 +4,7 @@ const Bmi = () => {
   return (
     <>
       <div className=" rounded-xl py-5 px-8 grid grid-cols-2 gap-10 grid-rows-1 text-black  ">
-        <div className=" flex flex-col gap-5 items-center bg-white px-6 py-10  border-4  border-black rounded-xl">
+        <div className=" flex flex-col gap-5 items-center bg-white px-6 py-10  border-4   rounded-xl">
           <div className="text-6xl font-extrabold  ">Enter Your Stats</div>{" "}
           <form action="" className="">
             <div className="flex flex-col gap-12 text-3xl font-bold mt-8 ">
