@@ -15,12 +15,15 @@ const InputWithLabel: React.FC<Props> = ({
 }) => {
   return (
     <div className="flex w-full max-w-sm  gap-5  ">
-      <label className="w-[30%]" htmlFor={label}>
+      <label
+        className="w-[40%] flex justify-center items-center"
+        htmlFor={label}
+      >
         {label}
       </label>
-      <div className="  relative w-full border border-black ">
+      <div className="  relative w-full border-black border-2 ">
         <input
-          className="  py-1  px-4 rounded-lg w-full placeholder:text-xl placeholder:font-semibold hover:outline-black hover:outline-2 focus:outline-black focus:outline-4  bg-background border-2  border-slate-600    [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="  py-1 px-4 rounded-lg w-full placeholder:text-lg text-lg placeholder:font-semibold focus:outline-none  bg-background     [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           type={type}
           placeholder={placeholder}
         />

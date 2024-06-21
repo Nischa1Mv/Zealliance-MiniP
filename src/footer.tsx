@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
     // <div className="border-t-2 border-black flex px-10 pt-6 pb-2">
-    <div className=" grid grid-cols-4 gap-4  px-10 pt-6 pb-5  rounded-xl border-b-0 border-x-0 border border-[#464646]">
+    <div className=" grid grid-cols-4 gap-4 pl-20 pr-10 pt-6 pb-2  rounded-xl border-b-0 border-x-0 border border-[#464646]">
       <div className="flex flex-col col-span-1 px-2 ">
-        <div className="">
+        <div>
           <img
             src="https://i.pinimg.com/564x/e3/92/1a/e3921a9e19d508c55dd3c217b9d68db2.jpg"
             alt=""
@@ -14,7 +14,7 @@ const Footer = () => {
         <div className=" mt-2 font-extrabold text-6xl">Zeallience</div>
         <div className="font-semibold text-xl mt-3 ">Tagline</div>{" "}
       </div>
-      <div className="flex px-6 mt-8 ml-10  col-span-2 justify-center items-center h-fit mx-auto gap-14 ">
+      <div className="flex px-6 mt-14  ml-10  col-span-2 justify-center items-center h-fit mx-auto gap-14  ">
         <div className="flex  justify-center items-center  ">
           <a href="#">
             <svg
