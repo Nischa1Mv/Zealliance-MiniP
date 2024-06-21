@@ -9,8 +9,8 @@ function Home() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Bmi />} />
-          <Route path="workoutinfo" element={<Workoutinfo />} />
+          <Route path="/bmi" element={<Bmi />} />
+          <Route path="/" element={<Workoutinfo />} />
           <Route path="workoutlog" element={<Workoutlog />} />
           <Route path="/foodlog" element={<Foodlog />} />
           {/* <Route path="/login" element={<Login />} />
