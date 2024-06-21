@@ -21,7 +21,7 @@ const Paragraphguy = () => {
 };
 
 function Workoutnames() {
-  const [isInfo, setIsInfo] = useState(false);
+  const [isInfo, setIsInfo] = useState(true);
 
   return isInfo ? (
     <div className="px-4 py-3 border-2 flex xl:w-[20%] relative rounded-[8px] mb-3 w-fit ml-6">
