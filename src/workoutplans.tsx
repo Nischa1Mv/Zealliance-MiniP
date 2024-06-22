@@ -3,14 +3,15 @@ const Paragraphguy = () => {
   return (
     <div
       id="paragraph"
-      className="flex flex-col  gap-5 text-pretty  border-black mt-6"
+      className="flex flex-col  gap-5 text-pretty  h-[35vh] mt-6"
     >
-      <div className="font-bold text-5xl">Calisthenics</div>
-      <div>
+      <div className="font-bold text-7xl ">Calisthenics</div>
+
+      <div className="text-3xl mt-4 ">
         The term calisthenics comes from the Greek words ‘Kalos’ meaning beauty
         and ‘Stenos’ which translates as strength.{" "}
       </div>
-      <div className="mb-4">
+      <div className="mb-4 text-3xl">
         {" "}
         Calisthenics is a form of strength training that utilizes an
         individual's body weight as resistance to perform multi-joint, compound
@@ -20,17 +21,16 @@ const Paragraphguy = () => {
   );
 };
 
-function Workoutnames() {
+function Workoutnames({ Title, NameArr }) {
   const [isInfo, setIsInfo] = useState(true);
 
   return isInfo ? (
-    <div className="px-4 py-3 border-2 flex xl:w-[20%] relative rounded-[8px] mb-3 w-fit ml-6">
-      <div className="font-semibold text-xl">workout name Push</div>
+    <div className="px-4 py-3 border-2  flex rounded-xl h-fit  mx-6 ">
+      <div className="font-semibold text-xl flex  whitespace-nowrap">
+        {Title}
+      </div>
 
-      <div
-        className="absolute right-4 bottom-3 cursor-pointer"
-        onClick={() => setIsInfo(false)}
-      >
+      <div className="cursor-pointer" onClick={() => setIsInfo(false)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="30px"
@@ -43,42 +43,47 @@ function Workoutnames() {
       </div>
     </div>
   ) : (
-    <Workoutnamesinfo setIsInfo={setIsInfo} />
+    <Workoutnamesinfo setIsInfo={setIsInfo} NameArr={NameArr} Title={Title} />
   );
 }
 
-const Workoutnamesinfo = ({ setIsInfo }) => {
+const Workoutnamesinfo = ({ setIsInfo, NameArr, Title }) => {
   return (
-    <div className="px-4 py-3 border-2 flex flex-col w-[90%] relative rounded-[8px] mb-2 mx-6">
-      <div className="font-semibold text-xl my-2 ">Push </div>
-      <Excersicename />
-      <Excersicename />
-      <Excersicename />
-      <Excersicename />
-      <Excersicename />
+    <div>
+      <div className="px-5 py-3 border-2 flex flex-col gap-2 h-fit rounded-[8px]  mb-2 mx-6">
+        <div className="font-semibold text-xl my-2  ">{Title} </div>
+        <div className="flex">
+          {NameArr.map((ename, index) => (
+            <Excersicename key={index} Name={ename} />
+          ))}
 
-      <div className="relative mt-4 w-full  ">
-        <svg
-          className=" absolute right-0 bottom-0"
-          xmlns="http://www.w3.org/2000/svg"
-          height="40px"
-          viewBox="0 -960 960 960"
-          width="40px"
-          fill="#e8eaed"
-          onClick={() => setIsInfo(true)}
-        >
-          <path d="m280-400 200-200 200 200H280Z" />
-        </svg>
+          <div className=" mt-4 w-full  ">
+            <svg
+              className=" "
+              xmlns="http://www.w3.org/2000/svg"
+              height="40px"
+              viewBox="0 -960 960 960"
+              width="40px"
+              fill="#e8eaed"
+              onClick={() => setIsInfo(true)}
+            >
+              <path d="m280-400 200-200 200 200H280Z" />
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+interface ExcersicenameProps {
+  Name: string;
+}
 
-const Excersicename = () => {
+const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
   return (
-    <div className="px-8 py-2  font-medium text-lg ">
-      <div className="flex gap-4 items-center">
-        1. Push-Ups
+    <div className="px-8 py-2 flex   font-medium text-lg ">
+      <div className="flex gap-4">
+        <div className="whitespace-nowrap">{Name}</div>
         <div className="">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -94,22 +99,24 @@ const Excersicename = () => {
     </div>
   );
 };
+import { workoutinfoArr } from "./workoutinfo";
 
-const Workoutinfo = () => {
+const Workoutinfo = ({}) => {
   return (
     <>
       <div>
         <Paragraphguy />
       </div>
-      <div className="mt-5 gap-4 py-6 overflow-y-auto h-[62%] border flex flex-col  border-white">
-        <Workoutnames />
-        <Workoutnames />
-        <Workoutnames />
-        <Workoutnames />
-        <Workoutnames />
-        <Workoutnames />
-        <Workoutnames />
-        <Workoutnames />
+      <div className="mt-5 py-6 gap-6  border flex flex-wrap overflow-auto max-h-[46vh] border-white">
+        {workoutinfoArr.map((workout, Index) => (
+          <Workoutnames
+            key={Index}
+            Title={workout.Title}
+            NameArr={workout.NameArr}
+          />
+        ))}
+
+        {/* map here */}
       </div>
     </>
   );

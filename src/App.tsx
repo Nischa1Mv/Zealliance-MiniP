@@ -1,6 +1,6 @@
 import Footer from "./footer";
 import Home from "./home";
-
+import { Link } from "react-router-dom";
 function App() {
   const currentDate = new Date();
 
@@ -31,7 +31,7 @@ function App() {
             </div>
             <div className="text-xl font-semibold order-4 my-6 px-4  ">
               {" "}
-              <a href="">Workoutlog</a>{" "}
+              {/* <Link to="/workoutlog">Workout Log</Link> */}
             </div>
             <div className="text-xl font-semibold order-5 my-6 px-4">
               <a href="">FoodLog</a>{" "}
