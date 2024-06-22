@@ -1,6 +1,6 @@
 import Footer from "./footer";
 import Home from "./home";
-import { Link, BrowserRouter, Route, Routes } from "react-router-dom";
+import { Link, BrowserRouter } from "react-router-dom";
 function App() {
   const currentDate = new Date();
 

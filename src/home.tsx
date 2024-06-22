@@ -1,8 +1,7 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Workoutlog from "./workoutlog";
+import { Route, Routes } from "react-router-dom";
+
 import Workoutinfo from "./workoutplans";
 import Bmi from "./bmi";
-import Foodlog from "./foodlog";
 
 function Home() {
   return (
