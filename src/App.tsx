@@ -16,9 +16,9 @@ function App() {
       <BrowserRouter>
         <div
           id="body"
-          className=" flex flex-col gap-5  bg-[#212121] text-white"
+          className=" flex flex-col gap-5   bg-[#212121] text-white"
         >
-          <div className="h-screen  ">
+          <div className="h-screen ">
             <div
               id="nav"
               className="  bg-[#212121] w-full flex items-center gap-6  h-[12vh] border-b-2 border-x-0 border-t-0 z-50 px-10 pr-6 border-[#464646] sticky top-0 "

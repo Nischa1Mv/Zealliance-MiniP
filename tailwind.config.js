@@ -8,6 +8,7 @@ module.exports = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "./custom-componets/**/*.{ts,tsx}",
+    "./index/**/*.html",
   ],
   prefix: "",
   theme: {

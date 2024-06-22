@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     // <div className="border-t-2 border-black flex px-10 pt-6 pb-2">
-    <div className=" grid grid-cols-4 gap-4 pl-20 pr-10 pt-6 pb-2  rounded-xl border-b-0 border-x-0 border border-[#464646]">
+    <div className=" grid grid-cols-4 gap-4 pl-20 pr-10 pt-6 pb-2  border-b-0 border-x-0 border border-[#464646]">
       <div className="flex flex-col col-span-1 px-2 ">
         <div>
           <img
