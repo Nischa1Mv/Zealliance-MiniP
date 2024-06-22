@@ -28,7 +28,7 @@ function App() {
               </div>
               <div className="grow order-1"></div>
               <div className="text-5xl font-bold order-2  my-3">
-                <a href="">Zeallience</a>
+                <Link to="/">Zeallience</Link>
               </div>
               <div className="grow order-3"></div>
               <div className="text-xl font-semibold order-3 my-6 px-4">
