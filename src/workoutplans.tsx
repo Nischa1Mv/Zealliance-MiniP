@@ -121,7 +121,7 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
 };
 import { workoutinfoArr } from "./workoutinfo";
 
-const Workoutinfo = ({ IsInfo }) => {
+const Workoutinfo = ({  }) => {
   return (
     <>
       <div>
