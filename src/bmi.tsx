@@ -33,7 +33,7 @@ const Bmi = () => {
                 </div>
                 <div
                   className={`border-2 border-black rounded-lg py-2 cursor-pointer  transition duration-200 ${
-                    isFemale ? "bg-yellow-400 text-white" : "bg-transparent"
+                    isFemale ? "bg-red-200 text-white" : "bg-transparent"
                   }`}
                   onClick={handleFemaleClick}
                 >
