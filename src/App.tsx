@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <div
           id="body"
-          className=" flex flex-col gap-5   bg-[#212121] text-white"
+          className=" flex flex-col gap-5   bg-[#212121] text-white "
         >
           <div className="h-screen ">
             <div
@@ -27,7 +27,7 @@ function App() {
                 {longDateString}{" "}
               </div>
               <div className="grow order-1"></div>
-              <div className="text-5xl font-bold order-2  my-3">
+              <div className="text-4xl font-bold order-2  my-3">
                 <Link to="/">Zeallience</Link>
               </div>
               <div className="grow order-3"></div>
