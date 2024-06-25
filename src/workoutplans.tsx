@@ -28,6 +28,7 @@ interface WorkoutnamesProps {
   NameArr: string[];
 }
 import { useSharedState } from "./context/sharedState";
+import { useState } from "react";
 const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
   const { setIsInfo, setWorkoutDetails } = useSharedState();
 
@@ -72,9 +73,13 @@ interface ExcersicenameProps {
 }
 
 const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
+  const [Info, setInfo] = useState(false);
   return (
     <div className="">
-      <div className="border-2 border-r-0 border-[#464646]">
+      <div
+        className="border-2 border-r-0 border-[#464646] "
+        onClick={() => setInfo(true)}
+      >
         <div className="px-8 py-2 flex font-medium text-lg">
           <div className="flex gap-4">
             <div className="whitespace-nowrap">{Name}</div>
@@ -92,14 +97,22 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
           </div>
         </div>
       </div>
-      <div className="border-2 border-t-0 h-[20vh] min-w-[15vw] px-8 py-2 border-white">
-        {/* change dis data when clicked  */}
-        <div className="flex flex-cols gap-4">
-          <span>Step-1:</span>
-          <span>Step-2:</span>
-          <span>Step-3:</span>
-        </div>
-      </div>
+
+      {/* change dis data when clicked  */}
+      {Info ? (
+        <>
+          {" "}
+          <div className="border-2 border-t-0 h-[20vh] min-w-[15vw] px-8 py-2 border-white">
+            <div className="flex flex-cols gap-4">
+              <span>Step-1:</span>
+              <span>Step-2:</span>
+              <span>Step-3:</span>
+            </div>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
