@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { workoutinfoArr } from "./workoutinfo";
+import { SharedStateProvider } from "./context/sharedState";
 
 const Paragraphguy = () => {
   return (
@@ -22,67 +23,50 @@ const Paragraphguy = () => {
   );
 };
 
-function Workoutnames({ Title, NameArr }) {
-  const [isInfo, setIsInfo] = useState(true);
-
-  return isInfo ? (
-    <>
-      <div
-        className="px-4 py-3  border-b-1 border-t-0 border-l-0  border border-r-1  flex w-[15%] h-fit cursor-pointer justify-center items-center "
-        onClick={() => setIsInfo(false)}
-      >
-        <div className="font-semibold text-xl flex  whitespace-nowrap  ">
-          {Title}
-        </div>
-
-        {/* <div className="cursor-pointer" onClick={() => setIsInfo(false)}>
-          {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="30px"
-          viewBox="0 -960 960 960"
-          width="30px"
-          fill="#e8eaed"
-        >
-          <path d="M480-360 280-560h400L480-360Z" />
-        </svg> */}
-        {/* </div> */}
-      </div>
-    </>
-  ) : (
-    // Should NOT Replace the div but should make te text excersise details appear if set info true then excersiedata appear
-    <Workoutnamesinfo setIsInfo={setIsInfo} NameArr={NameArr} Title={Title} />
-  );
+interface WorkoutnamesProps {
+  Title: string;
+  NameArr: string[];
 }
+import { useSharedState } from "./context/sharedState";
+const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
+  const { setIsInfo, setWorkoutDetails } = useSharedState();
 
-const Workoutnamesinfo = ({ setIsInfo, NameArr, Title }) => {
   return (
-    <div className="">
-      <div className="px-5 py-3 flex flex-col gap-2 h-fit rounded-[8px]  mb-2 mx-6">
-        <div className="font-semibold text-xl my-2  ">{Title} </div>
-
-        <div className="flex">
-          {NameArr.map((ename, index) => (
-            <Excersicename key={index} Name={ename} />
-          ))}
-
-          <div className=" mt-4 w-full  ">
-            <svg
-              className=" "
-              xmlns="http://www.w3.org/2000/svg"
-              height="40px"
-              viewBox="0 -960 960 960"
-              width="40px"
-              fill="#e8eaed"
-              onClick={() => setIsInfo(true)}
-            >
-              <path d="m280-400 200-200 200 200H280Z" />
-            </svg>
-          </div>
-        </div>
+    <div
+      className="px-4 py-3 border-b-1 border-t-0 border-l-0 border border-r-1 flex w-[15%] h-fit cursor-pointer justify-center items-center"
+      onClick={() => {
+        setIsInfo(false);
+        setWorkoutDetails({ Title, NameArr });
+      }}
+    >
+      <div className="font-semibold text-xl flex whitespace-nowrap">
+        {Title}
       </div>
     </div>
   );
 };
+
+// Workoutnamesinfo.tsx
+
+const Workoutnamesinfo: React.FC = () => {
+  const { isInfo, workoutDetails } = useSharedState();
+
+  if (isInfo) return null;
+
+  return (
+    <div className="h-[30vh] px-10 py-10 flex flex-col">
+      <h2 className="text-xl font-bold">{workoutDetails.Title}</h2>
+      <div>
+        {workoutDetails.NameArr.map((name, index) => (
+          <Excersicename key={index} Name={name} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Excersicename.tsx
+
 interface ExcersicenameProps {
   Name: string;
 }
@@ -90,11 +74,11 @@ interface ExcersicenameProps {
 const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
   return (
     <div className="">
-      <div className=" boder-2 border-r-0  border-[#464646]">
-        <div className="px-8 py-2 flex   font-medium text-lg ">
+      <div className="border-2 border-r-0 border-[#464646]">
+        <div className="px-8 py-2 flex font-medium text-lg">
           <div className="flex gap-4">
             <div className="whitespace-nowrap">{Name}</div>
-            <div className="">
+            <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="30px"
@@ -112,34 +96,35 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
         {/* change dis data when clicked  */}
         <div className="flex flex-cols gap-4">
           <span>Step-1:</span>
-          <span>Step-2</span>
-          <span>Step-3</span>
+          <span>Step-2:</span>
+          <span>Step-3:</span>
         </div>
       </div>
     </div>
   );
 };
-import { workoutinfoArr } from "./workoutinfo";
 
-const Workoutinfo = ({  }) => {
+const Workoutinfo = ({}) => {
   return (
     <>
       <div>
         <Paragraphguy />
       </div>
       <div className="border-2 border-white flex flex-col h-[49vh]">
-        <div className=" items-center   rounded-xl flex  overflow-auto max-h-full">
-          {workoutinfoArr.map((workout, Index) => (
-            <Workoutnames
-              key={Index}
-              Title={workout.Title}
-              NameArr={workout.NameArr}
-            />
-          ))}
-        </div>
-        <div className="h-[30vh] px-10 py-10 flex flex-col">
-          {/* display the Excersicename here when selected ,display them in colums and play icon plays when clicked */}
-        </div>
+        <SharedStateProvider>
+          <div className="items-center rounded-xl flex overflow-auto max-h-full">
+            {workoutinfoArr.map((workout, index) => (
+              <Workoutnames
+                key={index}
+                Title={workout.Title}
+                NameArr={workout.NameArr}
+              />
+            ))}
+          </div>
+          <div>
+            <Workoutnamesinfo />
+          </div>
+        </SharedStateProvider>
       </div>
     </>
   );
