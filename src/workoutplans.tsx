@@ -52,11 +52,22 @@ const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
 const Workoutnamesinfo: React.FC = () => {
   const { isInfo, workoutDetails } = useSharedState();
 
-  if (isInfo) return null;
+  if (isInfo)
+    return (
+      <>
+        {" "}
+        <div className="h-[30vh] px-10 py-10 flex flex-col">
+          <h2 className="text-2xl font-bold mb-2">Select a Workout</h2>
+          <p className="text-lg">
+            Please select a Muscle Group you want to Target from the above Tab.
+          </p>
+        </div>
+      </>
+    );
 
   return (
     <div className="h-[30vh] px-10 py-10 flex flex-col">
-      <h2 className="text-xl font-bold">{workoutDetails.Title}</h2>
+      <h2 className="text-xl font-bold mb-2">{workoutDetails.Title}</h2>
       <div>
         {workoutDetails.NameArr.map((name, index) => (
           <Excersicename key={index} Name={name} />
