@@ -78,7 +78,7 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
     <div className="">
       <div
         className="border-2 border-r-0 border-[#464646] "
-        onClick={() => setInfo(true)}
+        onClick={() => setInfo(!Info)}
       >
         <div className="px-8 py-2 flex font-medium text-lg">
           <div className="flex gap-4">
