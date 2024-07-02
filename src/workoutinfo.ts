@@ -12,12 +12,12 @@ export const workoutinfoArr = [
   },
   {
     Title: "Back",
-    NameArr: [
-      "Pull-Ups",
-      "Wide Grip Push-Ups",
-      "Archer Push-Ups",
-      "Band lat Pulldown",
-    ],
+    NameArr: {
+      "Pull-Ups": ["jjbjhhbh", "hsbjchb"],
+      "Wide-Grip-Push-Ups": ["jjbjhhbh", "hsbjchb"],
+      "Archer-Push-Ups": ["jjbjhhbh", "hsbjchb"],
+      "Band-lat-Pulldown": ["jjbjhhbh", "hsbjchb"],
+    },
   },
   {
     Title: "Shoulder",

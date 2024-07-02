@@ -23,9 +23,13 @@ const Paragraphguy = () => {
   );
 };
 
+type ExerciseName = string[];
+
 interface WorkoutnamesProps {
   Title: string;
-  NameArr: string[];
+  NameArr: {
+    [key: string]: ExerciseName;
+  };
 }
 import { useSharedState } from "./context/sharedState";
 import { useState } from "react";
@@ -80,7 +84,7 @@ const Workoutnamesinfo: React.FC = () => {
 // Excersicename.tsx
 
 interface ExcersicenameProps {
-  Name: string;
+  Name: object;
 }
 
 const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
@@ -113,7 +117,7 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
       {/* change dis data when clicked  */}
       {Info && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <VideoOverlay />
+          <VideoOverlay setInfo={setInfo} Name={Name} />
         </div>
       )}
 
@@ -129,49 +133,64 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
   );
 };
 
-const VideoOverlay = () => {
+const VideoOverlay = (props) => {
   const [isOverlayVisible, setOverlayVisible] = useState(true); // State to manage overlay visibility
 
   const handlePlayClick = () => {
     // This function will handle play button click
-    setOverlayVisible(false); // Hide the overlay
+    setOverlayVisible(!isOverlayVisible); // Hide the overlay
     // Additional logic to start playing the video can be added here
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100 ">
-      <div className="max-w-4xl mx-auto flex">
-        {/* Left panel */}
-        <div className="flex-1 p-8">
-          <h2 className="text-3xl font-bold mb-4">Some Text Here</h2>
-          <p className="text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            vitae...
-          </p>
-        </div>
+    <div
+      onClick={() => {
+        props.setInfo(false);
+      }}
+      className=" h-full w-full bg-gray-50 bg-opacity-10 flex justify-center items-center "
+    >
+      <div
+        className=" w-[75%] h-[70%] m-auto bg-black "
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 className="text-3xl bg-amber-50 text-black flex justify-center items-center h-[10%] font-bold mb-4">
+          {props.Name}
+        </h2>
+        <div className="flex h-[87%] ">
+          {/* Left panel */}
+          <div className=" p-5 w-[50%]  ">
+            <h1 className="text-4xl font-bold mb-2">
+              Follow The Following Steps
+            </h1>
+            <ol type="1">
+              {props.Name.map((step, index) => (
+                <li key={index} className="text-lg font-semibold">
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </div>
 
-        {/* Right panel */}
-        <div className="flex-1 relative">
-          {/* Video player */}
-          <div className="relative aspect-video">
-            <video
-              className="absolute inset-0 w-full h-full object-cover"
-              controls
-            >
-              <source src="your-video.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            {/* Overlay */}
-            {isOverlayVisible && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                <button
-                  onClick={handlePlayClick}
-                  className="text-white bg-gray-800 px-6 py-3 rounded-lg text-xl"
-                >
-                  Play
-                </button>
-              </div>
-            )}
+          {/* Right panel */}
+          <div className="flex  w-[50%] h-full items-center justify-center">
+            {/* Video player */}
+            <div className=" relative aspect-video h-[50%]">
+              <video className=" inset-0 w-full h-full object-cover" controls>
+                <source src="your-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {/* Overlay */}
+              {isOverlayVisible && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                  <button
+                    onClick={handlePlayClick}
+                    className="text-white bg-gray-800 px-6 py-3 rounded-lg text-xl"
+                  >
+                    Play
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
