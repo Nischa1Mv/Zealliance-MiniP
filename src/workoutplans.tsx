@@ -73,8 +73,8 @@ const Workoutnamesinfo: React.FC = () => {
     <div className="h-[30vh] px-10 py-10 flex flex-col">
       <h2 className="text-xl font-bold mb-2">{workoutDetails.Title}</h2>
       <div>
-        {workoutDetails.NameArr.map((name, index) => (
-          <Excersicename key={index} Name={name} />
+      {Object.keys(workoutDetails.NameArr).map((name, index) => (
+          <Excersicename key={index} Name={name} Steps={workoutDetails.NameArr[name]} />
         ))}
       </div>
     </div>
@@ -84,10 +84,11 @@ const Workoutnamesinfo: React.FC = () => {
 // Excersicename.tsx
 
 interface ExcersicenameProps {
-  Name: object;
+  Name: string;
+  Steps: string[];
 }
 
-const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
+const Excersicename: React.FC<ExcersicenameProps> = ({ Name,Steps }) => {
   const [Info, setInfo] = useState(false);
 
   return (
@@ -117,7 +118,7 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
       {/* change dis data when clicked  */}
       {Info && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <VideoOverlay setInfo={setInfo} Name={Name} />
+          <VideoOverlay setInfo={setInfo} Name={Name} Steps={Steps} />
         </div>
       )}
 
@@ -133,7 +134,13 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name }) => {
   );
 };
 
-const VideoOverlay = (props) => {
+interface VideoOverlayProps {
+  setInfo: React.Dispatch<React.SetStateAction<boolean>>;
+  Name: string;
+  Steps: string[];
+}
+
+const VideoOverlay: React.FC<VideoOverlayProps> = ({ setInfo, Name, Steps }) => {
   const [isOverlayVisible, setOverlayVisible] = useState(true); // State to manage overlay visibility
 
   const handlePlayClick = () => {
@@ -145,7 +152,7 @@ const VideoOverlay = (props) => {
   return (
     <div
       onClick={() => {
-        props.setInfo(false);
+        setInfo(false);
       }}
       className=" h-full w-full bg-gray-50 bg-opacity-10 flex justify-center items-center "
     >
@@ -154,7 +161,7 @@ const VideoOverlay = (props) => {
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-3xl bg-amber-50 text-black flex justify-center items-center h-[10%] font-bold mb-4">
-          {props.Name}
+          {Name}
         </h2>
         <div className="flex h-[87%] ">
           {/* Left panel */}
@@ -163,7 +170,7 @@ const VideoOverlay = (props) => {
               Follow The Following Steps
             </h1>
             <ol type="1">
-              {props.Name.map((step, index) => (
+              {Steps.map((step, index) => (
                 <li key={index} className="text-lg font-semibold">
                   {step}
                 </li>
