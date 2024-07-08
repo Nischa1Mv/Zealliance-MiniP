@@ -1,14 +1,14 @@
 export const workoutinfoArr = [
   {
     Title: "Chest",
-    NameArr: [
-      "Push-Up",
-      "Archer Push-Up.",
-      "Wide Push-Up",
-      "Archer Push-Ups",
-      "Decline Push-Ups",
-      " One-Handed Push-Ups",
-    ],
+    NameArr: {
+      "Push-Up": ["jjbjhhbh", "hsbjchb"],
+      "Archer Push-Up.": ["jjbjhhbh", "hsbjchb"],
+      "Wide Push-Up": ["jjbjhhbh", "hsbjchb"],
+      "Archer Push-Ups": ["jjbjhhbh", "hsbjchb"],
+      "Decline Push-Ups": ["jjbjhhbh", "hsbjchb"],
+      " One-Handed Push-Ups": ["jjbjhhbh", "hsbjchb"],
+    },
   },
   {
     Title: "Back",
@@ -21,10 +21,17 @@ export const workoutinfoArr = [
   },
   {
     Title: "Shoulder",
-    NameArr: ["Pike Push-up", "Handstand", "Decline Push-up", "Wall Walks"],
+    NameArr: {
+      "Pike Push-up": ["jjbjhhbh", "hsbjchb"],
+       "Handstand": ["jjbjhhbh", "hsbjchb"],
+        "Decline Push-up": ["jjbjhhbh", "hsbjchb"],
+         "Wall Walks": ["jjbjhhbh", "hsbjchb"],
+        },
   },
-  { Title: "Bicep", NameArr: ["DIPS", "", "JSDH"] },
-  { Title: "Shoulder", NameArr: ["JSDH", "JSDH", "JSDH"] },
-  { Title: "Bicep", NameArr: ["JSDH", "JSDH", "JSDH"] },
-  { Title: "Core", NameArr: ["JSDH", "JSDH", "JSDH"] },
+
+
+  // { Title: "Bicep", NameArr: ["DIPS", "", "JSDH"] },
+  // { Title: "Shoulder", NameArr: ["JSDH", "JSDH", "JSDH"] },
+  // { Title: "Bicep", NameArr: ["JSDH", "JSDH", "JSDH"] },
+  // { Title: "Core", NameArr: ["JSDH", "JSDH", "JSDH"] },
 ];
