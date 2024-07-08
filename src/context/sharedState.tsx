@@ -4,9 +4,10 @@ import { createContext, useState, useContext, ReactNode } from "react";
 interface SharedStateContextProps {
   isInfo: boolean;
   setIsInfo: (value: boolean) => void;
-  workoutDetails: { Title: string; NameArr: string[] };
-  setWorkoutDetails: (details: { Title: string; NameArr: string[] }) => void;
+  workoutDetails: { Title: string; NameArr: { [key: string]: string[] } };
+  setWorkoutDetails: (details: { Title: string; NameArr: { [key: string]: string[] } }) => void;
 }
+
 
 const SharedStateContext = createContext<SharedStateContextProps | undefined>(
   undefined
