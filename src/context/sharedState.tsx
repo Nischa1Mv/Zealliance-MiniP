@@ -1,4 +1,3 @@
-// SharedStateContext.tsx
 import { createContext, useState, useContext, ReactNode } from "react";
 
 interface SharedStateContextProps {
@@ -8,17 +7,14 @@ interface SharedStateContextProps {
   setWorkoutDetails: (details: { Title: string; NameArr: { [key: string]: string[] } }) => void;
 }
 
-
-const SharedStateContext = createContext<SharedStateContextProps | undefined>(
-  undefined
-);
+const SharedStateContext = createContext<SharedStateContextProps | undefined>(undefined);
 
 export const SharedStateProvider = ({ children }: { children: ReactNode }) => {
   const [isInfo, setIsInfo] = useState<boolean>(true);
   const [workoutDetails, setWorkoutDetails] = useState<{
     Title: string;
-    NameArr: string[];
-  }>({ Title: "", NameArr: [] });
+    NameArr: { [key: string]: string[] };
+  }>({ Title: "", NameArr: {} });
 
   return (
     <SharedStateContext.Provider
