@@ -1,6 +1,7 @@
 import Footer from "./footer";
 import Home from "./home";
 import { Link, BrowserRouter } from "react-router-dom";
+
 function App() {
   const currentDate = new Date();
 
@@ -23,23 +24,23 @@ function App() {
               id="nav"
               className="  bg-[#212121] w-full flex items-center gap-6  h-[12vh] border-b-2 border-x-0 border-t-0 z-50 px-10 pr-6 border-[#464646] sticky top-0 "
             >
-              <div className="text-xl  font-semibold  order-1 my-6 ">
+              <div className="text-xl  font-semibold  order-1 my-6  ">
                 {longDateString}{" "}
               </div>
               <div className="grow order-1"></div>
               <div className="text-4xl font-bold order-2  my-3">
-                <Link to="/">Zeallience</Link>
+                <Link  to="/">Zeallience</Link>
               </div>
               <div className="grow order-3"></div>
-              <div className="text-xl font-semibold order-3 my-6 px-4">
-                <Link to="/workoutinfo">Workout Info</Link>{" "}
+              <div className="text-xl font-semibold order-3 my-6 px-4 ">
+                <Link className="underline-animation" to="/workoutinfo">Workout Info</Link>{" "}
               </div>
               <div className="text-xl font-semibold order-4 my-6 px-4  ">
                 {" "}
-                <a href="">Workout Log</a>
+                <Link className="underline-animation" to="/workoutlog">Workout Log</Link>{" "}
               </div>
               <div className="text-xl font-semibold order-5 my-6 px-4">
-                <a href="">FoodLog</a>{" "}
+                <Link className="underline-animation" to="/foodlog">Food Log</Link>
               </div>
 
               <div className="order-6  mx-auto flex justify-center items-center rounded-full border-4 border-[#464646]">
