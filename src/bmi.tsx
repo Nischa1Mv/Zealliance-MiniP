@@ -110,7 +110,7 @@ const Bmi = () => {
             </div>
           </form>
         </div>
-        <div className="bg-white border-4 border-black rounded-xl px-6 py-10 font-semibold text-xl w-[50%]  ">
+        <div className="bg-white  rounded-xl px-6 py-10 font-semibold text-xl w-[50%]  ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
