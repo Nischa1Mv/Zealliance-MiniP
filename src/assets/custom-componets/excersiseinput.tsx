@@ -5,7 +5,7 @@
 const Excersiseinput = () => {
   var Isreadonly = false;
   return (
-    <div className="flex bg-gray-200 border border-black w-fit py-2 px-4 gap-4">
+    <div className="flex border border-black w-fit py-2 px-4 gap-4">
       <div>
         {" "}
         <div className="flex flex-col w-[100px] gap-2 ">

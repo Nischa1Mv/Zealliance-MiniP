@@ -121,15 +121,6 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name,Steps }) => {
           <VideoOverlay setInfo={setInfo} Name={Name} Steps={Steps} />
         </div>
       )}
-
-      {/* Content that should remain visible */}
-      {/* <div className="border-2 border-t-0 h-[20vh] min-w-[15vw] px-8 py-2 border-white ">
-        <div className="flex flex-col gap-4">
-          <span>Step-1:</span>
-          <span>Step-2:</span>
-          <span>Step-3:</span>
-        </div>
-      </div> */}
     </div>
   );
 };

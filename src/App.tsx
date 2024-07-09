@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <div className=" min-h-screen">
           {" "}
-          <div className="  main-h-screen ">
+          <div className=" ">
             <Header />
             <div className=" mx-10">
               <Home />
