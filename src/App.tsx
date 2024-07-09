@@ -7,11 +7,13 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {" "}
-        <div className="h-screen ">
-          <Header />
-          <div className=" mx-10">
-            <Home />
+        <div className=" min-h-screen">
+          {" "}
+          <div className="  main-h-screen ">
+            <Header />
+            <div className=" mx-10">
+              <Home />
+            </div>
           </div>
         </div>
         <Footer />
