@@ -1,22 +1,18 @@
 import { useState } from "react";
 
 const Datacount = () => {
-  const [info, setInfo] = useState(true);
-
   return (
     <>
-      {info ? (
-        <Excercisedata setInfo={setInfo} />
-      ) : (
-        <Editexcercisedata setInfo={setInfo} />
-      )}
+      <Excercisedata />
+      <Excercisedata />
+      <Excercisedata />
+      <Excercisedata />
+      <Excercisedata />
     </>
   );
 };
 
 export default Datacount;
-
-//---------------------------------------------------Excercise Data-------------------------------------------------------------------->
 
 // interface Props {
 //   Name: String;
@@ -32,83 +28,130 @@ export default Datacount;
 // function Excercisedata(props: Props) {
 //   const { Name, w1, w2, w3, r1, r2, r3, prw, prr } = props;
 
-function Excercisedata({ setInfo }) {
+function Excercisedata({}) {
+  var Isreadonly = false;
+  const [info, setInfo] = useState(true);
   const handleClick = () => {
     setInfo((prev) => !prev);
   };
   return (
-    <div className=" relative flex border-2 border-[#000000] w-full my-6 py-5 px-4 rounded-xl text-xl font-bold  ">
-      <div>Name : ww / rr , ww / rr , ww / rr , PR: ww / rr</div>
-      <div className=" absolute right-5">
-        {" "}
-        <img
-          onClick={handleClick}
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAcUlEQVR4nO2Q0QmAMAxEXxcpxQ38cf8JdAIpnUQRIkiJhWr6l/cVyHG5HDjOaIKRRmUGNmBqaCKwAkuveRDzA8hAUjRJdodouz+50u1iUKpPWrvfR6KVuVZFrmatuk/ER2qz5G9Hygjzm2RZi+M42HACwpMfy6qL1P4AAAAASUVORK5CYII="
-          alt="My Image"
-        />
-      </div>
-    </div>
+    <>
+      {/*---------------------------------------------------Excercise Data-------------------------------------------------------------------->*/}
+      {info ? (
+        <div className=" relative flex border-2 border-[#464646] w-full my-6 py-5 px-4 rounded-xl text-xl font-bold  ">
+          <div>Name : ww / rr , ww / rr , ww / rr , PR: ww / rr</div>
+          <div className=" absolute right-5">
+            <svg
+              onClick={handleClick}
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#e8eaed"
+            >
+              <path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+            </svg>
+          </div>
+        </div>
+      ) : (
+        <>
+          {/* ---------------------------------------------------Excercise Data Info--------------------------------------------------------------------> */}{" "}
+          <div className=" flex flex-col gap-6 border-amber-300 w-full mt-6 py-5 px-4 rounded-xl text-xl font-bold border relative ">
+            <div className="flex gap-20 ">
+              <div className="flex jusitfy-center items-center">
+                Exercise Name{" "}
+              </div>{" "}
+              <div className="flex  w-fit py-2 px-5 gap-4">
+                <div> PR </div>
+                <div className="w-[100px]">
+                  <Justinput
+                    type="number"
+                    placeholder="Weight"
+                    readonly={Isreadonly}
+                  />
+                </div>
+                <div className="w-[100px]">
+                  <Justinput
+                    type="number"
+                    placeholder="Reps"
+                    readonly={Isreadonly}
+                  />
+                </div>
+              </div>
+              <div className="absolute right-16 flex">
+                <div className=" px-3 py-1 bg-blue-500">Save</div>
+                <div>
+                  <svg
+                    className="absolute bottom-0 "
+                    onClick={handleClick}
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="30px"
+                    viewBox="0 -960 960 960"
+                    width="30spx"
+                    fill="#e8eaed"
+                  >
+                    <path d="m280-400 200-200 200 200H280Z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-6">
+              <div className="flex ">
+                <h1 className="mt-3">Set-1</h1>
+                <DataWandR />
+              </div>
+              <div className="flex ">
+                <h1 className="mt-3">Set-2</h1>
+                <DataWandR />
+              </div>{" "}
+              <div className="flex ">
+                <h1 className="mt-3">Set-3</h1>
+                <DataWandR />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 }
 
-//---------------------------------------------------Excercise Data Info-------------------------------------------------------------------->
-function Editexcercisedata({ setInfo }) {
-  const handleClick = () => {
-    setInfo((prev) => !prev);
-  };
-  return (
-    <div className=" flex flex-col gap-6  w-full mt-6 py-5 px-4 rounded-lg text-xl font-bold  ">
-      <div className="flex gap-20 relative">
-        <div className="flex jusitfy-center items-center">Exercise Name </div>{" "}
-        <div className="flex border border-black w-fit py-2 px-5 gap-4">
-          <div> PR </div>
-          <div>
-            {" "}
-            <input className="w-[100px]" type="number" placeholder="weight" />
-          </div>
-          <div>
-            <input className="w-[100px]" type="number" placeholder="reps" />
-          </div>
-        </div>
-        <div className="absolute right-0 flex">
-          <div className="border border-black px-3 py-1">Save</div>
-          <div>
-            <img onClick={handleClick} src="../images/pencil.png" alt="edit" />
-          </div>
-        </div>
-      </div>
-      <div className="flex gap-20">
-        <Excersiseinput />
-        <Excersiseinput />
-        <Excersiseinput />
-      </div>
-    </div>
-  );
-}
-
-const Excersiseinput = () => {
+const DataWandR = () => {
   var Isreadonly = false;
   return (
-    <div className="flex border border-black w-fit py-2 px-4 gap-4">
+    <div className="flex w-fit py-2 px-4 gap-4 ">
       <div>
         {" "}
         <div className="flex flex-col w-[100px] gap-2 ">
           {" "}
-          <input className="w-full px-3" type="number" placeholder="weight" />
+          <Justinput type="number" placeholder="Weight" readonly={Isreadonly} />
           <div className="">Weight</div>
         </div>
       </div>
       <div>
         <div className="flex flex-col w-[100px] gap-2  ">
-          <input
-            className="w-full px-3"
-            type="number"
-            placeholder="reps"
-            readOnly={Isreadonly}
-          />
+          <Justinput type="number" placeholder="Reps" readonly={Isreadonly} />
           <div className="">Reps</div>
         </div>
       </div>
     </div>
+  );
+};
+
+interface Props {
+  type: string;
+  placeholder: string;
+  readonly: boolean;
+}
+const Justinput = ({ type, placeholder, readonly }: Props) => {
+  return (
+    <>
+      <input
+        className="w-full py-1 text-lg font-medium px-4 placeholder:font-medium placeholder:text-lg focus:outline-none text-black [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        type={type}
+        placeholder={placeholder}
+        readOnly={readonly}
+      />
+    </>
   );
 };

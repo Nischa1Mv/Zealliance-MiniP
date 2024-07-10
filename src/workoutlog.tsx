@@ -5,31 +5,25 @@ const search =
 
 const Workoutlog = () => {
   return (
-    <div className="w-full h-full  py-4 pt-5 px-5 ">
-      <div className="flex gap-4">
-        <div className=" flex rounded-xl  grow">
-          <input
-            type="text"
-            className=" py-4 px-4 w-full  rounded-xl h-full "
-          />
-          <div className="flex justify-center items-center mr-4">
-            <img src={search} alt="search icon" />
-          </div>
-        </div>
-        <div className="w-fit h-fit p-4 rounded-xl flex">
-          <img
-            width="25"
-            height="25"
-            src="https://img.icons8.com/tiny-glyph/16/add-folder.png"
-            alt="add-folder"
-          />
-        </div>
-      </div>
+    <div className="w-full h-full  py-4 pt-5 px-5  relative">
+      <input
+        className="bg-white text-black px-4 py-1 w-full border-black rounded-[8px] h-[6vh] font-semibold text-lg focus:outline-none "
+        type="text"
+        placeholder="Search"
+      />
+      <svg
+        className="absolute top-8 right-10 "
+        xmlns="http://www.w3.org/2000/svg"
+        height="30px"
+        viewBox="0 -960 960 960"
+        width="30px"
+        fill="#00000"
+      >
+        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+      </svg>
       <Datacount />
     </div>
   );
 };
 
 export default Workoutlog;
-
-
