@@ -3,7 +3,7 @@ const Foodbrowse = () => {
   return (
     <div
       id="right"
-      className="border-[#464646] border-4 px-10 py-6 flex flex-col gap-6 rounded-[8px]"
+      className="border-[#464646] border-4 px-10 py-6 flex flex-col gap-6 rounded-[8px] w-[48%] h-full"
     >
       <div className="flex rounded-[8px]  px-2 py-1 border-[#464646] border-2 ">
         <input
@@ -41,7 +41,10 @@ interface FProps {
 
 const Fooddata = ({ isx, name }: FProps) => {
   return (
-    <div className="px-4  rounded-[6px] font-bold text-lg py-2 flex relative border-2 boder-[#cfcfcf]">
+    <div
+      draggable="true"
+      className="px-4  rounded-[6px] font-bold text-lg py-2 flex relative border-2  "
+    >
       <div>{name}</div>
       {isx && (
         <div className="absolute right-5 flex items-center justify-center">
@@ -59,54 +62,38 @@ const Fooddata = ({ isx, name }: FProps) => {
   );
 };
 
-interface MProps {
-  meal: string;
+interface CProps {
   cal: string;
   tcal: string;
-  namex: string;
 }
-const Meals = ({ meal, cal, tcal, namex }: MProps) => {
-  const setisx = true;
+
+const Caloriesfood = ({ cal, tcal }: CProps) => {
+  const setisx = false;
   return (
-    <>
+    <div
+      id="left"
+      className="rounded-[8px] py-2 px-4 border-[#464646] border-4 w-[48%] "
+    >
       <div className="flex relative py-3 text-lg font-semibold ">
-        <div> {meal}</div>
+        <div> Food</div>
         <div className="absolute right-7">
           {tcal}/{cal}
         </div>
       </div>
-      <div className="border min-h-[200px] pt-4">
+      <div className=" min-h-[200px] pt-4">
         <div className="rounded-xl px-8  flex flex-col gap-4 my-2 ">
-          <Fooddata name={namex} isx={setisx} />{" "}
+          <Fooddata name="Eggs" isx={setisx} />{" "}
         </div>
       </div>
-    </>
-  );
-};
-
-const Caloriesfood = () => {
-  return (
-    <div
-      id="left"
-      className="rounded-[8px] py-2 px-4 border-[#464646] border-4"
-    >
-      <Meals namex="Oats" meal="Breakfast" cal="450" tcal="500" />
-      <Meals namex="Rice" meal="Lunch" cal="450" tcal="500" />
-      <Meals namex="Milk" meal="Dinner" cal="450" tcal="500" />
-      <Meals namex="Eggs" meal="Snacks" cal="450" tcal="500" />
     </div>
   );
 };
 
 const Foodlog = () => {
   return (
-    <div className="flex gap-14 my-10">
-      <div className="w-[48%] h-full">
-        <Caloriesfood />
-      </div>
-      <div className="w-[48%] h-full">
-        <Foodbrowse />
-      </div>
+    <div className="flex gap-14 my-10 min-h-[82vh]">
+      <Caloriesfood tcal="100000" cal="50000" />
+      <Foodbrowse />
     </div>
   );
 };
