@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div className=" min-h-screen">
+        <div className="min-h-screen">
           {" "}
           <div className=" ">
             <Header />

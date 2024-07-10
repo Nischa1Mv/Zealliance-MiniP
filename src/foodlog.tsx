@@ -1,57 +1,84 @@
 const Foodbrowse = () => {
+  var setisx = false;
   return (
-    <div className="border-black border-4  bg-white px-10 py-6 flex flex-col gap-6 rounded-[8px]">
-      <div className="flex rounded-[8px]  px-2 py-1 border-black border-4 ">
+    <div
+      id="right"
+      className="border-[#464646] border-4 px-10 py-6 flex flex-col gap-6 rounded-[8px]"
+    >
+      <div className="flex rounded-[8px]  px-2 py-1 border-[#464646] border-2 ">
         <input
-          className="  focus:outline-none px-2 w-full py-2"
+          className=" text-white bg-transparent focus:outline-none px-2 w-full py-2 "
           type="text"
           placeholder="food..."
         />
-        <div>
+        <div className=" flex justify-center items-center">
           <svg
+            className=""
             xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            viewBox="0 0 24 24"
+            height="30px"
+            viewBox="0 -960 960 960"
+            width="30px"
+            fill="#cfcfcf"
           >
-            <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
+            <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
           </svg>
         </div>
       </div>
-      <div className="border-4 border-black h-[740px] px-14 py-10 flex flex-col gap-4 rounded-xl">
-        <Fooddata /> <Fooddata /> <Fooddata /> <Fooddata /> <Fooddata />
+      <div className=" h-full flex flex-col gap-6 rounded-xl">
+        <Fooddata name="Oats" isx={setisx} />
+        <Fooddata name="Rice" isx={setisx} />
+        <Fooddata name="Milk" isx={setisx} />
+        <Fooddata name="Chicken" isx={setisx} />
+        <Fooddata name="Eggs" isx={setisx} />
       </div>
     </div>
   );
 };
+interface FProps {
+  isx: boolean;
+  name: string;
+}
 
-const Fooddata = () => {
+const Fooddata = ({ isx, name }: FProps) => {
   return (
-    <div className="px-4  outline outline-[3px] bg-white rounded-[6px] font-bold text-lg py-2 flex relative">
-      <div>Oats</div>
-      <div className="absolute right-5 flex items-center justify-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-        >
-          <path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
-        </svg>
-      </div>
+    <div className="px-4  rounded-[6px] font-bold text-lg py-2 flex relative border-2 boder-[#cfcfcf]">
+      <div>{name}</div>
+      {isx && (
+        <div className="absolute right-5 flex items-center justify-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
+          </svg>
+        </div>
+      )}
     </div>
   );
 };
 
-const Meals = () => {
+interface MProps {
+  meal: string;
+  cal: string;
+  tcal: string;
+  namex: string;
+}
+const Meals = ({ meal, cal, tcal, namex }: MProps) => {
+  const setisx = true;
   return (
     <>
       <div className="flex relative py-3 text-lg font-semibold ">
-        <div> Breakfast</div>
-        <div className="absolute right-7">Targetcalories/calories</div>
+        <div> {meal}</div>
+        <div className="absolute right-7">
+          {tcal}/{cal}
+        </div>
       </div>
-      <div className="bg-[#f4a261] min-h-[160px] rounded-xl px-10 py-8  flex flex-col gap-4">
-        <Fooddata />{" "}
+      <div className="border min-h-[200px] pt-4">
+        <div className="rounded-xl px-8  flex flex-col gap-4 my-2 ">
+          <Fooddata name={namex} isx={setisx} />{" "}
+        </div>
       </div>
     </>
   );
@@ -59,22 +86,25 @@ const Meals = () => {
 
 const Caloriesfood = () => {
   return (
-    <div className=" bg-white rounded-[8px] py-2 px-4 border-black border-4 ">
-      <Meals />
-      <Meals />
-      <Meals />
-      <Meals />
+    <div
+      id="left"
+      className="rounded-[8px] py-2 px-4 border-[#464646] border-4"
+    >
+      <Meals namex="Oats" meal="Breakfast" cal="450" tcal="500" />
+      <Meals namex="Rice" meal="Lunch" cal="450" tcal="500" />
+      <Meals namex="Milk" meal="Dinner" cal="450" tcal="500" />
+      <Meals namex="Eggs" meal="Snacks" cal="450" tcal="500" />
     </div>
   );
 };
 
 const Foodlog = () => {
   return (
-    <div className="grid grid-cols-2 grid-rows-1 gap-4 p-4 pt-8 bg-[#f4a261]  ">
-      <div className=" ">
+    <div className="flex gap-14 my-10">
+      <div className="w-[48%] h-full">
         <Caloriesfood />
       </div>
-      <div className="">
+      <div className="w-[48%] h-full">
         <Foodbrowse />
       </div>
     </div>
