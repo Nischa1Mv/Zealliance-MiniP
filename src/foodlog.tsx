@@ -62,22 +62,20 @@ const Fooddata = ({ isx, name }: FProps) => {
   );
 };
 
-interface CProps {
-  cal: string;
-  tcal: string;
-}
-
-const Caloriesfood = ({ cal, tcal }: CProps) => {
+const Caloriesfood = () => {
+  const tcal = 5000;
   const setisx = false;
   return (
     <div
       id="left"
       className="rounded-[8px] py-2 px-4 border-[#464646] border-4 w-[48%] "
     >
-      <div className="flex relative py-3 text-lg font-semibold ">
+      <div className="flex relative py-3 text-lg font-semibold  ">
         <div> Food</div>
-        <div className="absolute right-7">
-          {tcal}/{cal}
+        <div className="grow"></div>
+        <div className=" flex  border justify-center items-center">
+          <span className=""> {tcal}/</span>{" "}
+          <Justinput type="Number" placeholder="000" />
         </div>
       </div>
       <div className=" min-h-[200px] pt-4">
@@ -92,10 +90,26 @@ const Caloriesfood = ({ cal, tcal }: CProps) => {
 const Foodlog = () => {
   return (
     <div className="flex gap-14 my-10 min-h-[82vh]">
-      <Caloriesfood tcal="100000" cal="50000" />
+      <Caloriesfood />
       <Foodbrowse />
     </div>
   );
 };
 
 export default Foodlog;
+
+interface Props {
+  type: string;
+  placeholder: string;
+}
+const Justinput = ({ type, placeholder }: Props) => {
+  return (
+    <>
+      <input
+        className=" py-1 w-[50%] text-lg font-medium px-2 bg-transparent border border-amber-100 text-white placeholder:font-medium placeholder:text-lg focus:outline-none  [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        type={type}
+        placeholder={placeholder}
+      />
+    </>
+  );
+};
