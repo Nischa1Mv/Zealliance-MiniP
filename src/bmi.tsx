@@ -60,8 +60,8 @@ const Bmi = () => {
   const [height, setHeight] = useState<string>("");
   const [weight, setWeight] = useState<string>("");
   const [age, setAge] = useState<string>("");
-  const [bmi, setBmi] = useState<string | null>(null);
-  const [bmiCategory, setBmiCategory] = useState<string | null>(null);
+  const [bmi, setBmi] = useState<string>("input your data to check BMI");
+  const [bmiCategory, setBmiCategory] = useState<string>("idk");
 
   const calBmi = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -153,8 +153,59 @@ const Bmi = () => {
           </form>
         </div>
         <div className="bg-white  rounded-xl px-6 py-10 font-semibold text-xl w-[50%]   ">
-          BMI = {bmi}
-          Nigga you are {bmiCategory}
+          <div className="flex flex-col h-[25%]">
+            <div> BMI = {bmi}</div>
+            <div> Nigga you are {bmiCategory}</div>
+          </div>
+          <div className="border-t-2 border-black flex flex-col gap-4">
+            <div>Calorie Calculator</div>
+            <div>
+              <label>Activity : </label>{" "}
+              <select name="Activity" id="Activity">
+                <option value="sedentary">
+                  Sedentary Little or No excersice
+                </option>
+                <option value="lightlyActive">
+                  Light Excersice 1-3 times/week
+                </option>
+                <option value="moderatelyActive">
+                  Moderate excersice 4-5 times/week
+                </option>
+                <option value="veryActive">
+                  intense or dialy Excersice 3-4 times/week
+                </option>
+                <option value="extraActive">
+                  intense Excersice 6-7 times/week
+                </option>
+              </select>
+            </div>
+            <div>Do You Want To Loose Weight or Gain?</div>
+            <div className="grid grid-cols-4 border border-black  ">
+              <div className="flex flex-col">
+                <div className="border-b border-r border-black px-2">
+                  Maintaince
+                </div>
+                <div className="border-r border-black px-2">data</div>
+              </div>
+              <div>
+                <div className="border-b border-r border-black px-2">
+                  Mild weight
+                </div>
+                <div className="border-r border-black px-2">data</div>
+              </div>
+              <div>
+                <div className="border-b border-r border-black px-2">
+                  Weight
+                </div>
+                <div className="border-r border-black px-2">data</div>
+              </div>
+              <div>
+                {" "}
+                <div className="border-b border-black px-2">Fast Weight</div>
+                <div className="px-2">data</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
