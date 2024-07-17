@@ -51,7 +51,7 @@ const Foodbrowse = () => {
               name={props.name}
               isx={false}
               id={props.id}
-              // onClick={() => {}}
+              handleClick={() => {}}
             />
           );
         })}
@@ -63,10 +63,10 @@ interface FProps {
   isx: boolean;
   name: string;
   id: number;
-  // onClick: () => void;
+  handleClick: () => void;
 }
 
-const Fooddata: React.FC<FProps> = ({ isx, name, id }) => {
+const Fooddata: React.FC<FProps> = ({ isx, name, id, handleClick }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "food",
     item: { id },
@@ -87,12 +87,13 @@ const Fooddata: React.FC<FProps> = ({ isx, name, id }) => {
         <div className="absolute right-5 flex items-center justify-center text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            // onClick={onClick}
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#FFFFFF"
+            onClick={handleClick}
           >
-            <path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
           </svg>
         </div>
       )}
@@ -123,10 +124,10 @@ const Caloriesfood: React.FC = () => {
     setSpace((prevSpace) => [...prevSpace, draggedFood[0]]);
   };
 
-  // const deleteFood = (id: number) => {
-  //   const updatedSpace = space.filter((food) => food.id !== id);
-  //   setSpace(updatedSpace);
-  // };
+  const deleteFood = (id: number) => {
+    const updatedSpace = space.filter((food) => food.id !== id);
+    setSpace(updatedSpace);
+  };
 
   return (
     <div
@@ -150,7 +151,7 @@ const Caloriesfood: React.FC = () => {
               name={food.name}
               isx={true}
               id={food.id}
-              // onClick={() => deleteFood(food.id)}
+              handleClick={() => deleteFood(food.id)}
             />
           ))}
         </div>
