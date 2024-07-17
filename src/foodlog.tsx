@@ -1,6 +1,22 @@
-const Foodbrowse = () => {
-  var setisx = false;
+import { useState } from "react";
+import Food from "./food.ts";
+import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
+
+const Foodlog = () => {
   return (
+    //this is the main page
+    <div className="flex gap-14 my-10 min-h-[82vh]">
+      <Caloriesfood />
+      <Foodbrowse />
+    </div>
+  );
+};
+export default Foodlog;
+
+const Foodbrowse = () => {
+  return (
+    //this will contain the draggable ellements
+
     <div
       id="right"
       className="border-[#464646] border-4 px-10 py-6 flex flex-col gap-6 rounded-[8px] w-[48%] h-full"
@@ -24,12 +40,21 @@ const Foodbrowse = () => {
           </svg>
         </div>
       </div>
-      <div className=" h-full flex flex-col gap-6 rounded-xl">
-        <Fooddata name="Oats" isx={setisx} />
-        <Fooddata name="Rice" isx={setisx} />
-        <Fooddata name="Milk" isx={setisx} />
-        <Fooddata name="Chicken" isx={setisx} />
-        <Fooddata name="Eggs" isx={setisx} />
+      <div
+        className=" h-full flex flex-col gap-6 rounded-xl "
+        draggable="false"
+      >
+        {" "}
+        {Food.map((props) => {
+          return (
+            <Fooddata
+              name={props.name}
+              isx={false}
+              id={props.id}
+              onClick={() => {}}
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -37,22 +62,35 @@ const Foodbrowse = () => {
 interface FProps {
   isx: boolean;
   name: string;
+  id: number;
+  // onClick: () => void;
 }
 
-const Fooddata = ({ isx, name }: FProps) => {
+const Fooddata: React.FC<FProps> = ({ isx, name, id }) => {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: "food",
+    item: { id },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
   return (
+    //this should be dragged
     <div
-      draggable="true"
+      ref={drag}
+      draggable
       className="px-4  rounded-[6px] font-bold text-lg py-2 flex relative border-2  "
+      style={{ opacity: isDragging ? 0.5 : 1 }}
     >
       <div>{name}</div>
       {isx && (
-        <div className="absolute right-5 flex items-center justify-center">
+        <div className="absolute right-5 flex items-center justify-center text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
+            // onClick={onClick}
           >
             <path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
           </svg>
@@ -62,41 +100,64 @@ const Fooddata = ({ isx, name }: FProps) => {
   );
 };
 
-const Caloriesfood = () => {
-  const tcal = 5000;
-  const setisx = false;
+interface Food {
+  id: number;
+  name: string;
+  // Add more properties if necessary
+}
+
+const Caloriesfood: React.FC = () => {
+  const tcal: number = 5000;
+  const [space, setSpace] = useState<Food[]>([]);
+
+  const [, drop] = useDrop(() => ({
+    accept: "food",
+    drop: (item: { id: number }) => addFood(item.id),
+    collect: (monitor: DropTargetMonitor) => ({
+      isOver: monitor.isOver(),
+    }),
+  }));
+
+  const addFood = (id: number) => {
+    const draggedFood: Food[] = Food.filter((food) => id === food.id);
+    setSpace((prevSpace) => [...prevSpace, draggedFood[0]]);
+  };
+
+  // const deleteFood = (id: number) => {
+  //   const updatedSpace = space.filter((food) => food.id !== id);
+  //   setSpace(updatedSpace);
+  // };
+
   return (
     <div
       id="left"
       className="rounded-[8px] py-2 px-4 border-[#464646] border-4 w-[48%] "
     >
-      <div className="flex relative py-3 text-lg font-semibold  ">
-        <div> Food</div>
+      <div className="flex relative py-3 text-lg font-semibold">
+        <div>Food</div>
         <div className="grow"></div>
-        <div className=" flex  border justify-center items-center">
-          <span className=""> {tcal}/</span>{" "}
-          <Justinput type="Number" placeholder="000" />
+        <div className="flex border justify-center items-center">
+          <span>{tcal}/</span>
+          <input type="number" placeholder="000" />
         </div>
       </div>
-      <div className=" min-h-[200px] pt-4">
-        <div className="rounded-xl px-8  flex flex-col gap-4 my-2 ">
-          <Fooddata name="Eggs" isx={setisx} />{" "}
+      <div className=" pt-4 min-h-full " ref={drop}>
+        <div className="rounded-xl px-8 flex flex-col gap-4 my-2">
+          {/* Render dragged food items */}
+          {space.map((food) => (
+            <Fooddata
+              key={food.id}
+              name={food.name}
+              isx={true}
+              id={food.id}
+              // onClick={() => deleteFood(food.id)}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 };
-
-const Foodlog = () => {
-  return (
-    <div className="flex gap-14 my-10 min-h-[82vh]">
-      <Caloriesfood />
-      <Foodbrowse />
-    </div>
-  );
-};
-
-export default Foodlog;
 
 interface Props {
   type: string;
