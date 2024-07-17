@@ -51,7 +51,7 @@ const Foodbrowse = () => {
               name={props.name}
               isx={false}
               id={props.id}
-              onClick={() => {}}
+              // onClick={() => {}}
             />
           );
         })}
@@ -159,18 +159,18 @@ const Caloriesfood: React.FC = () => {
   );
 };
 
-interface Props {
-  type: string;
-  placeholder: string;
-}
-const Justinput = ({ type, placeholder }: Props) => {
-  return (
-    <>
-      <input
-        className=" py-1 w-[50%] text-lg font-medium px-2 bg-transparent border border-amber-100 text-white placeholder:font-medium placeholder:text-lg focus:outline-none  [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-        type={type}
-        placeholder={placeholder}
-      />
-    </>
-  );
-};
+// interface Props {
+//   type: string;
+//   placeholder: string;
+// }
+// const Justinput = ({ type, placeholder }: Props) => {
+//   return (
+//     <>
+//       <input
+//         className=" py-1 w-[50%] text-lg font-medium px-2 bg-transparent border border-amber-100 text-white placeholder:font-medium placeholder:text-lg focus:outline-none  [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+//         type={type}
+//         placeholder={placeholder}
+//       />
+//     </>
+//   );
+// };
