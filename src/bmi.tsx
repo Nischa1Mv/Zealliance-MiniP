@@ -46,7 +46,11 @@ const InputWithLabel: React.FC<Props> = ({
 const Bmi = () => {
   const [isMale, setIsMale] = useState(false);
   const [isFemale, setIsFemale] = useState(false);
-
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [age, setAge] = useState("");
+  const [bmi, setBmi] = useState("input your data to check BMI");
+  const [bmiCategory, setBmiCategory] = useState("idk");
   const handleMaleClick = () => {
     setIsMale(true);
     setIsFemale(false);
@@ -57,31 +61,26 @@ const Bmi = () => {
     setIsFemale(true);
   };
 
-  const [height, setHeight] = useState<string>("");
-  const [weight, setWeight] = useState<string>("");
-  const [age, setAge] = useState<string>("");
-  const [bmi, setBmi] = useState<string>("input your data to check BMI");
-  const [bmiCategory, setBmiCategory] = useState<string>("idk");
-
   const calBmi = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (height && weight) {
       const heightInMeters = parseFloat(height) / 100;
       const calBmi = parseFloat(weight) / (heightInMeters * heightInMeters);
       setBmi(calBmi.toFixed(1));
+
+      const intbmi = parseFloat(calBmi.toFixed(1));
+
+      if (intbmi < 18.5) {
+        setBmiCategory("underWeight");
+      } else if (intbmi >= 18.5 && intbmi < 24.9) {
+        setBmiCategory("Normal Weight");
+      } else if (intbmi >= 25 && intbmi <= 29.9) {
+        setBmiCategory("OverWeight Weight");
+      } else {
+        setBmiCategory("Obesity");
+      }
     } else {
       setBmi(null);
-    }
-
-    const intbmi = parseInt(bmi, 10);
-    if (intbmi < 18.5) {
-      setBmiCategory("underWeight");
-    } else if (intbmi >= 18.5 && intbmi < 24.9) {
-      setBmiCategory("Normal Weight");
-    } else if (intbmi >= 25 && intbmi <= 29.9) {
-      setBmiCategory("OverWeight Weight");
-    } else {
-      setBmiCategory("Obesity");
     }
   };
 

@@ -121,12 +121,17 @@ const Caloriesfood: React.FC = () => {
 
   const addFood = (id: number) => {
     const draggedFood: Food[] = Food.filter((food) => id === food.id);
-    setSpace((prevSpace) => [...prevSpace, draggedFood[0]]);
+    setSpace((space) => [...space, draggedFood[0]]);
+    console.log(space);
   };
 
-  const deleteFood = (id: number) => {
-    const updatedSpace = space.filter((food) => food.id !== id);
-    setSpace(updatedSpace);
+  const deleteFood = (index: number) => {
+    // const updatedSpace = space.filter((food) => index !== id);
+    // setSpace(updatedSpace);
+    const updatedItems = [...space];
+    updatedItems.splice(index, 1);
+    setSpace(updatedItems);
+    console.log(space);
   };
 
   return (
@@ -145,13 +150,13 @@ const Caloriesfood: React.FC = () => {
       <div className=" pt-4 min-h-full " ref={drop}>
         <div className="rounded-xl px-8 flex flex-col gap-4 my-2">
           {/* Render dragged food items */}
-          {space.map((food) => (
+          {space.map((food, index) => (
             <Fooddata
-              key={food.id}
+              key={index}
               name={food.name}
               isx={true}
               id={food.id}
-              handleClick={() => deleteFood(food.id)}
+              handleClick={() => deleteFood(index)}
             />
           ))}
         </div>
