@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Food from "./food.ts";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 
