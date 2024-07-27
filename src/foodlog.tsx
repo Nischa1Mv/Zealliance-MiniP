@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Food from "./food.ts";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 
@@ -48,6 +48,7 @@ const Foodbrowse = () => {
         {Food.map((props) => {
           return (
             <Fooddata
+              cal={props.cal}
               name={props.name}
               isx={false}
               id={props.id}
@@ -63,6 +64,7 @@ interface FProps {
   isx: boolean;
   name: string;
   id: number;
+  cal: number;
   handleClick: () => void;
 }
 
@@ -104,11 +106,11 @@ const Fooddata: React.FC<FProps> = ({ isx, name, id, handleClick }) => {
 interface Food {
   id: number;
   name: string;
+  cal: number;
   // Add more properties if necessary
 }
 
 const Caloriesfood: React.FC = () => {
-  const tcal: number = 5000;
   const [space, setSpace] = useState<Food[]>([]);
 
   const [, drop] = useDrop(() => ({
@@ -122,6 +124,7 @@ const Caloriesfood: React.FC = () => {
   const addFood = (id: number) => {
     const draggedFood: Food[] = Food.filter((food) => id === food.id);
     setSpace((space) => [...space, draggedFood[0]]);
+
     console.log(space);
   };
 
@@ -134,19 +137,55 @@ const Caloriesfood: React.FC = () => {
     console.log(space);
   };
 
+  const [Ltcal, setLtcal] = useState("");
+  const [tcal, setTcal] = useState<number>(0);
+  // Function to handle form submission
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log("Submitted value:", Ltcal);
+    setTcal(+Ltcal);
+    console.log("Submitted value:", tcal);
+    setLtcal("");
+
+    // Handle form submission logic here
+  };
+
   return (
     <div
       id="left"
       className="rounded-[8px] py-2 px-4 border-[#464646] border-4 w-[48%] "
     >
-      <div className="flex relative py-3 text-lg font-semibold">
+      <div className="flex relative py-3 text-lg font-semibold ">
         <div>Food</div>
         <div className="grow"></div>
-        <div className="flex border justify-center items-center">
-          <span>{tcal}/</span>
-          <input type="number" placeholder="000" />
+        <div className="flex border  justify-center items-center ">
+          <span className=" px-4">{tcal}</span>
+          <span>/</span>
+          <form onSubmit={handleSubmit} className=" ">
+            <input
+              type="number"
+              placeholder="Enter Target Calories"
+              value={Ltcal}
+              className="pl-4 grow w-fit outline-none bg-transparent [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              onChange={(event) => setLtcal(event.target.value)}
+            />
+          </form>
         </div>
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="30px"
+            viewBox="0 -960 960 960"
+            width="30px"
+            fill="#75FBFD"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            <path d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z" />
+          </svg>
+        </button>
       </div>
+
       <div className=" pt-4 min-h-full " ref={drop}>
         <div className="rounded-xl px-8 flex flex-col gap-4 my-2">
           {/* Render dragged food items */}
@@ -156,6 +195,7 @@ const Caloriesfood: React.FC = () => {
               name={food.name}
               isx={true}
               id={food.id}
+              cal={food.cal}
               handleClick={() => deleteFood(index)}
             />
           ))}
