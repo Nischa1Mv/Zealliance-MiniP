@@ -47,10 +47,15 @@ const Bmi = () => {
   const [isMale, setIsMale] = useState(false);
   const [isFemale, setIsFemale] = useState(false);
   const [height, setHeight] = useState("");
+  const [fheight, setfHeight] = useState("");
   const [weight, setWeight] = useState("");
+  const [fweight, setfWeight] = useState("");
   const [age, setAge] = useState("");
+  const [fage, setfAge] = useState("");
   const [bmi, setBmi] = useState("input your data to check BMI");
   const [bmiCategory, setBmiCategory] = useState("idk");
+  const [gender, setGender] = useState("");
+
   const handleMaleClick = () => {
     setIsMale(true);
     setIsFemale(false);
@@ -61,7 +66,10 @@ const Bmi = () => {
     setIsFemale(true);
   };
 
+  const [added, setAdded] = useState(false);
+
   const calBmi = (event: React.FormEvent<HTMLFormElement>) => {
+    setAdded(true);
     event.preventDefault();
     if (height && weight) {
       const heightInMeters = parseFloat(height) / 100;
@@ -77,10 +85,18 @@ const Bmi = () => {
       } else if (intbmi >= 25 && intbmi <= 29.9) {
         setBmiCategory("OverWeight Weight");
       } else {
-        setBmiCategory("Obesity");
+        setBmiCategory("Obese");
       }
     } else {
       setBmi(null);
+    }
+    setfHeight(height);
+    setfWeight(weight);
+    setfAge(age);
+    if (isMale) {
+      setGender("Male");
+    } else {
+      setGender("Female");
     }
   };
 
@@ -151,60 +167,104 @@ const Bmi = () => {
             </div>
           </form>
         </div>
-        <div className="bg-white  rounded-xl px-6 py-10 font-semibold text-xl w-[50%]   ">
-          <div className="flex flex-col h-[25%]">
-            <div> BMI = {bmi}</div>
-            <div> Nigga you are {bmiCategory}</div>
-          </div>
-          <div className="border-t-2 border-black flex flex-col gap-4">
-            <div>Calorie Calculator</div>
-            <div>
-              <label>Activity : </label>{" "}
-              <select name="Activity" id="Activity">
-                <option value="sedentary">
-                  Sedentary Little or No excersice
-                </option>
-                <option value="lightlyActive">
-                  Light Excersice 1-3 times/week
-                </option>
-                <option value="moderatelyActive">
-                  Moderate excersice 4-5 times/week
-                </option>
-                <option value="veryActive">
-                  intense or dialy Excersice 3-4 times/week
-                </option>
-                <option value="extraActive">
-                  intense Excersice 6-7 times/week
-                </option>
-              </select>
-            </div>
-            <div>Do You Want To Loose Weight or Gain?</div>
-            <div className="grid grid-cols-4 border border-black  ">
-              <div className="flex flex-col">
-                <div className="border-b border-r border-black px-2">
-                  Maintaince
+        <div className="bg-white  rounded-xl px-8 py-10 font-semibold text-xl w-[50%]   ">
+          {!added ? (
+            <>
+              <div className="relative w-full h-full">
+                <div className="absolute inset-0 bg-[url('https://images2.alphacoders.com/133/1335809.png')] bg-cover bg-center transform scale-x-[-1]"></div>
+
+                <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-4xl">
+                  <span>Enter The Details to View the Info</span>
                 </div>
-                <div className="border-r border-black px-2">data</div>
               </div>
-              <div>
-                <div className="border-b border-r border-black px-2">
-                  Mild weight
+            </>
+          ) : (
+            <>
+              <div className="flex gap-2 flex-col mb-4">
+                <div className="flex gap-4">
+                  <div>
+                    Gender = <span className="font-bold">{gender} </span>
+                  </div>
+                  <div>
+                    Age = {fage}{" "}
+                    <span className="text-base font-bold">Yrs</span>
+                  </div>
+
+                  <div>
+                    Height = {fheight}
+                    <span className="text-base font-bold"> Cm</span>
+                  </div>
+                  <div>
+                    Weight = {fweight}
+                    <span className="text-base font-bold"> Kgs</span>{" "}
+                  </div>
                 </div>
-                <div className="border-r border-black px-2">data</div>
-              </div>
-              <div>
-                <div className="border-b border-r border-black px-2">
-                  Weight
+                <div>
+                  {" "}
+                  Body Mass Index ={" "}
+                  <span className="bg-yellow-200 px-2 font-bold ">{bmi} </span>
                 </div>
-                <div className="border-r border-black px-2">data</div>
+                <div>
+                  {" "}
+                  According to the BMI you are{" "}
+                  <span className="bg-yellow-200 font-bold px-2">
+                    {bmiCategory}
+                  </span>
+                </div>
               </div>
-              <div>
-                {" "}
-                <div className="border-b border-black px-2">Fast Weight</div>
-                <div className="px-2">data</div>
+              <div className="border-t-2 border-black flex flex-col gap-4">
+                <div>Calorie Calculator</div>
+                <div>
+                  <label>Activity : </label>{" "}
+                  <select name="Activity" id="Activity">
+                    <option value="sedentary">
+                      Sedentary Little or No excersice
+                    </option>
+                    <option value="lightlyActive">
+                      Light Excersice 1-3 times/week
+                    </option>
+                    <option value="moderatelyActive">
+                      Moderate excersice 4-5 times/week
+                    </option>
+                    <option value="veryActive">
+                      intense or dialy Excersice 3-4 times/week
+                    </option>
+                    <option value="extraActive">
+                      intense Excersice 6-7 times/week
+                    </option>
+                  </select>
+                </div>
+                <div>Do You Want To Loose Weight or Gain?</div>
+                <div className="grid grid-cols-4 border border-black  ">
+                  <div className="flex flex-col">
+                    <div className="border-b border-r border-black px-2">
+                      Maintaince
+                    </div>
+                    <div className="border-r border-black px-2">data</div>
+                  </div>
+                  <div>
+                    <div className="border-b border-r border-black px-2">
+                      Mild weight
+                    </div>
+                    <div className="border-r border-black px-2">data</div>
+                  </div>
+                  <div>
+                    <div className="border-b border-r border-black px-2">
+                      Weight
+                    </div>
+                    <div className="border-r border-black px-2">data</div>
+                  </div>
+                  <div>
+                    {" "}
+                    <div className="border-b border-black px-2">
+                      Fast Weight
+                    </div>
+                    <div className="px-2">data</div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </>
