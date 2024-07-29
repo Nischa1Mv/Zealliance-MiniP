@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Food from "./food.ts";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
-import { Space } from "lucide-react";
 
 const Foodlog = () => {
   return (
