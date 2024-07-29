@@ -168,7 +168,7 @@ const Caloriesfood: React.FC = () => {
   return (
     <div
       id="left"
-      className="rounded-[8px] py-2 px-4 border-[#464646] border-4 w-[48%] bg-white"
+      className="rounded-[8px] py-4 px-4 border-[#464646] border-4 w-[48%] flex flex-col"
     >
       <div className="justify-center items-center text-3xl  mb-5   font-bold">
         Log Your Food
@@ -206,10 +206,10 @@ const Caloriesfood: React.FC = () => {
         </button>
       </div>
 
-      <div className=" pt-4  bg-black h-full relative" ref={drop}>
+      <div className=" pt-4 flex-1  relative" ref={drop}>
         <div className="rounded-xl px-8 flex flex-col gap-4 my-2  ">
           {!hasElements && (
-            <p className="absolute inset-0 flex justify-center items-center opacity-10 bg-white text-black">
+            <p className="absolute inset-0 flex justify-center items-center opacity-20 bg-white text-black">
               Release to drop
             </p>
           )}
