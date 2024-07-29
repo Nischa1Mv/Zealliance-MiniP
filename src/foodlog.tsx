@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Food from "./food.ts";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
+import { Space } from "lucide-react";
 
 const Foodlog = () => {
   return (
     //this is the main page
-    <div className="flex gap-14 my-10 min-h-[82vh]">
+    <div className="flex gap-14 my-10 ">
       <Caloriesfood />
       <Foodbrowse />
     </div>
@@ -19,7 +20,7 @@ const Foodbrowse = () => {
 
     <div
       id="right"
-      className="border-[#464646] border-4 px-10 py-6 flex flex-col gap-6 rounded-[8px] w-[48%] h-full"
+      className="border-[#464646] border-4 px-10 py-6 flex flex-col gap-6 rounded-[8px] w-[48%] h-full min-h-[82vh]"
     >
       <div className="flex rounded-[8px]  px-2 py-1 border-[#464646] border-2 ">
         <input
@@ -111,6 +112,8 @@ interface Food {
 }
 
 const Caloriesfood: React.FC = () => {
+  const [hasElements, setHasElements] = useState<boolean>(false);
+  // let sumCal = 0;
   const [space, setSpace] = useState<Food[]>([]);
 
   const [, drop] = useDrop(() => ({
@@ -123,18 +126,24 @@ const Caloriesfood: React.FC = () => {
 
   const addFood = (id: number) => {
     const draggedFood: Food[] = Food.filter((food) => id === food.id);
-    setSpace((space) => [...space, draggedFood[0]]);
+    // setSpace((space) => [...space, draggedFood[0]]);
+    if (draggedFood) {
+      setSpace((prevSpace) => {
+        const newSpace = [...prevSpace, draggedFood[0]];
+        setHasElements(newSpace.length > 0);
+        return newSpace;
+      });
+    }
 
-    console.log(space);
+    // console.log(space);
   };
 
   const deleteFood = (index: number) => {
-    // const updatedSpace = space.filter((food) => index !== id);
-    // setSpace(updatedSpace);
     const updatedItems = [...space];
     updatedItems.splice(index, 1);
     setSpace(updatedItems);
-    console.log(space);
+    setHasElements(updatedItems.length > 0);
+    // console.log(space);
   };
 
   const [Ltcal, setLtcal] = useState("");
@@ -150,13 +159,25 @@ const Caloriesfood: React.FC = () => {
     // Handle form submission logic here
   };
 
+  const [sumCal, setSumCal] = useState<number>(0);
+  useEffect(() => {
+    const newSumCal = space.reduce((sum, item) => sum + item.cal, 0);
+    setSumCal(newSumCal);
+    console.log(newSumCal);
+  }, [space]);
+
   return (
     <div
       id="left"
-      className="rounded-[8px] py-2 px-4 border-[#464646] border-4 w-[48%] "
+      className="rounded-[8px] py-2 px-4 border-[#464646] border-4 w-[48%] bg-white"
     >
-      <div className="flex relative py-3 text-lg font-semibold ">
-        <div>Food</div>
+      <div className="justify-center items-center text-3xl  mb-5   font-bold">
+        Log Your Food
+      </div>
+      <div className="flex  py-3 text-lg font-semibold  ">
+        <div className=" px-2 ">
+          Total Calories - <span className="border px-2 "> {sumCal}</span>
+        </div>
         <div className="grow"></div>
         <div className="flex border  justify-center items-center ">
           <span className=" px-4">{tcal}</span>
@@ -186,8 +207,13 @@ const Caloriesfood: React.FC = () => {
         </button>
       </div>
 
-      <div className=" pt-4 min-h-full " ref={drop}>
-        <div className="rounded-xl px-8 flex flex-col gap-4 my-2">
+      <div className=" pt-4  bg-black h-full relative" ref={drop}>
+        <div className="rounded-xl px-8 flex flex-col gap-4 my-2  ">
+          {!hasElements && (
+            <p className="absolute inset-0 flex justify-center items-center opacity-10 bg-white text-black">
+              Release to drop
+            </p>
+          )}
           {/* Render dragged food items */}
           {space.map((food, index) => (
             <Fooddata
