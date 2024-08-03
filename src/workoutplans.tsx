@@ -77,7 +77,7 @@ const Workoutnamesinfo: React.FC = () => {
   return (
     <div className="h-[30vh] px-10 py-10 flex flex-col">
       <h2 className="text-xl font-bold mb-2">{workoutDetails.Title}</h2>
-      <div>
+      <div className="flex flex-col gap-2">
         {Object.keys(workoutDetails.NameArr).map((name, index) => (
           <Excersicename
             key={index}
@@ -102,10 +102,7 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name, Steps }) => {
 
   return (
     <div className="">
-      <div
-        className="border-2 border-r-0 border-[#464646] "
-        onClick={() => setInfo(!Info)}
-      >
+      <div className="border border-[#464646]  " onClick={() => setInfo(!Info)}>
         <div className="px-8 py-2 flex font-medium text-base">
           <div className="flex gap-4">
             <div className="whitespace-nowrap">{Name}</div>

@@ -12,7 +12,7 @@ const Header = () => {
     <>
       <nav
         id="nav"
-        className="  bg-[#212121] w-full flex items-center gap-6 py-2  border-b-2 border-x-0 border-t-0 z-50 px-10 pr-6 border-[#464646] sticky top-0 "
+        className="  bg-[#16171b]  w-full flex items-center gap-6 py-2  border-b-2 border-x-0 border-t-0 z-50 px-10 pr-6 border-[#464646] sticky top-0 "
       >
         <div className="text-xl  font-semibold  order-1 my-6  ">
           {longDateString}{" "}

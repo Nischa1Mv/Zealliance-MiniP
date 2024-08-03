@@ -20,6 +20,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        "custom-gradient": "",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
