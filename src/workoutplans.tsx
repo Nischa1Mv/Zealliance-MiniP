@@ -42,7 +42,8 @@ const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
     <div
       className={`px-4 py-3 flex w-[15%] h-fit cursor-pointer justify-center items-center transform translate-x-0  duration-90  ${
         isSelected ? " text-[#5fdaff] border-b-2 border-[#5fdaff]" : ""
-      }`}
+      } )
+      `}
       onClick={() => {
         setIsInfo(false);
         setWorkoutDetails({ Title, NameArr });
@@ -65,7 +66,7 @@ const Workoutnamesinfo: React.FC = () => {
     return (
       <>
         {" "}
-        <div className="h-[30vh] px-10 py-10 flex flex-col">
+        <div className="h-[30vh] px-10 py-10 flex flex-col border-[#5fdaff] border-t-2">
           <h2 className="text-2xl font-bold mb-2">Select a Workout</h2>
           <p className="text-lg">
             Please select a Muscle Group you want to Target from the above Tab.
