@@ -4,10 +4,17 @@ interface SharedStateContextProps {
   isInfo: boolean;
   setIsInfo: (value: boolean) => void;
   workoutDetails: { Title: string; NameArr: { [key: string]: string[] } };
-  setWorkoutDetails: (details: { Title: string; NameArr: { [key: string]: string[] } }) => void;
+  setWorkoutDetails: (details: {
+    Title: string;
+    NameArr: { [key: string]: string[] };
+  }) => void;
+  selectedTab: string | null;
+  setSelectedTab: (title: string | null) => void;
 }
 
-const SharedStateContext = createContext<SharedStateContextProps | undefined>(undefined);
+const SharedStateContext = createContext<SharedStateContextProps | undefined>(
+  undefined
+);
 
 export const SharedStateProvider = ({ children }: { children: ReactNode }) => {
   const [isInfo, setIsInfo] = useState<boolean>(true);
@@ -15,10 +22,18 @@ export const SharedStateProvider = ({ children }: { children: ReactNode }) => {
     Title: string;
     NameArr: { [key: string]: string[] };
   }>({ Title: "", NameArr: {} });
+  const [selectedTab, setSelectedTab] = useState<string | null>(null);
 
   return (
     <SharedStateContext.Provider
-      value={{ isInfo, setIsInfo, workoutDetails, setWorkoutDetails }}
+      value={{
+        isInfo,
+        setIsInfo,
+        workoutDetails,
+        setWorkoutDetails,
+        selectedTab,
+        setSelectedTab,
+      }}
     >
       {children}
     </SharedStateContext.Provider>

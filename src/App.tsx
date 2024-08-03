@@ -11,7 +11,7 @@ function App() {
           {" "}
           <div className=" ">
             <Header />
-            <div className=" mx-10">
+            <div className=" ">
               <Home />
             </div>
           </div>

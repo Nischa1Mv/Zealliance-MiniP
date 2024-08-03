@@ -5,7 +5,7 @@ const Paragraphguy = () => {
   return (
     <div
       id="paragraph"
-      className="flex flex-col  gap-5 text-pretty  h-[29vh] mt-6"
+      className="flex flex-col  gap-5 text-pretty  h-[29vh] pt-5 bg-black px-10"
     >
       <div className="font-bold text-5xl ">Calisthenics</div>
 
@@ -23,6 +23,8 @@ const Paragraphguy = () => {
   );
 };
 
+import { useSharedState } from "./context/sharedState";
+import { useState } from "react";
 type ExerciseName = string[];
 
 interface WorkoutnamesProps {
@@ -31,20 +33,23 @@ interface WorkoutnamesProps {
     [key: string]: ExerciseName;
   };
 }
-import { useSharedState } from "./context/sharedState";
-import { useState } from "react";
-const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
-  const { setIsInfo, setWorkoutDetails } = useSharedState();
 
+const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
+  const { setIsInfo, setWorkoutDetails, selectedTab, setSelectedTab } =
+    useSharedState();
+  const isSelected = selectedTab === Title;
   return (
     <div
-      className="px-4 py-3 border-b-1 border-t-0 border-l-0 border border-r-1 flex w-[15%] h-fit cursor-pointer justify-center items-center"
+      className={`px-4 py-3 flex w-[15%] h-fit cursor-pointer justify-center items-center transform translate-x-0  duration-90  ${
+        isSelected ? " text-[#5fdaff] border-b-2 border-[#5fdaff]" : ""
+      }`}
       onClick={() => {
         setIsInfo(false);
         setWorkoutDetails({ Title, NameArr });
+        setSelectedTab(Title);
       }}
     >
-      <div className="font-semibold text-xl flex whitespace-nowrap">
+      <div className="font-semibold text-xl flex whitespace-nowrap  ">
         {Title}
       </div>
     </div>
@@ -73,8 +78,12 @@ const Workoutnamesinfo: React.FC = () => {
     <div className="h-[30vh] px-10 py-10 flex flex-col">
       <h2 className="text-xl font-bold mb-2">{workoutDetails.Title}</h2>
       <div>
-      {Object.keys(workoutDetails.NameArr).map((name, index) => (
-          <Excersicename key={index} Name={name} Steps={workoutDetails.NameArr[name]} />
+        {Object.keys(workoutDetails.NameArr).map((name, index) => (
+          <Excersicename
+            key={index}
+            Name={name}
+            Steps={workoutDetails.NameArr[name]}
+          />
         ))}
       </div>
     </div>
@@ -88,7 +97,7 @@ interface ExcersicenameProps {
   Steps: string[];
 }
 
-const Excersicename: React.FC<ExcersicenameProps> = ({ Name,Steps }) => {
+const Excersicename: React.FC<ExcersicenameProps> = ({ Name, Steps }) => {
   const [Info, setInfo] = useState(false);
 
   return (
@@ -131,7 +140,11 @@ interface VideoOverlayProps {
   Steps: string[];
 }
 
-const VideoOverlay: React.FC<VideoOverlayProps> = ({ setInfo, Name, Steps }) => {
+const VideoOverlay: React.FC<VideoOverlayProps> = ({
+  setInfo,
+  Name,
+  Steps,
+}) => {
   const [isOverlayVisible, setOverlayVisible] = useState(true); // State to manage overlay visibility
 
   const handlePlayClick = () => {
@@ -199,12 +212,12 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({ setInfo, Name, Steps }) => 
 const Workoutinfo = ({}) => {
   return (
     <>
-      <div>
+      <div className="">
         <Paragraphguy />
       </div>
-      <div className="border border-white flex flex-col h-[55vh] overflow-auto">
+      <div className=" flex flex-col h-[55vh] overflow-auto mx-10 mt-6">
         <SharedStateProvider>
-          <div className="items-center rounded-xl flex overflow-auto max-h-full ">
+          <div className="items-center  flex overflow-auto max-h-full ">
             {workoutinfoArr.map((workout, index) => (
               <Workoutnames
                 key={index}
