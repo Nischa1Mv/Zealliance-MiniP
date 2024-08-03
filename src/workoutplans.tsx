@@ -5,7 +5,7 @@ const Paragraphguy = () => {
   return (
     <div
       id="paragraph"
-      className="flex flex-col  gap-5 text-pretty  h-[29vh] pt-5 bg-black px-10"
+      className="flex flex-col  gap-5 text-pretty   h-[29vh] pt-5  px-10"
     >
       <div className="font-bold text-5xl ">Calisthenics</div>
 
@@ -161,7 +161,7 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
       className=" h-full w-full bg-gray-50 bg-opacity-10 flex justify-center items-center "
     >
       <div
-        className=" w-[75%] h-[70%] m-auto bg-black "
+        className=" w-[75%] h-[70%] m-auto bg-[#16171b] "
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-3xl bg-amber-50 text-black flex justify-center items-center h-[10%] font-bold mb-4">
@@ -169,27 +169,35 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
         </h2>
         <div className="flex h-[87%] ">
           {/* Left panel */}
-          <div className=" p-5 w-[50%]  ">
-            <h1 className="text-4xl font-bold mb-2">
-              Follow The Following Steps
+          <div className=" p-5 w-[45%] flex-col flex">
+            <h1 className="text-4xl font-bold mb-10 mt-5 ">
+              Follow these Steps
             </h1>
-            <ol type="1">
-              {Steps.map((step, index) => (
-                <li key={index} className="text-lg font-semibold">
-                  {step}
-                </li>
-              ))}
-            </ol>
+
+            {Steps.map((step, index) => (
+              <div key={index} className="text-2xl font-semibold mb-6 pl-4">
+                <span className="text-yellow-200">
+                  {" "}
+                  Step-
+                  {index + 1}
+                  {" -> "}
+                </span>
+                {step}
+              </div>
+            ))}
           </div>
 
           {/* Right panel */}
-          <div className="flex  w-[50%] h-full items-center justify-center">
+          <div className="flex  w-[55%] h-full items-center justify-center ">
             {/* Video player */}
-            <div className=" relative aspect-video h-[50%]">
-              <video className=" inset-0 w-full h-full object-cover" controls>
-                <source src="your-video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+            <div className=" relative aspect-video w-[90%]">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
               {/* Overlay */}
               {isOverlayVisible && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -215,7 +223,7 @@ const Workoutinfo = ({}) => {
       <div className="">
         <Paragraphguy />
       </div>
-      <div className=" flex flex-col h-[55vh] overflow-auto mx-10 mt-6">
+      <div className=" border rounded-b-xl pt-4 flex flex-col h-[55vh] overflow-auto mx-10 mt-6">
         <SharedStateProvider>
           <div className="items-center  flex overflow-auto max-h-full ">
             {workoutinfoArr.map((workout, index) => (
