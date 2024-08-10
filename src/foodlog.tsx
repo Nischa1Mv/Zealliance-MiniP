@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Food from "./food.ts";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
+import { ref, get, child } from "firebase/database";
+import { db } from "./firebase";
 
 const Foodlog = () => {
   return (
@@ -14,6 +16,24 @@ const Foodlog = () => {
 export default Foodlog;
 
 const Foodbrowse = () => {
+  cosnt[(Food, setFood)] = useState<Food[]>([]);
+  useEffect(() => {
+    const fetchFood = async () => {
+      try {
+        const dbRef = ref(db);
+        const snapshot = await get(child(dbRef, "food"));
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+        } else {
+          console.log("No data available");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    fetchFood();
+  }, []);
+
   return (
     //this will contain the draggable ellements
 
@@ -45,13 +65,14 @@ const Foodbrowse = () => {
         draggable="false"
       >
         {" "}
-        {Food.map((props) => {
+        {Food.map((food) => {
           return (
             <Fooddata
-              cal={props.cal}
-              name={props.name}
+              key={food.id}
+              cal={food.cal}
+              name={food.name}
               isx={false}
-              id={props.id}
+              id={food.id}
               handleClick={() => {}}
             />
           );

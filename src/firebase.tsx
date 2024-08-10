@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+const apikey = import.meta.env.VITE_NOTAPI_KEY;
 
 const firebaseConfig = {
-  apiKey: process.env.NOTAPI_KEY,
+  apiKey: apikey,
   authDomain: "zealliance-88a9b.firebaseapp.com",
   projectId: "zealliance-88a9b",
   storageBucket: "zealliance-88a9b.appspot.com",
