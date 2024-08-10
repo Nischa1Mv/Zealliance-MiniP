@@ -21,6 +21,10 @@ module.exports = {
     },
     extend: {
       keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
         glitch: {
           "0%": { transform: "translate(0)" },
           "20%": { transform: "translate(-3px, 3px)" },
@@ -56,6 +60,7 @@ module.exports = {
         },
       },
       animation: {
+        fadeIn: "fadeIn 0.1s ease-in-out",
         glitch: "glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite",
         shift: "shift 1s ease-in-out infinite alternate",
         "accordion-down": "accordion-down 0.2s ease-out",

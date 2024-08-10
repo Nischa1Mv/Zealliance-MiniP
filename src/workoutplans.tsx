@@ -1,7 +1,7 @@
 import { SharedStateProvider } from "./context/sharedState";
 import { ref, get } from "firebase/database";
 import { db } from "./firebase";
-
+import "./index.css";
 const Paragraphguy = () => {
   return (
     <div id="paragraph" className="flex flex-col py-2 px-4   text-pretty   ">
@@ -38,20 +38,17 @@ const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
   const { setIsInfo, setWorkoutDetails, selectedTab, setSelectedTab } =
     useSharedState();
   const isSelected = selectedTab === Title;
-  // const convertedNameArr = NameArr.reduce((acc, curr) => {
-  //   acc[curr.name] = curr.steps;
-  //   return acc;
-  // }, {} as { [key: string]: string[] });
   return (
     <div
       className={`px-4 py-3 flex w-[15%] h-fit cursor-pointer justify-center items-center transform translate-x-0  duration-90  ${
-        isSelected ? " text-[#5fdaff] border-b-2 border-[#5fdaff]" : ""
+        isSelected
+          ? " text-[#5fdaff] bg-slate-800 border-b-2 animate-fadeIn   border-[#5fdaff]"
+          : ""
       } )
       `}
       onClick={() => {
         setIsInfo(false);
         setWorkoutDetails({ Title, NameArr });
-        // setWorkoutDetails({ Title, NameArr: convertedNameArr });
         setSelectedTab(Title);
       }}
     >
