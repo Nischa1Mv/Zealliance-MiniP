@@ -24,7 +24,7 @@ const Header = () => {
         <div className="grow order-3"></div>
         <div className="text-xl font-semibold order-3 my-6 px-4 ">
           <Link className="underline-animation" to="/workoutinfo">
-            Workout Info
+            Workout Plans
           </Link>{" "}
         </div>
         <div className="text-xl font-semibold order-4 my-6 px-4  ">

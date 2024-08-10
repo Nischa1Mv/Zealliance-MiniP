@@ -4,21 +4,19 @@ import { db } from "./firebase";
 
 const Paragraphguy = () => {
   return (
-    <div
-      id="paragraph"
-      className="flex flex-col  gap-5 text-pretty   h-[29vh] pt-5  px-10"
-    >
-      <div className="font-bold text-5xl ">Calisthenics</div>
-
-      <div className="text-2xl mt-4 ">
-        The term calisthenics comes from the Greek words ‘Kalos’ meaning beauty
-        and ‘Stenos’ which translates as strength.{" "}
-      </div>
-      <div className="mb-4 text-2xl">
-        {" "}
-        Calisthenics is a form of strength training that utilizes an
-        individual's body weight as resistance to perform multi-joint, compound
-        movements with little or no equipment
+    <div id="paragraph" className="flex flex-col py-2 px-4   text-pretty   ">
+      <div className="font-bold text-4xl pb-2 ">Calisthenics</div>
+      <div className="text-xl font-medium py-2 ">
+        <div>
+          The term calisthenics comes from the Greek words ‘Kalos’ meaning
+          beauty and ‘Stenos’ which translates as strength.{" "}
+        </div>
+        <div>
+          {" "}
+          Calisthenics is a form of strength training that utilizes an
+          individual's body weight as resistance to perform multi-joint,
+          compound movements with little or no equipment
+        </div>
       </div>
     </div>
   );
@@ -243,22 +241,24 @@ const Workoutinfo = ({}) => {
 
   return (
     <>
-      <div className="">
-        <Paragraphguy />
-      </div>
-      <div className=" border rounded-b-xl pt-4 flex flex-col h-[55vh] overflow-auto mx-10 mt-6">
+      <div className="flex flex-col px-4">
+        <div className="">
+          <Paragraphguy />
+        </div>
         <SharedStateProvider>
-          <div className="items-center  flex overflow-auto max-h-full ">
-            {workoutinfodata.map((workout, index) => (
-              <Workoutnames
-                key={index}
-                Title={workout.Title}
-                NameArr={workout.NameArr}
-              />
-            ))}
-          </div>
-          <div>
-            <Workoutnamesinfo />
+          <div className=" w-full  border h-[60vh]">
+            <div className="flex sticky top-0">
+              {workoutinfodata.map((workout, index) => (
+                <Workoutnames
+                  key={index}
+                  Title={workout.Title}
+                  NameArr={workout.NameArr}
+                />
+              ))}
+            </div>
+            <div>
+              <Workoutnamesinfo />
+            </div>
           </div>
         </SharedStateProvider>
       </div>

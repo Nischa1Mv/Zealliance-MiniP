@@ -8,10 +8,10 @@ function App() {
     <>
       <BrowserRouter>
         <div className="min-h-screen flex-col  ">
-          <div className=" ">
+          <div className="sticky top-0 z-50  ">
             <Header />
           </div>
-          <div className="  min-h-[86vh]  flex-col flex justify-center items-center ">
+          <div className="  min-h-[86vh]  ">
             <Home />
           </div>
         </div>
