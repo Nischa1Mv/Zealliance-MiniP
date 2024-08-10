@@ -1,7 +1,7 @@
 import { SharedStateProvider } from "./context/sharedState";
 import { ref, get } from "firebase/database";
 import { db } from "./firebase";
-import "./index.css";
+
 const Paragraphguy = () => {
   return (
     <div id="paragraph" className="flex flex-col py-2 px-4   text-pretty   ">
