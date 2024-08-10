@@ -1,27 +1,68 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: ["class"], // Enables dark mode with a 'class' strategy
   content: [
-    "./*.html",
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "./custom-componets/**/*.{ts,tsx}",
-    "./index/**/*.html",
+    "./*.html", // Includes HTML files in the root directory
+    "./pages/**/*.{ts,tsx}", // Includes TypeScript and TSX files in 'pages' directory
+    "./components/**/*.{ts,tsx}", // Includes TypeScript and TSX files in 'components' directory
+    "./app/**/*.{ts,tsx}", // Includes TypeScript and TSX files in 'app' directory
+    "./src/**/*.{ts,tsx}", // Includes TypeScript and TSX files in 'src' directory
+    "./custom-componets/**/*.{ts,tsx}", // Includes TypeScript and TSX files in 'custom-componets' directory
+    "./index/**/*.html", // Includes HTML files in 'index' directory
   ],
-  prefix: "",
+  prefix: "", // No prefix for Tailwind classes
   theme: {
     container: {
-      center: true,
-      padding: "2rem",
+      center: true, // Centers the container
+      padding: "2rem", // Adds padding to the container
       screens: {
-        "2xl": "1400px",
+        "2xl": "1400px", // Sets the breakpoint for '2xl' screen size
       },
     },
     extend: {
+      keyframes: {
+        glitch: {
+          "0%": { transform: "translate(0)" },
+          "20%": { transform: "translate(-3px, 3px)" },
+          "40%": { transform: "translate(-3px, -3px)" },
+          "60%": { transform: "translate(3px, 3px)" },
+          "80%": { transform: "translate(3px, -3px)" },
+          "100%": { transform: "translate(0)" },
+        },
+        shift: {
+          "0%": { transform: "skewX(0deg)" },
+          "40%": { transform: "skewX(0deg)" },
+          "41%": { transform: "skewX(10deg)" },
+          "42%": { transform: "skewX(-10deg)" },
+          "58%": { transform: "skewX(0deg)" },
+          "59%": { transform: "skewX(40deg) skewY(10deg)" },
+          "60%": { transform: "skewX(-40deg) skewY(-10deg)" },
+          "61%": { transform: "skewX(0deg)" },
+          "63%": { transform: "skewX(10deg) skewY(-5deg)" },
+          "65%": { transform: "skewX(0deg)" },
+          "69%": { transform: "skewX(0deg)" },
+          "70%": { transform: "skewX(-50deg) skewY(-20deg)" },
+          "71%": { transform: "skewX(10deg) skewY(-10deg)" },
+          "73%": { transform: "skewX(0deg)" },
+          "100%": { transform: "skewX(0deg)" },
+        },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        glitch: "glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite",
+        shift: "shift 1s ease-in-out infinite alternate",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
       backgroundImage: {
-        "custom-gradient": "",
+        "custom-gradient": "", // Placeholder for custom gradients
       },
       colors: {
         border: "hsl(var(--border))",
@@ -63,21 +104,7 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")], // Includes the tailwindcss-animate plugin
 };

@@ -6,7 +6,7 @@ import { db } from "./firebase";
 const Foodlog = () => {
   return (
     //this is the main page
-    <div className="flex gap-14 my-10 ">
+    <div className="flex gap-4 px-2 py-6 justify-center">
       <Caloriesfood />
       <Foodbrowse />
     </div>
@@ -16,6 +16,7 @@ export default Foodlog;
 
 const Foodbrowse = () => {
   const [food, setFood] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAllfood = async () => {
@@ -23,13 +24,15 @@ const Foodbrowse = () => {
         const dbRef = ref(db, "foodItems");
         const snapshot = await get(dbRef);
         if (snapshot.exists()) {
-          setFood(Object.values(snapshot.val()));
-          console.log(snapshot.val());
+          setFood(Object.values(snapshot.val())); // Convert object to array
+          // console.log(snapshot.val());
         } else {
           console.log("No data available");
         }
       } catch (error) {
         console.error("Error:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchAllfood();
@@ -65,7 +68,25 @@ const Foodbrowse = () => {
         className=" h-full flex flex-col gap-6 rounded-xl "
         draggable="false"
       >
-        {" "}
+        {loading && (
+          <>
+            <div className="relative flex justify-center mt-10 text-white text-2xl font-bold leading-tight tracking-widest z-10 animate-shift">
+              <div
+                data-glitch="Loading..."
+                className="absolute flex justify-center inset-0 opacity-80 text-purple-600 animate-glitch -z-10"
+              >
+                Loading...
+              </div>
+              <div
+                data-glitch="Loading..."
+                className="absolute flex justify-center inset-0 opacity-80 text-green-400 animate-glitch -z-20"
+              >
+                Loading...
+              </div>
+              Loading...
+            </div>
+          </>
+        )}{" "}
         {food.map((food) => {
           return (
             <Fooddata
@@ -180,20 +201,6 @@ const Caloriesfood: React.FC = () => {
     }
   };
 
-  // const addFood = (id: number) => {
-  //   const draggedFood: Food[] = Food.filter((food) => id === food.id);
-  //   // setSpace((space) => [...space, draggedFood[0]]);
-  //   if (draggedFood) {
-  //     setSpace((prevSpace) => {
-  //       const newSpace = [...prevSpace, draggedFood[0]];
-  //       setHasElements(newSpace.length > 0);
-  //       return newSpace;
-  //     });
-  //   }
-
-  //   // console.log(space);
-  // };
-
   const deleteFood = (index: number) => {
     const updatedItems = [...space];
     updatedItems.splice(index, 1);
@@ -237,7 +244,7 @@ const Caloriesfood: React.FC = () => {
             />
           </form>
         </div>
-        <button>
+        <button className="ml-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="30px"
@@ -275,19 +282,3 @@ const Caloriesfood: React.FC = () => {
     </div>
   );
 };
-
-// interface Props {
-//   type: string;
-//   placeholder: string;
-// }
-// const Justinput = ({ type, placeholder }: Props) => {
-//   return (
-//     <>
-//       <input
-//         className=" py-1 w-[50%] text-lg font-medium px-2 bg-transparent border border-amber-100 text-white placeholder:font-medium placeholder:text-lg focus:outline-none  [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-//         type={type}
-//         placeholder={placeholder}
-//       />
-//     </>
-//   );
-// };
