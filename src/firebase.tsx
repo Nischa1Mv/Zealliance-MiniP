@@ -5,6 +5,8 @@ const apikey = import.meta.env.VITE_NOTAPI_KEY;
 const firebaseConfig = {
   apiKey: apikey,
   authDomain: "zealliance-88a9b.firebaseapp.com",
+  databaseURL:
+    "https://zealliance-88a9b-default-rtdb.asia-southeast1.firebasedatabase.app/",
   projectId: "zealliance-88a9b",
   storageBucket: "zealliance-88a9b.appspot.com",
   messagingSenderId: "520191220772",

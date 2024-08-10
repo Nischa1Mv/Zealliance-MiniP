@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import Food from "./food.ts";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
-import { ref, get, child } from "firebase/database";
+import { ref, get } from "firebase/database";
 import { db } from "./firebase";
 
 const Foodlog = () => {
@@ -16,13 +15,15 @@ const Foodlog = () => {
 export default Foodlog;
 
 const Foodbrowse = () => {
-  cosnt[(Food, setFood)] = useState<Food[]>([]);
+  const [food, setFood] = useState([]);
+
   useEffect(() => {
-    const fetchFood = async () => {
+    const fetchAllfood = async () => {
       try {
-        const dbRef = ref(db);
-        const snapshot = await get(child(dbRef, "food"));
+        const dbRef = ref(db, "foodItems");
+        const snapshot = await get(dbRef);
         if (snapshot.exists()) {
+          setFood(Object.values(snapshot.val()));
           console.log(snapshot.val());
         } else {
           console.log("No data available");
@@ -31,7 +32,7 @@ const Foodbrowse = () => {
         console.error("Error:", error);
       }
     };
-    fetchFood();
+    fetchAllfood();
   }, []);
 
   return (
@@ -65,7 +66,7 @@ const Foodbrowse = () => {
         draggable="false"
       >
         {" "}
-        {Food.map((food) => {
+        {food.map((food) => {
           return (
             <Fooddata
               key={food.id}
@@ -133,30 +134,65 @@ interface Food {
 
 const Caloriesfood: React.FC = () => {
   const [hasElements, setHasElements] = useState<boolean>(false);
-  // let sumCal = 0;
   const [space, setSpace] = useState<Food[]>([]);
+  const [Ltcal, setLtcal] = useState("");
+  const [tcal, setTcal] = useState<number>(0);
+  const [sumCal, setSumCal] = useState<number>(0);
+
+  useEffect(() => {
+    const newSumCal = space.reduce((sum, item) => sum + item.cal, 0);
+    setSumCal(newSumCal);
+    console.log(newSumCal);
+  }, [space]);
 
   const [, drop] = useDrop(() => ({
     accept: "food",
-    drop: (item: { id: number }) => addFood(item.id),
+    drop: async (item: { id: number }) => {
+      const Fooddata = await fetchFooddata(item.id);
+      if (Fooddata) {
+        setSpace((prevSpace) => {
+          const newSpace = [...prevSpace, Fooddata];
+          setHasElements(newSpace.length > 0);
+          return newSpace;
+        });
+      }
+    },
+    //   drop: (item: { id: number }) => addFood(item.id),
     collect: (monitor: DropTargetMonitor) => ({
       isOver: monitor.isOver(),
     }),
   }));
 
-  const addFood = (id: number) => {
-    const draggedFood: Food[] = Food.filter((food) => id === food.id);
-    // setSpace((space) => [...space, draggedFood[0]]);
-    if (draggedFood) {
-      setSpace((prevSpace) => {
-        const newSpace = [...prevSpace, draggedFood[0]];
-        setHasElements(newSpace.length > 0);
-        return newSpace;
-      });
+  const fetchFooddata = async (id: number) => {
+    try {
+      const dbRef = ref(db, `foodItems/${id}`);
+      const snapshot = await get(dbRef);
+      if (snapshot.exists()) {
+        return snapshot.val();
+        // console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      return null;
     }
-
-    // console.log(space);
   };
+
+  // const addFood = (id: number) => {
+  //   const draggedFood: Food[] = Food.filter((food) => id === food.id);
+  //   // setSpace((space) => [...space, draggedFood[0]]);
+  //   if (draggedFood) {
+  //     setSpace((prevSpace) => {
+  //       const newSpace = [...prevSpace, draggedFood[0]];
+  //       setHasElements(newSpace.length > 0);
+  //       return newSpace;
+  //     });
+  //   }
+
+  //   // console.log(space);
+  // };
 
   const deleteFood = (index: number) => {
     const updatedItems = [...space];
@@ -166,25 +202,14 @@ const Caloriesfood: React.FC = () => {
     // console.log(space);
   };
 
-  const [Ltcal, setLtcal] = useState("");
-  const [tcal, setTcal] = useState<number>(0);
   // Function to handle form submission
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Submitted value:", Ltcal);
+    // console.log("Submitted value:", Ltcal);
     setTcal(+Ltcal);
-    console.log("Submitted value:", tcal);
+    // console.log("Submitted value:", tcal);
     setLtcal("");
-
-    // Handle form submission logic here
   };
-
-  const [sumCal, setSumCal] = useState<number>(0);
-  useEffect(() => {
-    const newSumCal = space.reduce((sum, item) => sum + item.cal, 0);
-    setSumCal(newSumCal);
-    console.log(newSumCal);
-  }, [space]);
 
   return (
     <div
@@ -237,7 +262,7 @@ const Caloriesfood: React.FC = () => {
           {/* Render dragged food items */}
           {space.map((food, index) => (
             <Fooddata
-              key={index}
+              key={food.id}
               name={food.name}
               isx={true}
               id={food.id}
