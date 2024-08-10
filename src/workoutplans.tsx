@@ -1,5 +1,7 @@
 import { workoutinfoArr } from "./workoutinfo";
 import { SharedStateProvider } from "./context/sharedState";
+import { ref, get } from "firebase/database";
+import { db } from "./firebase";
 
 const Paragraphguy = () => {
   return (
@@ -24,7 +26,7 @@ const Paragraphguy = () => {
 };
 
 import { useSharedState } from "./context/sharedState";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 type ExerciseName = string[];
 
 interface WorkoutnamesProps {
@@ -216,6 +218,25 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
 };
 
 const Workoutinfo = ({}) => {
+  const [workoutinfoArr, setWorkoutinfoArr] = useState([]);
+  useEffect(() => {
+    const getvariations = async () => {
+      try {
+        const dbRef = ref(db, "workouts");
+        const snapshot = await get(dbRef);
+        if (snapshot.exists()) {
+          setWorkoutinfoArr(Object.values(snapshot.val()));
+          
+        } else {
+          console.log("No data available");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    getvariations();
+  }, []);
+
   return (
     <>
       <div className="">
