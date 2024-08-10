@@ -7,13 +7,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div className="min-h-screen">
-          {" "}
+        <div className="min-h-screen flex-col  ">
           <div className=" ">
             <Header />
-            <div className=" ">
-              <Home />
-            </div>
+          </div>
+          <div className="  min-h-[86vh]  flex-col flex justify-center items-center ">
+            <Home />
           </div>
         </div>
         <Footer />

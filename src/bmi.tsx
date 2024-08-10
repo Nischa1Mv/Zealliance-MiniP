@@ -102,12 +102,12 @@ const Bmi = () => {
 
   return (
     <>
-      <div className="rounded-xl py-5 px-8 flex  text-black mt-8 gap-4  ">
-        <div className="flex flex-col gap-5 items-center  px-6 py-10  w-[50%] bg-[#dadee2]   ">
+      <div className="rounded-xl py-2 px-8 flex  text-black gap-4 w-full ">
+        <div className="flex flex-col items-center  px-6 py-10  w-[50%] bg-[#dadee2]   ">
           {/* left */}
           <div className="text-6xl font-extrabold">Enter Your Stats</div>
           <form action="Submit" onSubmit={calBmi}>
-            <div className="flex flex-col gap-12 text-3xl font-bold mt-8">
+            <div className="flex flex-col gap-7  text-3xl font-bold mt-8">
               <div className="grid grid-cols-2 grid-rows-1 text-center">
                 <div
                   className={`border-2 border-black rounded-lg py-2 cursor-pointer  transition duration-200  ${
