@@ -1,12 +1,18 @@
 import { createContext, useState, useContext, ReactNode } from "react";
-
+interface ExerciseName {
+  name: string;
+  steps: string[];
+}
 interface SharedStateContextProps {
   isInfo: boolean;
   setIsInfo: (value: boolean) => void;
-  workoutDetails: { Title: string; NameArr: { [key: string]: string[] } };
+  workoutDetails: {
+    Title: string;
+    NameArr: ExerciseName[];
+  };
   setWorkoutDetails: (details: {
     Title: string;
-    NameArr: { [key: string]: string[] };
+    NameArr: ExerciseName[];
   }) => void;
   selectedTab: string | null;
   setSelectedTab: (title: string | null) => void;
@@ -20,8 +26,8 @@ export const SharedStateProvider = ({ children }: { children: ReactNode }) => {
   const [isInfo, setIsInfo] = useState<boolean>(true);
   const [workoutDetails, setWorkoutDetails] = useState<{
     Title: string;
-    NameArr: { [key: string]: string[] };
-  }>({ Title: "", NameArr: {} });
+    NameArr: ExerciseName[];
+  }>({ Title: "", NameArr: [] });
   const [selectedTab, setSelectedTab] = useState<string | null>(null);
 
   return (

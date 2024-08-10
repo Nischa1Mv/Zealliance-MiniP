@@ -1,4 +1,3 @@
-import { workoutinfoArr } from "./workoutinfo";
 import { SharedStateProvider } from "./context/sharedState";
 import { ref, get } from "firebase/database";
 import { db } from "./firebase";
@@ -27,19 +26,24 @@ const Paragraphguy = () => {
 
 import { useSharedState } from "./context/sharedState";
 import { useEffect, useState } from "react";
-type ExerciseName = string[];
 
+interface ExerciseName {
+  name: string;
+  steps: string[];
+}
 interface WorkoutnamesProps {
   Title: string;
-  NameArr: {
-    [key: string]: ExerciseName;
-  };
+  NameArr: ExerciseName[];
 }
 
 const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
   const { setIsInfo, setWorkoutDetails, selectedTab, setSelectedTab } =
     useSharedState();
   const isSelected = selectedTab === Title;
+  // const convertedNameArr = NameArr.reduce((acc, curr) => {
+  //   acc[curr.name] = curr.steps;
+  //   return acc;
+  // }, {} as { [key: string]: string[] });
   return (
     <div
       className={`px-4 py-3 flex w-[15%] h-fit cursor-pointer justify-center items-center transform translate-x-0  duration-90  ${
@@ -49,6 +53,7 @@ const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
       onClick={() => {
         setIsInfo(false);
         setWorkoutDetails({ Title, NameArr });
+        // setWorkoutDetails({ Title, NameArr: convertedNameArr });
         setSelectedTab(Title);
       }}
     >
@@ -81,11 +86,11 @@ const Workoutnamesinfo: React.FC = () => {
     <div className="h-[30vh] px-10 py-10 flex flex-col">
       <h2 className="text-xl font-bold mb-2">{workoutDetails.Title}</h2>
       <div className="flex flex-col gap-2">
-        {Object.keys(workoutDetails.NameArr).map((name, index) => (
+        {workoutDetails.NameArr.map((exercise, index) => (
           <Excersicename
             key={index}
-            Name={name}
-            Steps={workoutDetails.NameArr[name]}
+            Name={exercise.name}
+            Steps={exercise.steps}
           />
         ))}
       </div>
@@ -218,15 +223,14 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
 };
 
 const Workoutinfo = ({}) => {
-  const [workoutinfoArr, setWorkoutinfoArr] = useState([]);
+  const [workoutinfodata, setworkoutinfodata] = useState([]);
   useEffect(() => {
     const getvariations = async () => {
       try {
         const dbRef = ref(db, "workouts");
         const snapshot = await get(dbRef);
         if (snapshot.exists()) {
-          setWorkoutinfoArr(Object.values(snapshot.val()));
-          
+          setworkoutinfodata(Object.values(snapshot.val()));
         } else {
           console.log("No data available");
         }
@@ -245,7 +249,7 @@ const Workoutinfo = ({}) => {
       <div className=" border rounded-b-xl pt-4 flex flex-col h-[55vh] overflow-auto mx-10 mt-6">
         <SharedStateProvider>
           <div className="items-center  flex overflow-auto max-h-full ">
-            {workoutinfoArr.map((workout, index) => (
+            {workoutinfodata.map((workout, index) => (
               <Workoutnames
                 key={index}
                 Title={workout.Title}
