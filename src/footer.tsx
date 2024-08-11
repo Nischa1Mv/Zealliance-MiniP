@@ -1,18 +1,22 @@
 const Footer = () => {
   return (
     // <div className="border-t-2 border-black flex px-10 pt-6 pb-2">
-    <div className=" grid grid-cols-4 gap-4 pl-20 pr-10 pt-6 pb-2  border-b-0 border-x-0 border border-[#464646]">
-      <div className="flex flex-col col-span-1 px-2 ">
-        <div>
+    <div className=" flex justify-center py-4 px-4  border-b-0 border-x-0 border border-[#464646] ">
+      <div className="flex  flex-col w-[30%] px-2 ">
+        <div className="flex gap-4">
           <img
             src="https://i.pinimg.com/564x/e3/92/1a/e3921a9e19d508c55dd3c217b9d68db2.jpg"
             alt=""
-            width="100"
+            width="70"
             className="rounded-full border-4 border-[#464646]"
           />
+
+          <span className=" font-extrabold text-6xl">Zeallience</span>
         </div>{" "}
-        <div className=" mt-2 font-extrabold text-6xl">Zeallience</div>
-        <div className="font-semibold text-xl mt-3 ">Tagline</div>{" "}
+        <div className="font-semibold text-pretty">
+          If you don’t find the time, if you don’t do the work, you don’t get
+          the results.
+        </div>{" "}
       </div>
       <div className="flex px-6 mt-14  ml-10  col-span-2 justify-center items-center h-fit mx-auto gap-14  ">
         <div className="flex  justify-center items-center  ">
@@ -88,7 +92,7 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-        <div className="flex justify-center items-center  ">
+        <div className="flex-1">
           <a href="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +116,7 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-        <div className="flex grow ml-20">
+        <div className="flex-1">
           <a href="#">
             {" "}
             <svg
@@ -130,17 +134,16 @@ const Footer = () => {
           </a>
         </div>
       </div>
-
-      <div className=" col-span-1 px-20 py-5  ">
-        <div className="text-3xl font-semibold mb-1">Address</div>
-        <p className=" ml-1 text-lg font-medium mt-2">
+      {/* address */}
+      <div className="  w-[30%] px-10 flex flex-col justify-center">
+        <div className="text-3xl font-semibold ">Address</div>
+        <p className="  text-sm font-medium">
           {" "}
-          Prinzregentenplatz 16
+          Prinzregentenplatz 16 Munich city Germany
         </p>{" "}
-        <p className=" ml-1  text-lg font-medium "> Munich city</p>{" "}
-        <p className=" ml-1 text-lg font-medium "> Germany</p>
-        <div className="font-medium text-xl mt-6">Phone:1234567890</div>
-        <div className="font-medium text-xl mt-1">Email:12345@nomail.com</div>
+        <p className="  text-sm font-medium "> </p>{" "}
+        <div className=" text-base ">Phone:1234567890</div>
+        <div className="font-medium text-base ">Email:12345@nomail.com</div>
       </div>
     </div>
   );
