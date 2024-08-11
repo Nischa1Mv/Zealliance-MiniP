@@ -169,13 +169,11 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
         </h2>
         <div className="flex h-[87%] ">
           {/* Left panel */}
-          <div className=" p-5 w-[45%] flex-col flex">
-            <h1 className="text-4xl font-bold mb-10 mt-5 ">
-              Follow these Steps
-            </h1>
+          <div className="  px-5 w-[45%] flex-col flex">
+            <h1 className="text-2xl font-bold  ">Follow these Steps</h1>
 
             {Steps.map((step, index) => (
-              <div key={index} className="text-2xl font-semibold mb-6 pl-4">
+              <div key={index} className="text-xl font-semibold my-2">
                 <span className="text-yellow-200">
                   {" "}
                   Step-
