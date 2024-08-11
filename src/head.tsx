@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -13,7 +14,7 @@ const Header = () => {
     <>
       <nav
         id="nav"
-        className="text-xl  font-semibold   bg-[#16171b]  w-full flex items-center  z-50 px-6 border-[#464646] sticky top-0 py-6"
+        className="text-xl  font-semibold   bg-[#16171b]  w-full flex items-center  z-50 px-6 border-[#464646] sticky top-0 py-6 "
       >
         <div className="order-1   ">{longDateString} </div>
         <div className="grow order-1"></div>
@@ -54,7 +55,9 @@ const Header = () => {
               className="order-6  rounded-xl border-[#464646]   border-2 px-2 py-1   hover:bg-gray-600
             "
             >
-              <button onClick={() => {}}>Log In</button>
+              <button>
+                <Link to="/login">Login</Link>
+              </button>
             </div>
           </>
         )}

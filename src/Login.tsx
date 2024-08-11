@@ -1,8 +1,8 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
-const Signup = () => {
+function Login() {
   // const auth = getAuth();
-  // createUserWithEmailAndPassword(auth, email, password)
+  // signInWithEmailAndPassword(auth, email, password)
   //   .then((userCredential) => {
   //     const user = userCredential.user;
   //   })
@@ -18,7 +18,7 @@ const Signup = () => {
           action=""
           className="flex flex-col justify-center items-center h-full  "
         >
-          <div className="font-bold text-4xl mb-5">Sign Up</div>
+          <div className="font-bold text-4xl mb-5">Login</div>
           <div className="flex flex-col gap-4 w-[20%]  text-black">
             <div className="">
               <input
@@ -34,30 +34,15 @@ const Signup = () => {
                 placeholder="password"
               />
             </div>
-            <div>
-              <input
-                className="focus:outline-none rounded-lg px-1 w-full"
-                type="password"
-                placeholder="confirm password"
-              />
-            </div>
-            <div className="text-white">
-              <input className="focus:outline-none" type="checkbox" />{" "}
-              <span className="text-orange-200">
-                i agree to the terms and conditions
-              </span>
-            </div>
-            <div className="    text-white px-2 py-1 justify-center flex  w-full">
+            <div className=" text-white px-2 py-1 justify-center flex  w-full">
               <button className="w-[50%] border-2 rounded-xl border-white">
-                Sign up
+                Login
               </button>
-            </div>{" "}
-            <div className="mt-4 border-t-2 border-dotted pt-2 flex justify-center items-center ">
-              <span className="text-white mr-1">
-                Already Have an Account ?{" "}
-              </span>{" "}
+            </div>
+            <div className="mt-4 border-dotted border-t-2 flex justify-center pt-2">
+              <span className="text-white mr-1">Dont Have an Account ? </span>{" "}
               <span className="text-yellow-200">
-                <Link to="/login">Login</Link>
+                <Link to="/signup"> Register</Link>
               </span>
             </div>
           </div>
@@ -65,6 +50,6 @@ const Signup = () => {
       </div>
     </>
   );
-};
+}
 
-export default Signup;
+export default Login;

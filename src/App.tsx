@@ -3,14 +3,11 @@ import Home from "./home";
 import Header from "./head";
 import { BrowserRouter } from "react-router-dom";
 
-
 function App() {
-
-
   return (
     <>
       <BrowserRouter>
-        <div className="min-h-screen flex-col  ">
+        <div className="min-h-screen flex-col  relative">
           <div className="sticky top-0 z-50  ">
             <Header />
           </div>
