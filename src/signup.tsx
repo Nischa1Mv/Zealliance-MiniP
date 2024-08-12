@@ -2,21 +2,24 @@ import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
+  const [passworddontmatch, setPassworddontmatch] = useState(false);
+  const [errorMes, setErrorMes] = useState("");
   const navigate = useNavigate();
 
   const signupAuth = async (e) => {
+    setPassworddontmatch(false);
+
     e.preventDefault();
     if (password !== cpassword) {
-      alert("passwords do not match");
-      setPassword("");
-      setCpassword("");
+      setPassworddontmatch(true);
+
       return;
     }
-
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -27,6 +30,7 @@ const Signup = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage, errorCode);
+        setErrorMes(errorMessage);
       });
   };
   return (
@@ -65,6 +69,18 @@ const Signup = () => {
                 placeholder="confirm password"
                 onChange={(event) => setCpassword(event.target.value)}
               />
+              {passworddontmatch && (
+                <>
+                  <span className="text-white text-sm">
+                    {"Passwords dont match"}
+                  </span>
+                </>
+              )}
+              {errorMes && (
+                <>
+                  <span className="text-white text-sm">{errorMes}</span>
+                </>
+              )}
             </div>
             <div className="text-white">
               <input className="focus:outline-none" type="checkbox" />{" "}

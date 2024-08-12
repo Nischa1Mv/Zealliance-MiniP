@@ -5,6 +5,7 @@ import { useState } from "react";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMes, setErrorMes] = useState("");
   const navigate = useNavigate();
   const LoginAuth = async (e) => {
     e.preventDefault();
@@ -17,7 +18,8 @@ function Login() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage, errorCode);
+        setErrorMes(errorCode);
+        console.log(errorMessage);
       });
   };
   return (
@@ -45,6 +47,11 @@ function Login() {
                 placeholder="password"
                 onChange={(event) => setPassword(event.target.value)}
               />
+              {errorMes && (
+                <>
+                  <span className="text-amber-400">error: {errorMes}</span>
+                </>
+              )}
             </div>
             <div className=" text-white px-2 py-1 justify-center flex  w-full">
               <button

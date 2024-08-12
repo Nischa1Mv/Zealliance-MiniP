@@ -1,12 +1,24 @@
 import { Link } from "react-router-dom";
-
+import { auth } from "./firebase";
+import { useState } from "react";
 const Header = () => {
+  const user = auth.currentUser;
   const currentDate = new Date();
+  const [isloggedin, setIsloggedin] = useState(false);
+
+  console.log(user);
 
   const day = String(currentDate.getDate()).padStart(2, "0");
   const month = currentDate.toLocaleString("default", { month: "long" });
   const year = currentDate.getFullYear();
-  const isUser = false;
+
+  const Logout = async (a) => {
+    a.preventDefault();
+    auth.signOut().then(() => {
+      console.log("signed out");
+      setIsloggedin(true);
+    });
+  };
 
   const longDateString = `${day} ${month} ${year}`;
   return (
@@ -37,21 +49,25 @@ const Header = () => {
             Food Log
           </Link>
         </div>
-        {isUser ? (
+        {user && !isloggedin ? (
           <>
-            <div className="order-6 mx-auto flex justify-center items-center rounded-full border-4 border-[#464646]">
+            <div className="order-6  flex justify-center items-center rounded-full border-2 border-[#464646]">
               <img
                 src="https://i.pinimg.com/564x/e3/92/1a/e3921a9e19d508c55dd3c217b9d68db2.jpg"
                 alt=""
-                width="70"
+                width="40"
                 className="rounded-full  border-[#464646]"
               />
+            </div>
+            <div className="order-7 ml-3 rounded-xl border-[#464646]   border-2 px-2 py-1   hover:bg-gray-600">
+              {" "}
+              <button onClick={Logout}>Logout</button>
             </div>
           </>
         ) : (
           <>
             <div
-              className="order-6  rounded-xl border-[#464646]   border-2 px-2 py-1   hover:bg-gray-600
+              className="order-6   rounded-xl border-[#464646]   border-2 px-2 py-1   hover:bg-gray-600
             "
             >
               <button>
