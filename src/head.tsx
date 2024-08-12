@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { auth } from "./firebase";
 import { useState } from "react";
 const Header = () => {
-  const user = auth.currentUser;
+  let user = auth.currentUser;
+  const [nuser, setNuser] = useState(user);
   const currentDate = new Date();
-  const [isloggedin, setIsloggedin] = useState(false);
 
   console.log(user);
 
@@ -16,7 +16,7 @@ const Header = () => {
     a.preventDefault();
     auth.signOut().then(() => {
       console.log("signed out");
-      setIsloggedin(true);
+      setNuser(null);
     });
   };
 
@@ -49,7 +49,7 @@ const Header = () => {
             Food Log
           </Link>
         </div>
-        {user && !isloggedin ? (
+        {nuser ? (
           <>
             <div className="order-6  flex justify-center items-center rounded-full border-2 border-[#464646]">
               <img
