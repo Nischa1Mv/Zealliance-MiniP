@@ -1,4 +1,4 @@
-import { HashRouter as Router, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Workoutinfo from "./workoutplans";
 import Bmi from "./bmi";
@@ -13,14 +13,14 @@ function Home() {
   return (
     <>
       <DndProvider backend={HTML5Backend}>
-        <Router>
+        <Routes>
           <Route path="/" element={<Bmi />} />
           <Route path="workoutinfo" element={<Workoutinfo />} />
           <Route path="workoutlog" element={<Workoutlog />} />
           <Route path="/foodlog" element={<Foodlog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-        </Router>
+        </Routes>
       </DndProvider>
     </>
   );
