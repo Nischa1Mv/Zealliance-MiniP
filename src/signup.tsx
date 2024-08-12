@@ -2,7 +2,6 @@ import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { set } from "firebase/database";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
