@@ -1,6 +1,6 @@
 import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +20,7 @@ const Signup = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user);
         navigate("/login");
       })
       .catch((error) => {
