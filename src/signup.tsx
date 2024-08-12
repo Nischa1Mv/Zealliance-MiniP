@@ -6,7 +6,8 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signupAuth = async () => {
+  const signupAuth = async (e) => {
+    e.Prevent.default();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -23,7 +24,7 @@ const Signup = () => {
       {" "}
       <div className="w-full h-screen bg-[rgb(0,0,0,0.7)] ">
         <form
-          action=""
+          onSubmit={signupAuth}
           className="flex flex-col justify-center items-center h-full  "
         >
           <div className="font-bold text-4xl mb-5">Sign Up</div>
@@ -59,7 +60,7 @@ const Signup = () => {
             </div>
             <div className="    text-white px-2 py-1 justify-center flex  w-full">
               <button
-                onClick={signupAuth}
+                type="submit"
                 className="w-[50%] border-2 rounded-xl border-white"
               >
                 Sign up

@@ -5,22 +5,25 @@ import { useState } from "react";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage, errorCode);
-    });
+  const LoginAuth = async (e) => {
+    e.Prevent.default();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage, errorCode);
+      });
+  };
   return (
     <>
       {" "}
       <div className="w-full h-screen bg-[rgb(0,0,0,0.7)] ">
         <form
-          action=""
+          onSubmit={LoginAuth}
           className="flex flex-col justify-center items-center h-full  "
         >
           <div className="font-bold text-4xl mb-5">Login</div>
@@ -42,7 +45,10 @@ function Login() {
               />
             </div>
             <div className=" text-white px-2 py-1 justify-center flex  w-full">
-              <button className="w-[50%] border-2 rounded-xl border-white">
+              <button
+                type="submit"
+                className="w-[50%] border-2 rounded-xl border-white"
+              >
                 Login
               </button>
             </div>
