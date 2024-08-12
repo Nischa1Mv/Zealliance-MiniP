@@ -37,10 +37,7 @@ const Signup = () => {
     <>
       {" "}
       <div className="w-full h-screen bg-[rgb(0,0,0,0.7)] ">
-        <form
-          onSubmit={signupAuth}
-          className="flex flex-col justify-center items-center h-full  "
-        >
+        <form className="flex flex-col justify-center items-center h-full  ">
           <div className="font-bold text-4xl mb-5">Sign Up</div>
           <div className="flex flex-col gap-4 w-[20%]  text-black">
             <div className="">
@@ -90,7 +87,7 @@ const Signup = () => {
             </div>
             <div className="    text-white px-2 py-1 justify-center flex  w-full">
               <button
-                type="submit"
+                onClick={signupAuth}
                 className="w-[50%] border-2 rounded-xl border-white"
               >
                 Sign up
