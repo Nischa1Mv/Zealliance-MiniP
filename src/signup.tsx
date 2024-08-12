@@ -2,12 +2,21 @@ import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { set } from "firebase/database";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
 
   const signupAuth = async (e) => {
     e.preventDefault();
+    if (password !== cpassword) {
+      alert("passwords do not match");
+      setPassword("");
+      setCpassword("");
+      return;
+    }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -53,8 +62,7 @@ const Signup = () => {
                 className="focus:outline-none rounded-lg px-1 w-full"
                 type="password"
                 placeholder="confirm password"
-                onChange={}
-                // check if the the password is same as the above one
+                onChange={(event) => setCpassword(event.target.value)}
               />
             </div>
             <div className="text-white">
