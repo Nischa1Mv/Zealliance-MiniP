@@ -1,15 +1,23 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 const Signup = () => {
-  // const auth = getAuth();
-  // createUserWithEmailAndPassword(auth, email, password)
-  //   .then((userCredential) => {
-  //     const user = userCredential.user;
-  //   })
-  //   .catch((error) => {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //   });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const signupAuth = async () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage, errorCode);
+      });
+  };
   return (
     <>
       {" "}
@@ -25,6 +33,7 @@ const Signup = () => {
                 className="focus:outline-none rounded-lg px-1 w-full"
                 type="email"
                 placeholder="email"
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div>
@@ -32,6 +41,7 @@ const Signup = () => {
                 className="focus:outline-none  px-1 rounded-lg w-full"
                 type="password"
                 placeholder="password"
+                onChange={(event) => setPassword(event.target.value)}
               />
             </div>
             <div>
@@ -48,7 +58,10 @@ const Signup = () => {
               </span>
             </div>
             <div className="    text-white px-2 py-1 justify-center flex  w-full">
-              <button className="w-[50%] border-2 rounded-xl border-white">
+              <button
+                onClick={signupAuth}
+                className="w-[50%] border-2 rounded-xl border-white"
+              >
                 Sign up
               </button>
             </div>{" "}

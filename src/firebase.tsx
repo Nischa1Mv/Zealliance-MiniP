@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { connectAuthEmulator, getAuth } from "firebase/auth";
 const apikey = import.meta.env.VITE_NOTAPI_KEY;
 
 const firebaseConfig = {
@@ -14,4 +15,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+export { auth, db };
