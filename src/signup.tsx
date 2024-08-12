@@ -7,7 +7,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
 
   const signupAuth = async (e) => {
-    e.Prevent.default();
+    e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -31,6 +31,7 @@ const Signup = () => {
           <div className="flex flex-col gap-4 w-[20%]  text-black">
             <div className="">
               <input
+                required
                 className="focus:outline-none rounded-lg px-1 w-full"
                 type="email"
                 placeholder="email"
@@ -39,6 +40,7 @@ const Signup = () => {
             </div>
             <div>
               <input
+                required
                 className="focus:outline-none  px-1 rounded-lg w-full"
                 type="password"
                 placeholder="password"
@@ -47,9 +49,12 @@ const Signup = () => {
             </div>
             <div>
               <input
+                required
                 className="focus:outline-none rounded-lg px-1 w-full"
                 type="password"
                 placeholder="confirm password"
+                onChange={}
+                // check if the the password is same as the above one
               />
             </div>
             <div className="text-white">
