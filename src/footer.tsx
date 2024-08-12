@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     // <div className="border-t-2 border-black flex px-10 pt-6 pb-2">
-    <div className=" flex justify-center py-4 px-4  border-b-0 border-x-0 border border-[#464646] ">
+    <div className=" flex justify-center  items-center py-4 px-4  border-b-0 border-x-0 border border-[#464646] ">
       <div className="flex  flex-col w-[30%] px-2 ">
         <div className="flex gap-4">
           <img
@@ -13,13 +13,13 @@ const Footer = () => {
 
           <span className=" font-extrabold text-6xl">Zeallience</span>
         </div>{" "}
-        <div className="font-semibold text-pretty">
-          If you don’t find the time, if you don’t do the work, you don’t get
-          the results.
+        <div className="font-semibold text-pretty text-lg ml-4 font-serif mt-2">
+          "If you don’t find the time, if you don’t do the work, you don’t get
+          the results."
         </div>{" "}
       </div>
-      <div className="flex px-6 mt-14  ml-10  col-span-2 justify-center items-center h-fit mx-auto gap-14  ">
-        <div className="flex  justify-center items-center  ">
+      <div className="flex col-span-2 justify-center items-center h-fit mx-auto gap-14  ">
+        <div className=" flex-1 justify-center items-center  ">
           <a href="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-        <div className="flex mx-20  justify-center items-center  ">
+        <div className="flex  justify-center items-center  ">
           <a href="https://github.com/Nischa1Mv/project">
             <svg
               className="bg-white rounded-full"
@@ -92,7 +92,7 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-        <div className="flex-1">
+        <div className="flex">
           <a href="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +136,7 @@ const Footer = () => {
       </div>
       {/* address */}
       <div className="  w-[30%] px-10 flex flex-col justify-center">
-        <div className="text-3xl font-semibold ">Address</div>
+        <div className="text-4xl font-semibold ">Address</div>
         <p className="  text-sm font-medium">
           {" "}
           Prinzregentenplatz 16 Munich city Germany
