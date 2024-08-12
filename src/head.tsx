@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
 import { auth } from "./firebase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Header = () => {
-  let user = auth.currentUser;
-  const [nuser, setNuser] = useState(user);
-  const currentDate = new Date();
+  const [nuser, setNuser] = useState(null);
+  const user = auth.currentUser;
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setNuser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   console.log(user);
 
+  const currentDate = new Date();
   const day = String(currentDate.getDate()).padStart(2, "0");
   const month = currentDate.toLocaleString("default", { month: "long" });
   const year = currentDate.getFullYear();
