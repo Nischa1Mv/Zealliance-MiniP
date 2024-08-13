@@ -205,14 +205,14 @@ const Bmi = () => {
                   <div>
                     {" "}
                     Body Mass Index ={" "}
-                    <span className="bg-yellow-200 px-2 font-bold md:text-white text-black ">
+                    <span className="bg-yellow-200 px-2 font-bold  text-black ">
                       {bmi}{" "}
                     </span>
                   </div>
                   <div>
                     {" "}
                     According to the BMI you are{" "}
-                    <span className="bg-yellow-200 font-bold px-2 md:text-white text-black ">
+                    <span className="bg-yellow-200 font-bold px-2  text-black ">
                       {bmiCategory}
                     </span>
                   </div>
@@ -244,25 +244,39 @@ const Bmi = () => {
                     </select>
                   </div>
                   <div>Do You Want To Loose Weight or Gain?</div>
-                  <div className="grid grid-cols-2 md:grid-rows-1   grid-rows-2 md:grid-cols-4  md:border-black border-white ">
-                    <div className="flex flex-col">
-                      <div className="border  px-2">Maintaince</div>
-                      <div className="border border-t-0 border-r-0  px-2">
+                  <div className="grid grid-cols-2 md:grid-rows-1 grid-rows-2 md:grid-cols-4   border-white ">
+                    <div className="flex flex-col ">
+                      <div className="border  px-2 md:border-black">
+                        Maintaince
+                      </div>
+                      <div className="border border-t-0 border-r-0  px-2 md:border-black">
                         data
                       </div>
                     </div>
                     <div className="text-nowrap ">
-                      <div className="border border-l-0 px-2">Mild weight</div>
-                      <div className=" border border-t-0  px-2 ">data</div>
+                      <div className="border border-l-0 px-2 md:border-black ">
+                        Mild weight
+                      </div>
+                      <div className=" border border-t-0  px-2 md:border-black">
+                        data
+                      </div>
                     </div>
-                    <div className="mt-2">
-                      <div className="border  px-2">Weight</div>
-                      <div className="border border-t-0 px-2">data</div>
+                    <div className="mt-2 md:mt-0">
+                      <div className="border md:border-l-0 px-2 md:border-black">
+                        Weight
+                      </div>
+                      <div className="border md:border-l-0 md:border-t-0 px-2 md:border-black">
+                        data
+                      </div>
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 md:mt-0">
                       {" "}
-                      <div className="border px-2">Fast Weight</div>
-                      <div className=" border border-t-0 px-2">data</div>
+                      <div className="border md:border-l-0 px-2 md:border-black">
+                        Fast Weight
+                      </div>
+                      <div className=" border md:border-l-0 border-t-0 px-2 md:border-black">
+                        data
+                      </div>
                     </div>
                   </div>
                 </div>
