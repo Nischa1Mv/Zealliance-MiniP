@@ -171,7 +171,7 @@ const Bmi = () => {
           </div>
 
           {/* right */}
-          <div className="md:bg-[#dadee2] md:flex hidden bg-transparent  md:text-black text-white border-2 border-none md:border  rounded-xl md:px-8 md:py-10 font-semibold px-2 py-2 text-xl md:w-[50%]   ">
+          <div className="md:bg-[#dadee2] bg-transparent  md:text-black text-white border-2 border-none md:border  rounded-xl md:px-8 md:py-10 font-semibold px-2 py-2 text-xl md:w-[50%]   ">
             {!added ? (
               <>
                 <div className="relative w-full h-full hidden md:block">
