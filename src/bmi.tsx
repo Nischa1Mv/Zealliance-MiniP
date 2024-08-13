@@ -184,21 +184,20 @@ const Bmi = () => {
               </>
             ) : (
               <>
-                <div className="flex gap-2 flex-col mb-4">
-                  <div className="flex gap-4">
-                    <div>
+                <div className="flex gap-2 flex-col mb-4 ">
+                  <div className="flex gap-1 md:flex-row md:gap-4  flex-col">
+                    <div className="text-nowrap">
                       Gender = <span className="font-bold">{gender} </span>
                     </div>
-                    <div>
+                    <div className="text-nowrap">
                       Age = {fage}{" "}
                       <span className="text-base font-bold">Yrs</span>
                     </div>
-
-                    <div>
+                    <div className="text-nowrap">
                       Height = {fheight}
                       <span className="text-base font-bold"> Cm</span>
                     </div>
-                    <div>
+                    <div className="text-nowrap">
                       Weight = {fweight}
                       <span className="text-base font-bold"> Kgs</span>{" "}
                     </div>
@@ -218,12 +217,12 @@ const Bmi = () => {
                     </span>
                   </div>
                 </div>
-                <div className="border-t-2 border-black flex flex-col gap-4">
+                <div className="border-t-2 md:border-black flex flex-col gap-4">
                   <div>Calorie Calculator</div>
                   <div>
                     <label>Activity : </label>{" "}
                     <select
-                      className="md:text-white text-black "
+                      className="text-black  "
                       name="Activity"
                       id="Activity"
                     >
@@ -245,25 +244,25 @@ const Bmi = () => {
                     </select>
                   </div>
                   <div>Do You Want To Loose Weight or Gain?</div>
-                  <div className="grid grid-cols-4 border md:border-black border-white ">
+                  <div className="grid grid-cols-2 md:grid-rows-1   grid-rows-2 md:grid-cols-4  md:border-black border-white ">
                     <div className="flex flex-col">
-                      <div className="border-b border-r md:border-black border-white px-2">
-                        Maintaince
+                      <div className="border  px-2">Maintaince</div>
+                      <div className="border border-t-0 border-r-0  px-2">
+                        data
                       </div>
-                      <div className="border-r   px-2">data</div>
                     </div>
-                    <div>
-                      <div className="border-b border-r px-2">Mild weight</div>
-                      <div className="border-r px-2">data</div>
+                    <div className="text-nowrap ">
+                      <div className="border border-l-0 px-2">Mild weight</div>
+                      <div className=" border border-t-0  px-2 ">data</div>
                     </div>
-                    <div>
-                      <div className="border-b border-r  px-2">Weight</div>
-                      <div className="border-r  px-2">data</div>
+                    <div className="mt-2">
+                      <div className="border  px-2">Weight</div>
+                      <div className="border border-t-0 px-2">data</div>
                     </div>
-                    <div>
+                    <div className="mt-2">
                       {" "}
-                      <div className="border-b px-2">Fast Weight</div>
-                      <div className="px-2">data</div>
+                      <div className="border px-2">Fast Weight</div>
+                      <div className=" border border-t-0 px-2">data</div>
                     </div>
                   </div>
                 </div>
