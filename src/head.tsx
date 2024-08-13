@@ -35,7 +35,7 @@ const Header = () => {
         id="nav"
         className="text-xl font-semibold bg-[#16171b] w-full flex items-center z-50 px-6 border-[#464646] sticky top-0 py-6"
       >
-        <div className="flex order-1 ">{longDateString}</div>
+        <div className="md:flex order-1   hidden ">{longDateString}</div>
         <div className="text-4xl font-bold  order-2 flex-1 text-center">
           <Link to="/">Zeallience</Link>
         </div>
@@ -63,8 +63,7 @@ const Header = () => {
             isMenuOpen ? "block" : "hidden"
           } md:flex md:items-center justify-center md:order-3 mdw-full md:w-auto md:space-x-4 order-4 md:static absolute top-full right-0 md:bg-transparent bg-[#16171b] rounded-xl md:my-0 my-1 md:py-0 py-2 transition-all ease-in-out duration-300`}
         >
-          
-          <div className="flex flex-col md:gap-0 gap-2  text-nowrap  md:flex-row justify-center items-center  w-[25vw] md:w-full">
+          <div className="flex flex-col md:gap-0 gap-2  text-nowrap  md:flex-row justify-center items-center  w-[fit] px-2 md:px-0  md:w-full">
             <div className="order-3 md:px-4 md:mx-2 px-2  ">
               <Link className="underline-animation" to="/workoutinfo">
                 Workout Plans
@@ -82,7 +81,7 @@ const Header = () => {
             </div>
             {nuser ? (
               <>
-                <div className="order-6 flex justify-center items-center rounded-full border-2 border-[#464646]">
+                <div className=" hidden order-6 md:flex justify-center items-center rounded-full border-2 border-[#464646]">
                   <img
                     src="https://i.pinimg.com/564x/e3/92/1a/e3921a9e19d508c55dd3c217b9d68db2.jpg"
                     alt=""

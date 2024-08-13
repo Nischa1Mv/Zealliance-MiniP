@@ -7,11 +7,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div className="min-h-screen flex-col  relative ">
+        <div className="md:min-h-screen flex-col  relative ">
           <div className="sticky top-0 z-50 ">
             <Header />
           </div>
-          <div className="  min-h-[86vh] ">
+          <div className="  md:min-h-[86vh]">
             <Home />
           </div>
         </div>
