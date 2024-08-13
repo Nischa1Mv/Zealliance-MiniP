@@ -53,7 +53,7 @@ function Login() {
             <div className=" text-white px-2 py-1 justify-center flex  w-full">
               <button
                 onClick={LoginAuth}
-                className="w-[50%] border-2 rounded-xl border-white"
+                className="w-[50%] border-2 rounded-xl border-white  hover:bg-gray-300 hover:text-black"
               >
                 Login
               </button>

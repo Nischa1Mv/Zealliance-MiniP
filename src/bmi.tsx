@@ -102,10 +102,10 @@ const Bmi = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center ">
-        <div className="rounded-xl py-2 px-8 flex  text-black gap-4 w-full ">
-          <div className="flex flex-col items-center  px-6 py-10  w-[50%] bg-[#dadee2]   ">
-            {/* left */}
+      <div className="flex justify-center items-center   ">
+        <div className="rounded-xl py-2 px-2 md:px-8 md:flex-row flex flex-col text-black md:gap-4 gap-2 w-full overflow-y-auto    ">
+          {/* left */}
+          <div className="flex flex-col items-center  px-2 py-2 md:px-6 md:py-10 md:w-[50%] w-full  bg-[#dadee2]   ">
             <div className="text-6xl font-extrabold">Enter Your Stats</div>
             <form action="Submit" onSubmit={calBmi}>
               <div className="flex flex-col gap-7  text-3xl font-bold mt-8">
@@ -169,13 +169,15 @@ const Bmi = () => {
               </div>
             </form>
           </div>
-          <div className=" bg-[#dadee2]   rounded-xl px-8 py-10 font-semibold text-xl w-[50%]   ">
+
+          {/* right */}
+          <div className="md:bg-[#dadee2] bg-transparent  md:text-black text-white border-2 border-none md:border  rounded-xl md:px-8 md:py-10 font-semibold px-2 py-2 text-xl md:w-[50%]   ">
             {!added ? (
               <>
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full hidden md:block">
                   <div className="absolute inset-0 bg-[url('https://images2.alphacoders.com/133/1335809.png')] bg-cover bg-center transform scale-x-[-1]"></div>
 
-                  <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white text-4xl">
+                  <div className=" hidden absolute inset-0 md:flex justify-center items-center bg-black bg-opacity-50 text-white  text-4xl">
                     <span>Enter The Details to View the Info</span>
                   </div>
                 </div>
@@ -204,14 +206,14 @@ const Bmi = () => {
                   <div>
                     {" "}
                     Body Mass Index ={" "}
-                    <span className="bg-yellow-200 px-2 font-bold ">
+                    <span className="bg-yellow-200 px-2 font-bold md:text-white text-black ">
                       {bmi}{" "}
                     </span>
                   </div>
                   <div>
                     {" "}
                     According to the BMI you are{" "}
-                    <span className="bg-yellow-200 font-bold px-2">
+                    <span className="bg-yellow-200 font-bold px-2 md:text-white text-black ">
                       {bmiCategory}
                     </span>
                   </div>
@@ -220,7 +222,11 @@ const Bmi = () => {
                   <div>Calorie Calculator</div>
                   <div>
                     <label>Activity : </label>{" "}
-                    <select name="Activity" id="Activity">
+                    <select
+                      className="md:text-white text-black "
+                      name="Activity"
+                      id="Activity"
+                    >
                       <option value="sedentary">
                         Sedentary Little or No excersice
                       </option>
@@ -239,30 +245,24 @@ const Bmi = () => {
                     </select>
                   </div>
                   <div>Do You Want To Loose Weight or Gain?</div>
-                  <div className="grid grid-cols-4 border border-black  ">
+                  <div className="grid grid-cols-4 border md:border-black border-white ">
                     <div className="flex flex-col">
-                      <div className="border-b border-r border-black px-2">
+                      <div className="border-b border-r md:border-black border-white px-2">
                         Maintaince
                       </div>
-                      <div className="border-r border-black px-2">data</div>
+                      <div className="border-r   px-2">data</div>
                     </div>
                     <div>
-                      <div className="border-b border-r border-black px-2">
-                        Mild weight
-                      </div>
-                      <div className="border-r border-black px-2">data</div>
+                      <div className="border-b border-r px-2">Mild weight</div>
+                      <div className="border-r px-2">data</div>
                     </div>
                     <div>
-                      <div className="border-b border-r border-black px-2">
-                        Weight
-                      </div>
-                      <div className="border-r border-black px-2">data</div>
+                      <div className="border-b border-r  px-2">Weight</div>
+                      <div className="border-r  px-2">data</div>
                     </div>
                     <div>
                       {" "}
-                      <div className="border-b border-black px-2">
-                        Fast Weight
-                      </div>
+                      <div className="border-b px-2">Fast Weight</div>
                       <div className="px-2">data</div>
                     </div>
                   </div>

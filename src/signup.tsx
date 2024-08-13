@@ -85,10 +85,10 @@ const Signup = () => {
                 i agree to the terms and conditions
               </span>
             </div>
-            <div className="    text-white px-2 py-1 justify-center flex  w-full">
+            <div className="   text-white px-2 py-1 justify-center flex  w-full">
               <button
                 onClick={signupAuth}
-                className="w-[50%] border-2 rounded-xl border-white"
+                className="w-[50%] border-2 rounded-xl border-white hover:bg-gray-300 hover:text-black"
               >
                 Sign up
               </button>

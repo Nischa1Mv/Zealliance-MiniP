@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
     // <div className="border-t-2 border-black flex px-10 pt-6 pb-2">
-    <div className=" flex justify-center  items-center py-4 px-4  border-b-0 border-x-0 border border-[#464646] ">
-      <div className="flex  flex-col w-[30%] px-2 ">
+    <div className=" flex md:justify-center  md:items-center py-4 px-4  border-b-0 border-x-0 border border-[#464646] flex-col lg:flex-row ">
+      <div className="flex  flex-col md:w-[30%] md:px-2 order-1 ">
         <div className="flex gap-4">
           <img
             src="https://i.pinimg.com/564x/e3/92/1a/e3921a9e19d508c55dd3c217b9d68db2.jpg"
@@ -11,14 +11,16 @@ const Footer = () => {
             className="rounded-full border-4 border-[#464646]"
           />
 
-          <span className=" font-extrabold text-6xl">Zeallience</span>
+          <span className=" font-extrabold md:text-6xl text-4xl  flex justify-center items-center">
+            Zeallience
+          </span>
         </div>{" "}
-        <div className="font-semibold text-pretty text-lg ml-4 font-serif mt-2">
+        <div className="font-semibold text-pretty md:text-lg ml-4 font-serif mt-2">
           "If you don’t find the time, if you don’t do the work, you don’t get
           the results."
         </div>{" "}
       </div>
-      <div className="flex col-span-2 justify-center items-center h-fit mx-auto gap-14  ">
+      <div className="flex col-span-2 justify-center items-center md:mt-0 mt-4  h-fit mx-auto md:gap-14 gap-4 md:order-2 order-4 ">
         <div className=" flex-1 justify-center items-center  ">
           <a href="#">
             <svg
@@ -135,15 +137,17 @@ const Footer = () => {
         </div>
       </div>
       {/* address */}
-      <div className="  w-[30%] px-10 flex flex-col justify-center">
-        <div className="text-4xl font-semibold ">Address</div>
-        <p className="  text-sm font-medium">
+      <div className="  md:w-[30%] md:px-10 mt-2 md:mt-0 flex flex-col justify-center  md:ml:0 ml-2 order-3">
+        <div className="md:text-4xl text-2xl font-semibold ">Address</div>
+        <p className="  text-sm font-small md:font-medium">
           {" "}
           Prinzregentenplatz 16 Munich city Germany
         </p>{" "}
-        <p className="  text-sm font-medium "> </p>{" "}
+        <p className="  text-sm font-small md:font-medium "> </p>{" "}
         <div className=" text-base ">Phone:1234567890</div>
-        <div className="font-medium text-base ">Email:12345@nomail.com</div>
+        <div className="font-small md:font-medium text-base ">
+          Email:12345@nomail.com
+        </div>
       </div>
     </div>
   );
