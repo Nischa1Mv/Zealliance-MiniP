@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 
 interface Props {
   placeholder: string;
@@ -90,11 +90,11 @@ function calculateCalories({
   const factor = activityFactors[activityLevel];
   const TDEE = BMR * factor;
 
-  const mildWeightLoss = TDEE - TDEE * 0.15;
-  const mildWeightGain = TDEE + TDEE * 0.15;
+  const mildWeightLoss = Math.round(TDEE - TDEE * 0.15);
+  const mildWeightGain = Math.round(TDEE + TDEE * 0.15);
 
   return {
-    maintenanceCalories: TDEE,
+    maintenanceCalories: Math.round(TDEE),
     mildWeightLossCalories: mildWeightLoss,
     mildWeightGainCalories: mildWeightGain,
   };
@@ -113,6 +113,25 @@ const Bmi = () => {
   );
   const [added, setAdded] = useState(false);
   const [calorieNeeds, setCalorieNeeds] = useState<CalorieNeeds | null>(null);
+
+  useEffect(() => {
+    if (height && weight && age && gender) {
+      const calorieNeeds = calculateCalories({
+        age: parseFloat(age),
+        gender,
+        weight: parseFloat(weight),
+        height: parseFloat(height),
+        activityLevel: activity,
+      });
+      setCalorieNeeds(calorieNeeds);
+      // console.log(calorieNeeds);
+    }
+  }, [activity, height, weight, age, gender]);
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const activityLevel = event.target.value as ActivityLevel;
+    setActivity(activityLevel);
+  };
 
   const handleGenderClick = (selectedGender: "male" | "female") => {
     setGender(selectedGender);
@@ -136,25 +155,10 @@ const Bmi = () => {
           ? "Overweight"
           : "Obese"
       );
-
-      // calculate the calories a person has to eat to maintain the weight and to lose or gain
-
-      const calorieNeeds = calculateCalories({
-        age: parseFloat(age),
-        gender,
-        weight: parseFloat(weight),
-        height: parseFloat(height),
-        activityLevel: activity,
-      });
-      setCalorieNeeds(calorieNeeds);
-
-      console.log(calorieNeeds); // For debugging
     }
   };
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const activityLevel = event.target.value as ActivityLevel;
-    setActivity(activityLevel);
-  };
+
+  // Effect to recalculate calories whenever relevant state changes
 
   return (
     <>
@@ -281,14 +285,14 @@ const Bmi = () => {
                   <div>
                     <label>Activity : </label>{" "}
                     <select
-                      className="text-black  "
+                      className="text-white md:text-black  bg-transparent  md:w-fit"
                       name="Activity"
                       id="Activity"
                       value={activity}
                       onChange={handleSelectChange}
                       required
                     >
-                      <option value="sedentary">
+                      <option value="sedentary" className="bg-transparent">
                         Sedentary Little or No excersice
                       </option>
                       <option value="lightlyActive">
@@ -306,38 +310,32 @@ const Bmi = () => {
                     </select>
                   </div>
                   <div>Do You Want To Loose Weight or Gain?</div>
-                  <div className="grid grid-cols-2 md:grid-rows-1 grid-rows-2 md:grid-cols-4   border-white ">
+                  <div className="grid grid-cols-2 md:grid-rows-1 grid-rows-2 md:grid-cols-3   border-white ">
                     <div className="flex flex-col ">
                       <div className="border  px-2 md:border-black">
                         Maintaince
                       </div>
-                      <div className="border border-t-0 border-r-0  px-2 md:border-black">
+                      <div className="border border-t-0 border-r-0  px-2 md:border-black font-mono">
                         {calorieNeeds.maintenanceCalories}
+                        <span className="ml-1">calories</span>
                       </div>
                     </div>
-                    <div className="text-nowrap ">
+                    <div className="text-nowrap  ">
                       <div className="border border-l-0 px-2 md:border-black ">
                         Mild weight loss
                       </div>
-                      <div className=" border border-t-0  px-2 md:border-black">
+                      <div className=" border border-t-0  px-2 md:border-black font-mono">
                         {calorieNeeds.mildWeightLossCalories}
+                        <span className="ml-1">calories</span>
                       </div>
                     </div>
-                    <div className="mt-2 md:mt-0">
-                      <div className="border md:border-l-0 px-2 md:border-black">
+                    <div className="mt-2 md:mt-0 text-nowrap">
+                      <div className="border md:border-l-0 px-2 md:border-black ">
                         Mild Weight Gain
                       </div>
-                      <div className="border md:border-l-0 md:border-t-0 px-2 md:border-black">
+                      <div className="border md:border-l-0 md:border-t-0 px-2 md:border-black font-mono">
                         {calorieNeeds.mildWeightGainCalories}
-                      </div>
-                    </div>
-                    <div className="mt-2 md:mt-0">
-                      {" "}
-                      <div className="border md:border-l-0 px-2 md:border-black">
-                        Fast Weight
-                      </div>
-                      <div className=" border md:border-l-0 border-t-0 px-2 md:border-black">
-                        data
+                        <span className="ml-1">calories</span>
                       </div>
                     </div>
                   </div>
