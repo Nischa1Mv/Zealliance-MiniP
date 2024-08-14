@@ -42,62 +42,118 @@ const InputWithLabel: React.FC<Props> = ({
     </div>
   );
 };
+
+enum ActivityLevel {
+  Sedentary = "sedentary",
+  LightlyActive = "lightlyActive",
+  ModeratelyActive = "moderatelyActive",
+  VeryActive = "veryActive",
+  ExtraActive = "extraActive",
+}
+
+interface UserParams {
+  age: number;
+  gender: "male" | "female";
+  weight: number; // in kg
+  height: number; // in cm
+  activityLevel: ActivityLevel;
+}
+
+interface CalorieNeeds {
+  maintenanceCalories: number;
+  mildWeightLossCalories: number;
+  mildWeightGainCalories: number;
+}
+
+function calculateCalories({
+  age,
+  gender,
+  weight,
+  height,
+  activityLevel,
+}: UserParams): CalorieNeeds {
+  let BMR: number;
+  if (gender === "male") {
+    BMR = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    BMR = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  const activityFactors: Record<ActivityLevel, number> = {
+    sedentary: 1.2,
+    lightlyActive: 1.375,
+    moderatelyActive: 1.55,
+    veryActive: 1.725,
+    extraActive: 1.9,
+  };
+
+  const factor = activityFactors[activityLevel];
+  const TDEE = BMR * factor;
+
+  const mildWeightLoss = TDEE - TDEE * 0.15;
+  const mildWeightGain = TDEE + TDEE * 0.15;
+
+  return {
+    maintenanceCalories: TDEE,
+    mildWeightLossCalories: mildWeightLoss,
+    mildWeightGainCalories: mildWeightGain,
+  };
+}
+
 //Main
 const Bmi = () => {
-  const [isMale, setIsMale] = useState(false);
-  const [isFemale, setIsFemale] = useState(false);
+  const [gender, setGender] = useState<"male" | "female">("male");
   const [height, setHeight] = useState("");
-  const [fheight, setfHeight] = useState("");
   const [weight, setWeight] = useState("");
-  const [fweight, setfWeight] = useState("");
   const [age, setAge] = useState("");
-  const [fage, setfAge] = useState("");
-  const [bmi, setBmi] = useState("input your data to check BMI");
-  const [bmiCategory, setBmiCategory] = useState("idk");
-  const [gender, setGender] = useState("");
-
-  const handleMaleClick = () => {
-    setIsMale(true);
-    setIsFemale(false);
-  };
-
-  const handleFemaleClick = () => {
-    setIsMale(false);
-    setIsFemale(true);
-  };
-
+  const [bmi, setBmi] = useState<string | null>("input your data to check BMI");
+  const [bmiCategory, setBmiCategory] = useState("Unknown");
+  const [activity, setActivity] = useState<ActivityLevel>(
+    ActivityLevel.Sedentary
+  );
   const [added, setAdded] = useState(false);
+  const [calorieNeeds, setCalorieNeeds] = useState<CalorieNeeds | null>(null);
+
+  const handleGenderClick = (selectedGender: "male" | "female") => {
+    setGender(selectedGender);
+  };
 
   const calBmi = (event: React.FormEvent<HTMLFormElement>) => {
     setAdded(true);
     event.preventDefault();
-    if (height && weight) {
+    if (height && weight && age) {
       const heightInMeters = parseFloat(height) / 100;
       const calBmi = parseFloat(weight) / (heightInMeters * heightInMeters);
       setBmi(calBmi.toFixed(1));
 
       const intbmi = parseFloat(calBmi.toFixed(1));
+      setBmiCategory(
+        intbmi < 18.5
+          ? "Underweight"
+          : intbmi < 24.9
+          ? "Normal Weight"
+          : intbmi < 29.9
+          ? "Overweight"
+          : "Obese"
+      );
 
-      if (intbmi < 18.5) {
-        setBmiCategory("underWeight");
-      } else if (intbmi >= 18.5 && intbmi < 24.9) {
-        setBmiCategory("Normal Weight");
-      } else if (intbmi >= 25 && intbmi <= 29.9) {
-        setBmiCategory("OverWeight Weight");
-      } else {
-        setBmiCategory("Obese");
-      }
-    } else {
-      setBmi(null);
+      // calculate the calories a person has to eat to maintain the weight and to lose or gain
+
+      const calorieNeeds = calculateCalories({
+        age: parseFloat(age),
+        gender,
+        weight: parseFloat(weight),
+        height: parseFloat(height),
+        activityLevel: activity,
+      });
+      setCalorieNeeds(calorieNeeds);
+
+      console.log(calorieNeeds); // For debugging
     }
-    setfHeight(height);
-    setfWeight(weight);
-    setfAge(age);
-    if (isMale) {
-      setGender("Male");
-    } else {
-      setGender("Female");
-    }
+  };
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const activityLevel = event.target.value as ActivityLevel;
+    setActivity(activityLevel);
   };
 
   return (
@@ -112,22 +168,25 @@ const Bmi = () => {
                 <div className="grid grid-cols-2 grid-rows-1 text-center">
                   <div
                     className={`border-2 border-black rounded-lg py-2 cursor-pointer  transition duration-200  ${
-                      isMale ? "bg-blue-500 text-white" : "bg-transparent"
+                      gender == "male"
+                        ? "bg-blue-500 text-white"
+                        : "bg-transparent"
                     }`}
-                    onClick={handleMaleClick}
+                    onClick={() => handleGenderClick("male")}
                   >
                     Male
                   </div>
                   <div
                     className={`border-2 border-black rounded-lg py-2 cursor-pointer  transition duration-200 ${
-                      isFemale ? "bg-red-400 text-white" : "bg-transparent"
+                      gender == "female"
+                        ? "bg-red-400 text-white"
+                        : "bg-transparent"
                     }`}
-                    onClick={handleFemaleClick}
+                    onClick={() => handleGenderClick("female")}
                   >
                     Female
                   </div>
                 </div>
-
                 <div>
                   <InputWithLabel
                     type="number"
@@ -190,15 +249,15 @@ const Bmi = () => {
                       Gender = <span className="font-bold">{gender} </span>
                     </div>
                     <div className="text-nowrap">
-                      Age = {fage}{" "}
+                      Age = {age}{" "}
                       <span className="text-base font-bold">Yrs</span>
                     </div>
                     <div className="text-nowrap">
-                      Height = {fheight}
+                      Height = {height}
                       <span className="text-base font-bold"> Cm</span>
                     </div>
                     <div className="text-nowrap">
-                      Weight = {fweight}
+                      Weight = {weight}
                       <span className="text-base font-bold"> Kgs</span>{" "}
                     </div>
                   </div>
@@ -225,6 +284,9 @@ const Bmi = () => {
                       className="text-black  "
                       name="Activity"
                       id="Activity"
+                      value={activity}
+                      onChange={handleSelectChange}
+                      required
                     >
                       <option value="sedentary">
                         Sedentary Little or No excersice
@@ -250,23 +312,23 @@ const Bmi = () => {
                         Maintaince
                       </div>
                       <div className="border border-t-0 border-r-0  px-2 md:border-black">
-                        data
+                        {calorieNeeds.maintenanceCalories}
                       </div>
                     </div>
                     <div className="text-nowrap ">
                       <div className="border border-l-0 px-2 md:border-black ">
-                        Mild weight
+                        Mild weight loss
                       </div>
                       <div className=" border border-t-0  px-2 md:border-black">
-                        data
+                        {calorieNeeds.mildWeightLossCalories}
                       </div>
                     </div>
                     <div className="mt-2 md:mt-0">
                       <div className="border md:border-l-0 px-2 md:border-black">
-                        Weight
+                        Mild Weight Gain
                       </div>
                       <div className="border md:border-l-0 md:border-t-0 px-2 md:border-black">
-                        data
+                        {calorieNeeds.mildWeightGainCalories}
                       </div>
                     </div>
                     <div className="mt-2 md:mt-0">
@@ -288,5 +350,4 @@ const Bmi = () => {
     </>
   );
 };
-
 export default Bmi;
