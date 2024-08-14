@@ -4,24 +4,26 @@
 ---
 
 ## [UI](https://www.figma.com/file/JAKUaHycj2kqfEwmuhF3qL/Untitled?type=design&node-id=0%3A1&mode=design&t=CVfFZgfHrvCE0FLt-1)
-- [x] BMI Calculator
-- [x] Calorie counter
-- [x] Workout Log
-- [x] Workout Plans
+- :heavy_check_mark: BMI Calculator
+- :heavy_check_mark: Calorie counter
+- [] Workout Log
+- :heavy_check_mark: Workout Plans
 
 
 ## JS
-- [x] BMI Calculator
-- [x] Calorie counter
+- :heavy_check_mark: BMI Calculator
+- :heavy_check_mark: Calorie counter
 - [ ] Workout Log
-- [x] Workou Plans
+- :heavy_check_mark: Workou Plans
 - [ ] Calender
 
 ## Authentication
-- [x]  login/Signup
+- :heavy_check_mark:  login/Signup
 
 ## Backend
-- [x] Calorie counter
+- [ ] Calorie counter
 - [ ] Workout Log
+- [ ] Bmi
+- [ ] Workout Plans
 
 
