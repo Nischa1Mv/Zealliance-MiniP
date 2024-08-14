@@ -11,17 +11,17 @@
 
 
 ## JS
-- [ ] BMI Calculator
-- [ ] Calorie counter
+- [x] BMI Calculator
+- [x] Calorie counter
 - [ ] Workout Log
-- [ ] Workou Plans
+- [x] Workou Plans
 - [ ] Calender
 
 ## Authentication
-- [ ]  login/Signup
+- [x]  login/Signup
 
 ## Backend
-- [ ] Calorie counter
+- [x] Calorie counter
 - [ ] Workout Log
 
 
