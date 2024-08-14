@@ -4,14 +4,17 @@ import { db } from "./firebase";
 
 const Paragraphguy = () => {
   return (
-    <div id="paragraph" className="flex flex-col py-2 px-4   text-pretty   ">
-      <div className="font-bold text-4xl pb-2 ">Calisthenics</div>
-      <div className="text-xl font-medium py-2 ">
+    <div
+      id="paragraph"
+      className="flex flex-col md:py-2 md:px-4 text-pretty    "
+    >
+      <div className="font-bold md:text-4xl md:pb-2 text-2xl">Calisthenics</div>
+      <div className="md:text-xl font-medium md:py-2 text-medium ">
         <div>
           The term calisthenics comes from the Greek words ‘Kalos’ meaning
           beauty and ‘Stenos’ which translates as strength.{" "}
         </div>
-        <div>
+        <div className="md:block hidden">
           {" "}
           Calisthenics is a form of strength training that utilizes an
           individual's body weight as resistance to perform multi-joint,
@@ -29,35 +32,6 @@ interface ExerciseName {
   name: string;
   steps: string[];
 }
-interface WorkoutnamesProps {
-  Title: string;
-  NameArr: ExerciseName[];
-}
-
-const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
-  const { setIsInfo, setWorkoutDetails, selectedTab, setSelectedTab } =
-    useSharedState();
-  const isSelected = selectedTab === Title;
-  return (
-    <div
-      className={`px-4 py-3 flex w-[15%] h-fit cursor-pointer justify-center items-center transform translate-x-0  duration-90  ${
-        isSelected
-          ? " text-[#5fdaff] bg-slate-800 border-b-2 animate-fadeIn   border-[#5fdaff]"
-          : ""
-      } )
-      `}
-      onClick={() => {
-        setIsInfo(false);
-        setWorkoutDetails({ Title, NameArr });
-        setSelectedTab(Title);
-      }}
-    >
-      <div className="font-semibold text-xl flex whitespace-nowrap  ">
-        {Title}
-      </div>
-    </div>
-  );
-};
 
 // Workoutnamesinfo.tsx
 
@@ -214,8 +188,38 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
     </div>
   );
 };
+interface WorkoutnamesProps {
+  Title: string;
+  NameArr: ExerciseName[];
+}
+
+const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
+  const { setIsInfo, setWorkoutDetails, selectedTab, setSelectedTab } =
+    useSharedState();
+  const isSelected = selectedTab === Title;
+  return (
+    <div
+      className={`md:px-4 md:py-3 flex md:w-[15%] md:h-fit cursor-pointer justify-center items-center transform translate-x-0  duration-90 px-2  ${
+        isSelected
+          ? " text-[#5fdaff] bg-slate-800 border-b-2 animate-fadeIn   border-[#5fdaff]"
+          : ""
+      } )
+      `}
+      onClick={() => {
+        setIsInfo(false);
+        setWorkoutDetails({ Title, NameArr });
+        setSelectedTab(Title);
+      }}
+    >
+      <div className="font-semibold text-xl flex whitespace-nowrap  ">
+        {Title}
+      </div>
+    </div>
+  );
+};
 
 const Workoutinfo = ({}) => {
+  const [ismenubar, setIsmenubar] = useState(false);
   const [workoutinfodata, setworkoutinfodata] = useState([]);
   useEffect(() => {
     const getvariations = async () => {
@@ -241,8 +245,8 @@ const Workoutinfo = ({}) => {
           <Paragraphguy />
         </div>
         <SharedStateProvider>
-          <div className=" w-full  border h-[60vh]">
-            <div className="flex sticky top-0">
+          <div className=" md:w-full flex border md:h-[60vh] h-[68vh] mt-2 flex-col relative items-center md:items-stretch pb-3 ">
+            <div className="md:top-0 md:flex hidden items-stretch ">
               {workoutinfodata.map((workout, index) => (
                 <Workoutnames
                   key={index}
@@ -251,9 +255,38 @@ const Workoutinfo = ({}) => {
                 />
               ))}
             </div>
-            <div>
+            {ismenubar && (
+              <>
+                <div
+                  onClick={() => {
+                    setIsmenubar(!ismenubar);
+                  }}
+                  className={`z-50  flex flex-wrap transition-transform duration-500 ease-out ${
+                    ismenubar ? "animate-slideUp" : "opacity-0 translate-y-full"
+                  }  shadow-lg p-4 rounded-lg absolute bottom-14`}
+                >
+                  {workoutinfodata.map((workout, index) => (
+                    <Workoutnames
+                      key={index}
+                      Title={workout.Title}
+                      NameArr={workout.NameArr}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            <div className="flex-1  w-full ">
               <Workoutnamesinfo />
             </div>
+            <button
+              className="border bg-slate-300 text-black mt-10 w-fit px-2 py-1 rounded-xl cusor-pointer md:hidden block"
+              onClick={() => {
+                setIsmenubar(!ismenubar);
+              }}
+            >
+              Muscle
+            </button>
           </div>
         </SharedStateProvider>
       </div>

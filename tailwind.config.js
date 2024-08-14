@@ -21,6 +21,10 @@ module.exports = {
     },
     extend: {
       keyframes: {
+        slideUp: {
+          "0%": { transform: "translateY(100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
@@ -60,6 +64,7 @@ module.exports = {
         },
       },
       animation: {
+        slideUp: "slideUp 0.1s ease-out",
         fadeIn: "fadeIn 0.1s ease-in-out",
         glitch: "glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite",
         shift: "shift 1s ease-in-out infinite alternate",
