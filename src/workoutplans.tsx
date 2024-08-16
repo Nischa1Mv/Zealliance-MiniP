@@ -121,12 +121,13 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
 }) => {
   const [isPlay, setIsplay] = useState(true);
   const [Overlay, setOverlay]= useState(setInfo);
-
-{Overlay 
-      ? document.bocy.class.lisf.add("overflow-hidden")
-      : document.body.classList.remove("overflow-hidden")
-  }, [Overlay]); 
-}
+useEffect(() => {
+  if (Overlay) {
+    document.body.classList.add("overflow-hidden");
+  } else {
+    document.body.classList.remove("overflow-hidden");
+  }
+}, [Overlay]);
 
   const handlePlayClick = () => {
     // Toggle the overlay visibility
