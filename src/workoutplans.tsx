@@ -119,10 +119,10 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
   Name,
   Steps,
 }) => {
-  const [isOverlayVisible, setOverlayVisible] = useState(true);
+  const [isPlay, setIsplay] = useState(true);
   const handlePlayClick = () => {
     // Toggle the overlay visibility
-    setOverlayVisible(!isOverlayVisible);
+    setIsplay(!isPlay);
     // Additional logic to start playing the video can be added here
   };
 //not working have to fix this
@@ -199,7 +199,7 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
                 allowFullScreen
               ></iframe>
               {/* Overlay */}
-              {isOverlayVisible && (
+              {isPlay && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                   <button
                     onClick={handlePlayClick}
