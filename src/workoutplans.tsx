@@ -306,14 +306,24 @@ const Workoutinfo = ({}) => {
             <div className="flex-1  w-full ">
               <Workoutnamesinfo />
             </div>
-            <button
-              className="border bg-slate-300 text-black mt-10 w-fit px-2 py-1 rounded-xl cusor-pointer md:hidden block"
+            <div
+              className="flex  border bg-slate-300 font-bold text-lg text-black mt-10 w-fit px-2 py-1 rounded-full cusor-pointer md:hidden gap-2  justify-center items-center"
               onClick={() => {
                 setIsmenubar(!ismenubar);
               }}
             >
-              Muscle
-            </button>
+              <button>Muscles</button>
+              <svg
+                className=""
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#00000"
+              >
+                <path d="m536-84-56-56 142-142-340-340-142 142-56-56 56-58-56-56 84-84-56-58 56-56 58 56 84-84 56 56 58-56 56 56-142 142 340 340 142-142 56 56-56 58 56 56-84 84 56 58-56 56-58-56-84 84-56-56-58 56Z" />
+              </svg>
+            </div>
           </div>
         </SharedStateProvider>
       </div>
