@@ -126,12 +126,7 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
     // Additional logic to start playing the video can be added here
   };
 //not working have to fix this
-  useEffect(() => {
-    console.log("isOverlayVisible:", isOverlayVisible);
-    isOverlayVisible
-      ? document.body.classList.add("overflow-hidden")
-      : document.body.classList.remove("overflow-hidden");
-  }, [isOverlayVisible]);
+
 
   return (
     <div
