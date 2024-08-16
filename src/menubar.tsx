@@ -5,7 +5,7 @@ function Test() {
   return (
     <>
       {" "}
-      <div className="relative flex flex-col bg-black w-full  h-screen w-screen">
+      <div className="relative flex flex-col bg-black  h-screen w-screen">
         <div className="flex-1"></div>
         <div className="flex flex-col items-center relative ">
           {menubar && (
