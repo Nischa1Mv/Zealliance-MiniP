@@ -149,7 +149,7 @@ useEffect(() => {
           <div className="absolute right-3 top-3 cursor-pointer md:hidden block">
             <svg
               onClick={() => {
-                  setOverlay("false");
+                          setInfo(false)
               }}
               xmlns="http://www.w3.org/2000/svg"
               height="27px"
