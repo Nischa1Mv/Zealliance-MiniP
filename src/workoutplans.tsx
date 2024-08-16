@@ -119,13 +119,19 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
   Name,
   Steps,
 }) => {
-  const [isOverlayVisible, setOverlayVisible] = useState(true); // State to manage overlay visibility
+  const [isOverlayVisible, setOverlayVisible] = useState(false); // State to manage overlay visibility
 
   const handlePlayClick = () => {
     // This function will handle play button click
     setOverlayVisible(!isOverlayVisible); // Hide the overlay
     // Additional logic to start playing the video can be added here
   };
+  useEffect(() => {
+    isOverlayVisible && document.body.classList.add("overflow-hidden");
+    return () => {
+      document.body.style.overflow = "hidden";
+    };
+  }, [isOverlayVisible]);
 
   return (
     <div
