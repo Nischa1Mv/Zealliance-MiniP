@@ -285,7 +285,7 @@ const Bmi = () => {
                   <div>
                     <label>Activity : </label>{" "}
                     <select
-                      className="text-white md:text-black  bg-transparent  md:w-fit"
+                      className="text-white md:text-black  bg-transparent  md:w-fit border-2 md:border-black w-full bg-black "
                       name="Activity"
                       id="Activity"
                       value={activity}
@@ -309,7 +309,6 @@ const Bmi = () => {
                       </option>
                     </select>
                   </div>
-                  <div>Do You Want To Loose Weight or Gain?</div>
                   <div className="grid grid-cols-2 md:grid-rows-1 grid-rows-2 md:grid-cols-3   border-white ">
                     <div className="flex flex-col ">
                       <div className="border  px-2 md:border-black">
@@ -320,8 +319,8 @@ const Bmi = () => {
                         <span className="ml-1">calories</span>
                       </div>
                     </div>
-                    <div className="text-nowrap  ">
-                      <div className="border border-l-0 px-2 md:border-black ">
+                    <div className="text-nowrap">
+                      <div className="border border-l-0 px-2 md:border-black  ">
                         Mild weight loss
                       </div>
                       <div className=" border border-t-0  px-2 md:border-black font-mono">
