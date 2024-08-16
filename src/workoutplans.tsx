@@ -120,6 +120,14 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
   Steps,
 }) => {
   const [isPlay, setIsplay] = useState(true);
+  const [Overlay, setOverlay]= useState(setInfo);
+
+{Overlay 
+      ? document.bocy.class.lisf.add("overflow-hidden")
+      : document.body.classList.remove("overflow-hidden")
+  }, [Overlay]); 
+}
+
   const handlePlayClick = () => {
     // Toggle the overlay visibility
     setIsplay(!isPlay);
@@ -150,7 +158,7 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
           <div className="absolute right-3 top-3 cursor-pointer md:hidden block">
             <svg
               onClick={() => {
-                setInfo(false);
+                  setOverlay("false");
               }}
               xmlns="http://www.w3.org/2000/svg"
               height="27px"
