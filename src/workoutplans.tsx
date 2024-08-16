@@ -120,31 +120,21 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
   Steps,
 }) => {
   const [isPlay, setIsplay] = useState(true);
-  const [Overlay, setOverlay]= useState(setInfo);
 useEffect(() => {
-  if (Overlay) {
     document.body.classList.add("overflow-hidden");
-  } else {
+    return() => {
     document.body.classList.remove("overflow-hidden");
-  }
-}, [Overlay]);
+  };
+}, []);
 
   const handlePlayClick = () => {
-    // Toggle the overlay visibility
     setIsplay(!isPlay);
     // Additional logic to start playing the video can be added here
   };
-//not working have to fix this
-  useEffect(() => {
-    Info
-      ? document.body.classList.add("overflow-hidden")
-      : document.body.classList.remove("overflow-hidden");
-  }, [Info]);
-
   return (
     <div
       onClick={() => {
-        setInfo(false);
+        setInfo(false)
       }}
       className=" h-full w-full bg-gray-50 bg-opacity-10 flex justify-center items-center -z-50"
     >
