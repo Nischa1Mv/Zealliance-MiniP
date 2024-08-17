@@ -71,9 +71,7 @@
 
    Open your browser and go to `http://localhost:3000`.
 
-## Project Structure
 
-```
 
 ## How to Use
 
