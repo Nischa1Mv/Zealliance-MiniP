@@ -1,4 +1,6 @@
 import { useState, ChangeEvent, useEffect } from "react";
+import { auth, fdb } from "./firebase";
+import { collection, setDoc, doc } from "firebase/firestore";
 
 interface Props {
   placeholder: string;
@@ -158,8 +160,27 @@ const Bmi = () => {
     }
   };
 
-  // Effect to recalculate calories whenever relevant state changes
-
+  const savedata = async () => {
+    let currentdate = new Date().toISOString().slice(0, 10);
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        const bmiCollectionRef = collection(fdb, "users", user.uid, "bmi");
+        const bmidocRef = doc(bmiCollectionRef, currentdate);
+        await setDoc(bmidocRef, {
+          bmi: bmi,
+          bmiCategory: bmiCategory,
+          height: height,
+          weight: weight,
+          date: currentdate,
+        });
+      } catch (error) {
+        console.error("Error adding document: ", error);
+      }
+    } else {
+      console.log("user not signed in");
+    }
+  };
   return (
     <>
       <div className="flex justify-center items-center   ">
@@ -232,9 +253,8 @@ const Bmi = () => {
               </div>
             </form>
           </div>
-
           {/* right */}
-          <div className="md:bg-[#dadee2] bg-transparent  md:text-black text-white border-2 border-none md:border  rounded-xl md:px-8 md:py-10 font-semibold px-2 py-2 text-xl md:w-[50%]   ">
+          <div className="md:bg-[#dadee2] bg-transparent relative md:text-black text-white border-2 border-none md:border  rounded-xl md:px-8 md:py-10 font-semibold px-2 py-2 text-xl md:w-[50%]   ">
             {!added ? (
               <>
                 <div className="relative w-full h-full hidden md:block">
@@ -339,10 +359,27 @@ const Bmi = () => {
                     </div>
                   </div>
                 </div>
+                <div
+                  onClick={savedata}
+                  className=" absolute bottom-4 right-4 border-2 flex justify-center items-center bg-blue-400 w-fit px-2 rounded-xl border-black cursor-pointer "
+                >
+                  <div className="font-bold text-lg mr-1">Save</div>
+                  <div className="flex justify-center items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="22px"
+                      viewBox="0 -960 960 960"
+                      width="20px"
+                      fill="#000000"
+                    >
+                      <path d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z" />
+                    </svg>
+                  </div>
+                </div>
               </>
             )}
-          </div>
-        </div>
+          </div>{" "}
+        </div>{" "}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const apikey = import.meta.env.VITE_NOTAPI_KEY;
 
@@ -18,4 +19,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
-export { auth, db };
+const fdb = getFirestore(app);
+export { auth, db, fdb };
