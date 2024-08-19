@@ -119,24 +119,22 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
   Name,
   Steps,
 }) => {
-  const [isOverlayVisible, setOverlayVisible] = useState(true);
+  const [isPlay, setIsplay] = useState(true);
+useEffect(() => {
+    document.body.classList.add("overflow-hidden");
+    return() => {
+    document.body.classList.remove("overflow-hidden");
+  };
+}, []);
+
   const handlePlayClick = () => {
-    // Toggle the overlay visibility
-    setOverlayVisible(!isOverlayVisible);
+    setIsplay(!isPlay);
     // Additional logic to start playing the video can be added here
   };
-//not working have to fix this
-  useEffect(() => {
-    console.log("isOverlayVisible:", isOverlayVisible);
-    isOverlayVisible
-      ? document.body.classList.add("overflow-hidden")
-      : document.body.classList.remove("overflow-hidden");
-  }, [isOverlayVisible]);
-
   return (
     <div
       onClick={() => {
-        setInfo(false);
+        setInfo(false)
       }}
       className=" h-full w-full bg-gray-50 bg-opacity-10 flex justify-center items-center -z-50"
     >
@@ -151,7 +149,7 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
           <div className="absolute right-3 top-3 cursor-pointer md:hidden block">
             <svg
               onClick={() => {
-                setInfo(false);
+                          setInfo(false)
               }}
               xmlns="http://www.w3.org/2000/svg"
               height="27px"
@@ -198,7 +196,7 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
                 allowFullScreen
               ></iframe>
               {/* Overlay */}
-              {isOverlayVisible && (
+              {isPlay && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                   <button
                     onClick={handlePlayClick}
