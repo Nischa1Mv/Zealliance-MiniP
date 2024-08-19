@@ -4,23 +4,74 @@ import { ref, get } from "firebase/database";
 import { db } from "./firebase";
 
 const Foodlog = () => {
-  return (
-    //this is the main page
-    <div className="  flex-col flex md:flex-row gap-4 px-2 py-6 justify-center">
-      <div className="md:w-[48%] md:min-h-[82vh] w-full max-h-full h-[80vh]  ">
-        {" "}
-        <Caloriesfood />
-      </div>
+  const [space, setSpace] = useState<Food[]>([]);
+  const [foodbrowse, setFoodbrowse] = useState<boolean>(false);
+  const addfood = async (id: number) => {
+    const foodData = await fetchFooddata(id);
+    if (foodData) {
+      setSpace((prevSpace) => [...prevSpace, foodData]);
+    }
+  };
 
-      <div className="md:flex md:w-[48%] h-full md:min-h-[82vh] hidden">
-        <Foodbrowse />
+  const fetchFooddata = async (id: number): Promise<Food | null> => {
+    try {
+      const dbRef = ref(db, `foodItems/${id}`);
+      const snapshot = await get(dbRef);
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      return null;
+    }
+  };
+
+  return (
+    <div className="flex-col flex md:flex-row gap-4 px-2 py-6 justify-center">
+      <div className="md:w-[48%] md:min-h-[82vh] w-full max-h-full h-[80vh]">
+        <Caloriesfood
+          foodbrowse={foodbrowse}
+          setFoodbrowse={setFoodbrowse}
+          space={space}
+          setSpace={setSpace}
+        />
       </div>
+      <div className="md:flex md:w-[48%] h-full md:min-h-[82vh] hidden">
+        <Foodbrowse
+          foodbrowse={foodbrowse}
+          setFoodbrowse={setFoodbrowse}
+          addfood={addfood}
+        />
+      </div>
+      <div></div>
+      {foodbrowse && (
+        <div className="absolute inset-0 z-50 bg-[#16171b] md:hidden w-full h-full">
+          <Foodbrowse
+            foodbrowse={foodbrowse}
+            setFoodbrowse={setFoodbrowse}
+            addfood={addfood}
+          />
+        </div>
+      )}
     </div>
   );
 };
 export default Foodlog;
 
-const Foodbrowse = () => {
+interface FoodbrowseProps {
+  addfood: (id: number) => void;
+  foodbrowse: boolean;
+  setFoodbrowse: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Foodbrowse: React.FC<FoodbrowseProps> = ({
+  addfood,
+  foodbrowse,
+  setFoodbrowse,
+}) => {
   const [food, setFood] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -51,6 +102,22 @@ const Foodbrowse = () => {
       id="right"
       className="border-[#464646] md:border-4  md:px-10 md:py-6 flex flex-col md:gap-6 rounded-[8px] w-full gap-4  sm:relative "
     >
+      <div
+        onClick={() => {
+          setFoodbrowse(!foodbrowse);
+        }}
+        className="md:hidden flex "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#FFFFFF"
+        >
+          <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+        </svg>
+      </div>
       <div className="flex rounded-[8px]  px-2 py-1 border-[#464646] border-2 ">
         <input
           className=" text-white bg-transparent focus:outline-none px-2 w-full py-2 "
@@ -58,8 +125,8 @@ const Foodbrowse = () => {
           placeholder="food..."
         />
 
-        {/* searchbar */}
         <div className=" flex justify-center items-center">
+          {/* searchbar */}
           <svg
             className=""
             xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +173,12 @@ const Foodbrowse = () => {
                 id={food.id}
                 handleClick={() => {}}
               />
-              <div className="absolute md:top-3 top-2 right-2">
+              <div
+                onClick={() => {
+                  addfood(food.id);
+                }}
+                className="absolute md:top-3 top-2 right-2 cursor-pointer"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
@@ -172,12 +244,21 @@ interface Food {
   id: number;
   name: string;
   cal: number;
-  // Add more properties if necessary
+}
+interface CaloriesfoodProps {
+  space: Food[];
+  setSpace: React.Dispatch<React.SetStateAction<Food[]>>;
+  foodbrowse: boolean;
+  setFoodbrowse: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Caloriesfood: React.FC = () => {
+const Caloriesfood: React.FC<CaloriesfoodProps> = ({
+  space,
+  setSpace,
+  foodbrowse,
+  setFoodbrowse,
+}) => {
   const [hasElements, setHasElements] = useState<boolean>(false);
-  const [space, setSpace] = useState<Food[]>([]);
   const [Ltcal, setLtcal] = useState("");
   const [tcal, setTcal] = useState<number>(0);
   const [sumCal, setSumCal] = useState<number>(0);
@@ -240,7 +321,6 @@ const Caloriesfood: React.FC = () => {
     setLtcal("");
   };
   let diffCal = tcal - sumCal;
-  const [foodbrowse, setFoodbrowse] = useState(false);
 
   return (
     <div className="relative h-full">
@@ -339,11 +419,6 @@ const Caloriesfood: React.FC = () => {
           </div>
         </div>
       </div>
-      {foodbrowse && (
-        <div className=" absolute inset-0  z-50 bg-[#16171b] md:hidden w-full h-full">
-          <div className=""></div> <Foodbrowse />{" "}
-        </div>
-      )}
     </div>
   );
 };
