@@ -52,7 +52,7 @@
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Nischa1Mv/zealiance-MiniP.git
+   git clone https://github.com/Nischa1Mv/Zealliance-MiniP.git
    ```
 
 2. **Install dependencies:**
