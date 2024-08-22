@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ref, get } from "firebase/database";
-import { db } from "../firebase";
+import { db } from "../DB/firebase";
 import Fooddata from "./FoodData";
 
 interface FoodbrowseProps {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDrop, DropTargetMonitor } from "react-dnd";
 import { ref, get } from "firebase/database";
-import { db } from "../firebase";
+import { db } from "../DB/firebase";
 import Fooddata from "./FoodData";
 
 interface Food {

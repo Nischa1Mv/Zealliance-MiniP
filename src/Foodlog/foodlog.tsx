@@ -2,7 +2,7 @@ import { useState } from "react";
 import Foodbrowse from "./Foodbrowse";
 import Caloriesfood from "./CaloriesFood";
 import { ref, get } from "firebase/database";
-import { db } from "../firebase";
+import { db } from "../DB/firebase";
 interface Food {
   id: number;
   name: string;

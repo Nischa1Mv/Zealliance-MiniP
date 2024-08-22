@@ -6,8 +6,8 @@ import Workoutlog from "./WorkoutLog/workoutlog";
 import Foodlog from "./Foodlog/foodlog";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Login from "./authentication/Login";
-import Signup from "./authentication/signup";
+import Login from "./DB/Login";
+import Signup from "./DB/signup";
 function Home() {
   return (
     <>

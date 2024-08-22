@@ -1,6 +1,7 @@
 import Footer from "./Header_Footer/footer";
+import Header from "./Header_Footer/head";
 import Home from "./home";
-import Header from "./head";
+
 import { BrowserRouter } from "react-router-dom";
 
 function App() {

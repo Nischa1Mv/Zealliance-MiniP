@@ -1,6 +1,6 @@
 import { SharedStateProvider } from "../context/sharedState";
 import { ref, get } from "firebase/database";
-import { db } from "../firebase";
+import { db } from "../DB/firebase";
 import Paragraphguy from "./Paragraphguy";
 import Workoutnames from "./Workoutnames";
 import Workoutnamesinfo from "./Workoutnamesinfo";
