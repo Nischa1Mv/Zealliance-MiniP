@@ -149,7 +149,7 @@ const Bmi = () => {
               BMI Calculator
             </div>
             <form action="Submit" onSubmit={calBmi}>
-              <div className="flex flex-col gap-7  text-3xl font-bold mt-8">
+              <div className="flex flex-col gap-7  md:text-3xl text-xl font-bold mt-8">
                 <div className="grid grid-cols-2 grid-rows-1 text-center">
                   <div
                     className={`border-2 border-black rounded-lg py-2 cursor-pointer  transition duration-200  ${
