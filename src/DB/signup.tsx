@@ -39,7 +39,7 @@ const Signup = () => {
       <div className="w-full h-screen bg-[rgb(0,0,0,0.7)] ">
         <form className="flex flex-col justify-center items-center h-full  ">
           <div className="font-bold text-4xl mb-5">Sign Up</div>
-          <div className="flex flex-col gap-4 w-[20%]  text-black">
+          <div className="flex flex-col gap-4 md:w-[20%]  text-black">
             <div className="">
               <input
                 required
