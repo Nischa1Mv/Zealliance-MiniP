@@ -1,9 +1,7 @@
 import { useState } from "react";
-import Justinput from "./JustInput";
 import DataWandR from "./DataWandR";
 
 function Excercisedata({}) {
-  var Isreadonly = false;
   const [info, setInfo] = useState(true);
   const handleClick = () => {
     setInfo((prev) => !prev);
