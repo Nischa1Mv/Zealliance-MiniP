@@ -35,30 +35,16 @@ function Excercisedata({}) {
           </>
         ) : (
           <>
-            {" "}
-            <div className="flex gap-20  ">
-              <div className="flex jusitfy-center items-center">
+            <div className="flex flex-col gap-3">
+              {" "}
+              <div className="flex jusitfy-center items-center text-nowrap ">
                 Exercise Name{" "}
-              </div>{" "}
-              <div className="flex  w-fit py-2 px-5 gap-4">
-                <div> PR </div>
-                <div className="w-[100px]">
-                  <Justinput
-                    type="number"
-                    placeholder="Weight"
-                    readonly={Isreadonly}
-                  />
-                </div>
-                <div className="w-[100px]">
-                  <Justinput
-                    type="number"
-                    placeholder="Reps"
-                    readonly={Isreadonly}
-                  />
-                </div>
               </div>
-              <div className="absolute right-16 flex">
-                <div className=" px-3 py-1 bg-blue-500">Save</div>
+              {""}
+              <div className="absolute right-20  flex ">
+                <div className=" px-3 py-1 bg-blue-500 cursor-pointer">
+                  Save
+                </div>
                 <div>
                   <svg
                     className="absolute bottom-0 "
@@ -73,19 +59,19 @@ function Excercisedata({}) {
                   </svg>
                 </div>
               </div>
-            </div>
-            <div className="flex gap-6 ">
-              <div className="flex ">
-                <h1 className="mt-3">Set-1</h1>
-                <DataWandR />
-              </div>
-              <div className="flex ">
-                <h1 className="mt-3">Set-2</h1>
-                <DataWandR />
-              </div>{" "}
-              <div className="flex ">
-                <h1 className="mt-3">Set-3</h1>
-                <DataWandR />
+              <div className="flex  ">
+                <div className="flex w-[20%]">
+                  <h1 className="mt-3 text-nowrap">Set-1</h1>
+                  <DataWandR />
+                </div>
+                <div className="flex w-[20%] ">
+                  <h1 className="mt-3 text-nowrap">Set-2</h1>
+                  <DataWandR />
+                </div>{" "}
+                <div className="flex w-[20%] ">
+                  <h1 className="mt-3 text-nowrap">Set-3</h1>
+                  <DataWandR />
+                </div>
               </div>
             </div>
           </>
