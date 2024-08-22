@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+
 interface VideoOverlayProps {
   setInfo: React.Dispatch<React.SetStateAction<boolean>>;
   Name: string;
