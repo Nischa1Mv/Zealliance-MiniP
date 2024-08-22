@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { auth, fdb } from "../DB/firebase";
 import { collection, setDoc, doc } from "firebase/firestore";
 import InputWithLabel from "./inputwithlabel";
+import { userInfo } from "os";
 
 enum ActivityLevel {
   Sedentary = "sedentary",
@@ -317,9 +318,14 @@ const Bmi = () => {
                     </div>
                   </div>
                 </div>
+
                 <div
                   onClick={savedata}
-                  className=" absolute bottom-4 right-4 border-2 flex justify-center items-center bg-blue-400 w-fit px-2 rounded-xl border-black cursor-pointer "
+                  className={`${
+                    auth.currentUser
+                      ? "flex"
+                      : " pointer-events-none opacity-20 flex"
+                  } absolute bottom-4 right-4 border-2  justify-center items-center bg-blue-400 w-fit px-2 rounded-xl border-black cursor-pointer`}
                 >
                   <div className="font-bold text-lg mr-1">Save</div>
                   <div className="flex justify-center items-center">
