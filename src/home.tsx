@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import Workoutinfo from "./workoutplans";
-import Bmi from "./bmi";
+import Bmi from "./Bmi/bmi";
 import Workoutlog from "./workoutlog";
 import Foodlog from "./Foodlog/foodlog";
 import { DndProvider } from "react-dnd";

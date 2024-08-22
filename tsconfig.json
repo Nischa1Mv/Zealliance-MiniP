@@ -20,6 +20,11 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/Foodlog/CaloriesFood.tsx", "src/Foodlog/foodlog.tsx"],
+  "include": [
+    "src",
+    "src/Foodlog/CaloriesFood.tsx",
+    "src/Foodlog/foodlog.tsx",
+    "src/Bmi/bmi.tsx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
