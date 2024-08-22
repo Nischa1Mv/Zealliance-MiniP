@@ -14,6 +14,8 @@ interface CaloriesfoodProps {
   setSpace: React.Dispatch<React.SetStateAction<Food[]>>;
   foodbrowse: boolean;
   setFoodbrowse: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasElements: React.Dispatch<React.SetStateAction<boolean>>;
+  hasElements?: boolean;
 }
 
 const Caloriesfood: React.FC<CaloriesfoodProps> = ({
@@ -21,8 +23,9 @@ const Caloriesfood: React.FC<CaloriesfoodProps> = ({
   setSpace,
   foodbrowse,
   setFoodbrowse,
+  setHasElements,
+  hasElements,
 }) => {
-  const [hasElements, setHasElements] = useState<boolean>(false);
   const [Ltcal, setLtcal] = useState("");
   const [tcal, setTcal] = useState<number>(0);
   const [sumCal, setSumCal] = useState<number>(0);

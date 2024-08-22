@@ -10,12 +10,18 @@ interface Food {
 }
 
 const Foodlog = () => {
+  const [hasElements, setHasElements] = useState<boolean>(false);
   const [space, setSpace] = useState<Food[]>([]);
   const [foodbrowse, setFoodbrowse] = useState<boolean>(false);
+
   const addfood = async (id: number) => {
     const foodData = await fetchFooddata(id);
     if (foodData) {
-      setSpace((prevSpace) => [...prevSpace, foodData]);
+      setSpace((prevSpace) => {
+        const newSpace = [...prevSpace, foodData];
+        setHasElements(newSpace.length > 0);
+        return newSpace;
+      });
     }
   };
 
@@ -43,6 +49,8 @@ const Foodlog = () => {
           setFoodbrowse={setFoodbrowse}
           space={space}
           setSpace={setSpace}
+          setHasElements={setHasElements}
+          hasElements={hasElements}
         />
       </div>
       <div className="md:flex md:w-[48%] h-full md:min-h-[82vh] hidden">

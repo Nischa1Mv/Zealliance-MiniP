@@ -27,7 +27,7 @@ function Login() {
       {" "}
       <div className="w-full h-screen bg-[rgb(0,0,0,0.7)] ">
         <form className="flex flex-col justify-center items-center h-full  ">
-          <div className="font-bold text-4xl mb-5">Login</div>
+          <div className="font-bold text-4xl mb-5 ">Login</div>
           <div className="flex flex-col gap-4 w-[20%]  text-black">
             <div className="">
               <input
