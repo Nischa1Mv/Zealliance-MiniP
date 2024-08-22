@@ -59,7 +59,7 @@ const Foodbrowse: React.FC<FoodbrowseProps> = ({
     // foodbrowse
     <div
       id="right"
-      className="border-[#464646] md:border-4 mt-3 md:px-10 md:py-6 flex flex-col md:gap-6 rounded-[8px] w-full gap-2 sm:relative "
+      className="border-[#464646] md:border-4   md:mt-0 mt-3 md:px-10 md:py-6 flex flex-col md:gap-6 rounded-[8px] w-full gap-2 sm:relative "
     >
       <div
         onClick={() => {

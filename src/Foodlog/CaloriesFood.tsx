@@ -90,7 +90,7 @@ const Caloriesfood: React.FC<CaloriesfoodProps> = ({
   let diffCal = tcal - sumCal;
 
   return (
-    <div className="relative h-full">
+    <div className="relative h-[80vh] max-h-full md:h-full">
       <div
         id="left"
         className="rounded-[8px] md:py-4 py-1 px-2 md:px-4 border-[#464646] border-4  flex flex-col w-full h-full"
