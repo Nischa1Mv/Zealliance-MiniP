@@ -10,18 +10,6 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
   Name,
   Steps,
 }) => {
-  const [isPlay, setIsplay] = useState(true);
-  useEffect(() => {
-    document.body.classList.add("overflow-hidden");
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, []);
-
-  const handlePlayClick = () => {
-    setIsplay(!isPlay);
-    // Additional logic to start playing the video can be added here
-  };
   return (
     <div
       onClick={() => {
@@ -86,17 +74,6 @@ const VideoOverlay: React.FC<VideoOverlayProps> = ({
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
-              {/* Overlay */}
-              {isPlay && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                  <button
-                    onClick={handlePlayClick}
-                    className="text-white bg-gray-800 px-6 py-3 rounded-lg text-xl"
-                  >
-                    Play
-                  </button>
-                </div>
-              )}
             </div>
           </div>
         </div>
