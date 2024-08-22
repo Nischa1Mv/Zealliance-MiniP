@@ -4,12 +4,12 @@ const Workoutlog = () => {
   return (
     <div className="w-full h-full  py-4 pt-5 px-5  relative">
       <input
-        className="bg-white text-black px-4 py-1 w-full border-black rounded-[8px] h-[6vh] font-semibold text-lg focus:outline-none "
+        className="bg-white text-black px-4 py-1 w-full border-black rounded-[8px] h-[7vh] font-semibold text-lg focus:outline-none "
         type="text"
         placeholder="Search"
       />
       <svg
-        className="absolute top-8 right-10 "
+        className="absolute top-7 right-10 "
         xmlns="http://www.w3.org/2000/svg"
         height="30px"
         viewBox="0 -960 960 960"
