@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { auth, fdb } from "../DB/firebase";
 import { collection, setDoc, doc } from "firebase/firestore";
 import InputWithLabel from "./inputwithlabel";
-import { userInfo } from "os";
 
 enum ActivityLevel {
   Sedentary = "sedentary",
