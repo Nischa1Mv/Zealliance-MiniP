@@ -104,9 +104,9 @@ const Foodbrowse: React.FC<FoodbrowseProps> = ({
             </div>
           </>
         )}{" "}
-        {food.map((food) => {
+        {food.map((food, index) => {
           return (
-            <div className="relative">
+            <div className="relative " key={`${food.id}-${index}`}>
               <Fooddata
                 key={food.id}
                 cal={food.cal}
