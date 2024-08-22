@@ -24,7 +24,8 @@
     "src",
     "src/Foodlog/CaloriesFood.tsx",
     "src/Foodlog/foodlog.tsx",
-    "src/Bmi/bmi.tsx"
-  ],
+    "src/Bmi/bmi.tsx",
+    "src/WorkoutPlans/workoutplans.tsx"
+, "useless/menubar.tsx", "ToBeworkedOn/diary.tsx"  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

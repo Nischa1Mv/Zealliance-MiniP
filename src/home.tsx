@@ -1,14 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 
-import Workoutinfo from "./workoutplans";
+import Workoutinfo from "./WorkoutPlans/workoutplans";
 import Bmi from "./Bmi/bmi";
 import Workoutlog from "./workoutlog";
 import Foodlog from "./Foodlog/foodlog";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import Login from "./Login";
-import Signup from "./signup";
-
+import Login from "./authentication/Login";
+import Signup from "./authentication/signup";
 function Home() {
   return (
     <>
