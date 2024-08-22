@@ -43,7 +43,7 @@ const Foodlog = () => {
 
   return (
     <div className="flex-col flex md:flex-row gap-4 px-2 py-6 justify-center">
-      <div className="md:w-[48%] md:min-h-[82vh] w-full max-h-full h-[80vh]">
+      <div className="md:w-[48%] md:min-h-[82vh] w-full max-h-full min-h-[80vh]">
         <Caloriesfood
           foodbrowse={foodbrowse}
           setFoodbrowse={setFoodbrowse}

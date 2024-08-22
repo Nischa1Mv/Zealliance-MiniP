@@ -167,7 +167,7 @@ const Caloriesfood: React.FC<CaloriesfoodProps> = ({
             </div>
             {!hasElements && (
               <>
-                <p className="md:flex absolute inset-0 hidden justify-center items-center opacity-20 bg-white text-black ">
+                <p className="md:flex absolute inset-0 hidden justify-center items-center opacity-20 bg-white text-black md:text-2xl font-bold">
                   Release to drop
                 </p>
               </>
