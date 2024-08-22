@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Workoutinfo from "./WorkoutPlans/workoutplans";
 import Bmi from "./Bmi/bmi";
-import Workoutlog from "./workoutlog";
+import Workoutlog from "./WorkoutLog/workoutlog";
 import Foodlog from "./Foodlog/foodlog";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";

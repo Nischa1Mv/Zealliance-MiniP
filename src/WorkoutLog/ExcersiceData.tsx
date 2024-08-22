@@ -1,32 +1,6 @@
 import { useState } from "react";
-
-const Datacount = () => {
-  return (
-    <>
-      <Excercisedata />
-      <Excercisedata />
-      <Excercisedata />
-      <Excercisedata />
-      <Excercisedata />
-    </>
-  );
-};
-
-export default Datacount;
-
-// interface Props {
-//   Name: String;
-//   w1: String;
-//   w2: String;
-//   w3: String;
-//   r1: String;
-//   r2: String;
-//   r3: String;
-//   prw: string;
-//   prr: string;
-//  }
-// function Excercisedata(props: Props) {
-//   const { Name, w1, w2, w3, r1, r2, r3, prw, prr } = props;
+import Justinput from "./JustInput";
+import DataWandR from "./DataWandR";
 
 function Excercisedata({}) {
   var Isreadonly = false;
@@ -121,42 +95,4 @@ function Excercisedata({}) {
   );
 }
 
-const DataWandR = () => {
-  var Isreadonly = false;
-  return (
-    <div className="flex w-fit py-2 px-4 gap-4 ">
-      <div>
-        {" "}
-        <div className="flex flex-col w-[100px] gap-2 ">
-          {" "}
-          <Justinput type="number" placeholder="Weight" readonly={Isreadonly} />
-          <div className="">Weight</div>
-        </div>
-      </div>
-      <div>
-        <div className="flex flex-col w-[100px] gap-2  ">
-          <Justinput type="number" placeholder="Reps" readonly={Isreadonly} />
-          <div className="">Reps</div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-interface Props {
-  type: string;
-  placeholder: string;
-  readonly: boolean;
-}
-const Justinput = ({ type, placeholder, readonly }: Props) => {
-  return (
-    <>
-      <input
-        className="w-full py-1 text-lg font-medium px-4 placeholder:font-medium placeholder:text-lg focus:outline-none text-black [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-        type={type}
-        placeholder={placeholder}
-        readOnly={readonly}
-      />
-    </>
-  );
-};
+export default Excercisedata;
