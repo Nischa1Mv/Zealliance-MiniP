@@ -16,7 +16,7 @@ const Workoutnames: React.FC<WorkoutnamesProps> = ({ Title, NameArr }) => {
   const isSelected = selectedTab === Title;
   return (
     <div
-      className={`md:px-4 md:py-3 flex md:w-[15%] md:h-fit cursor-pointer justify-center items-center transform translate-x-0  duration-90 px-2  ${
+      className={`md:px-4  md:py-3 flex md:w-[15%] md:h-fit cursor-pointer justify-center items-center transform translate-x-0  duration-90 px-2  ${
         isSelected
           ? " text-[#5fdaff] bg-slate-800 border-b-2 animate-fadeIn   border-[#5fdaff]"
           : ""

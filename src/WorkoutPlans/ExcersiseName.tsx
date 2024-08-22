@@ -11,7 +11,7 @@ const Excersicename: React.FC<ExcersicenameProps> = ({ Name, Steps }) => {
   return (
     <div className="">
       <div className="border border-[#464646]  " onClick={() => setInfo(!Info)}>
-        <div className="px-8 py-2 flex font-medium text-base">
+        <div className="px-4 py-1 flex font-semibold text-medium">
           <div className="flex gap-4">
             <div className="whitespace-nowrap">{Name}</div>
             <div>

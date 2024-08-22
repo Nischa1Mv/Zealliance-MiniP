@@ -37,7 +37,7 @@ const Workoutinfo = ({}) => {
           <Paragraphguy />
         </div>
         <SharedStateProvider>
-          <div className=" md:w-full flex border md:h-[60vh] h-[68vh] mt-2 flex-col relative items-center md:items-stretch pb-3 ">
+          <div className="md:w-full flex border  md:h-[60vh] h-[68vh] mt-2 flex-col relative items-center md:items-stretch pb-3 ">
             <div className="md:top-0 md:flex hidden items-stretch ">
               {workoutinfodata.map((workout, index) => (
                 <Workoutnames
@@ -68,7 +68,7 @@ const Workoutinfo = ({}) => {
               </>
             )}
 
-            <div className="flex-1  w-full ">
+            <div className="flex-1 overflow-y-auto  w-full ">
               <Workoutnamesinfo />
             </div>
             <div
